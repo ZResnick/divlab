@@ -1,167 +1,171 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+		monospace;
 }
 
 .react-grid-layout {
-  position: relative;
-  transition: height 200ms ease;
+	position: relative;
+	transition: height 200ms ease;
 }
 .react-grid-item {
-  transition: all 200ms ease;
-  transition-property: left, top;
+	transition: all 200ms ease;
+	transition-property: left, top;
 }
 .react-grid-item.cssTransforms {
-  transition-property: transform;
+	transition-property: transform;
 }
 .react-grid-item.resizing {
-  z-index: 1;
-  will-change: width, height;
+	z-index: 1;
+	will-change: width, height;
 }
 
 .react-grid-item.react-draggable-dragging {
-  transition: none;
-  z-index: 3;
-  will-change: transform;
+	transition: none;
+	z-index: 3;
+	will-change: transform;
 }
 
 .react-grid-item.react-grid-placeholder {
-  background: red;
-  opacity: 0.2;
-  transition-duration: 100ms;
-  z-index: 2;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
+	background: red;
+	opacity: 0.2;
+	transition-duration: 100ms;
+	z-index: 2;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
 }
 
 .react-grid-item > .react-resizable-handle {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  bottom: 0;
-  right: 0;
-  cursor: se-resize;
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	bottom: 0;
+	right: 0;
+	cursor: se-resize;
 }
 
 .react-grid-item > .react-resizable-handle::after {
-  content: '';
-  position: absolute;
-  right: 3px;
-  bottom: 3px;
-  width: 5px;
-  height: 5px;
-  border-right: 2px solid rgba(0, 0, 0, 0.4);
-  border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+	content: '';
+	position: absolute;
+	right: 3px;
+	bottom: 3px;
+	width: 5px;
+	height: 5px;
+	border-right: 2px solid rgba(0, 0, 0, 0.4);
+	border-bottom: 2px solid rgba(0, 0, 0, 0.4);
 }
 
 .edit-button-on {
-  padding: 5px;
+	padding: 5px;
 }
 
 .edit-button-off {
-  position: absolute;
-  left: -999999px;
+	position: absolute;
+	left: -999999px;
 }
 
 .animate-welcome {
-  padding-top: 15%;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 10;
-  color: black;
-  font-size: 60px;
-  animation-name: moveInRight;
-  animation-duration: 2s;
+	padding-top: 15%;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 10;
+	color: black;
+	font-size: 60px;
+	animation-name: moveInRight;
+	animation-duration: 2s;
 }
 
 @keyframes moveInRight {
-  0% {
-    opacity: 0;
-    transform: translateY(300px);
-  }
-  80% {
-    transform: translateY(0px);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(0);
-  }
+	0% {
+		opacity: 0;
+		transform: translateY(300px);
+	}
+	80% {
+		transform: translateY(0px);
+	}
+	100% {
+		opacity: 1;
+		transform: translate(0);
+	}
 }
 
 .animate-caption {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 10;
-  color: black;
-  letter-spacing: 4px;
-  animation-name: captionAnimation;
-  animation-duration: 3.2s;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 10;
+	color: black;
+	letter-spacing: 4px;
+	animation-name: captionAnimation;
+	animation-duration: 3.2s;
 }
 
 @keyframes captionAnimation {
-  0% {
-    opacity: 0;
-  }
-  60% {
-    opacity: 0;
-  }
-  80% {
-    opacity: 1;
-  }
+	0% {
+		opacity: 0;
+	}
+	60% {
+		opacity: 0;
+	}
+	80% {
+		opacity: 1;
+	}
 }
 
 #homepage {
-  background-color: rgb(255, 208, 0);
-  min-width: 100%;
-  height: 100%;
-  padding-bottom: 100%;
+	background-color: rgb(255, 208, 0);
+	min-width: 100%;
+	height: 100%;
+	padding-bottom: 100%;
 }
 
 #navbar {
-  background-color: rgb(255, 208, 0);
-  min-height: 100px;
-  text-align: right;
-  padding-right: 4%;
-  padding-top: 20px;
+	background-color: rgb(255, 208, 0);
+	min-height: 100px;
+	text-align: right;
+	padding-right: 4%;
+	padding-top: 20px;
 }
 
 .navlink {
-  padding-right: 25px;
-  padding-left: 25px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-right: 25px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 10;
-  color: black;
-  letter-spacing: 2px;
-  border-style: solid;
-  border-width: 2px;
-  border-radius: 50px;
+	padding-right: 25px;
+	padding-left: 25px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-right: 25px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 10;
+	color: black;
+	letter-spacing: 2px;
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 50px;
 }
 
 .navlink:hover {
-  padding-right: 25px;
-  padding-left: 25px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-right: 25px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 10;
-  color: rgb(214, 214, 214);
-  background-color: black;
-  letter-spacing: 2px;
-  border-style: solid;
-  border-width: 2px;
-  border-radius: 25px;
+	padding-right: 25px;
+	padding-left: 25px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-right: 25px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 10;
+	color: rgb(214, 214, 214);
+	background-color: black;
+	letter-spacing: 2px;
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 25px;
+}
+
+.ui.segment {
+	border: 0px solid black;
 }
