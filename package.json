@@ -14,7 +14,15 @@
     "react-dom": "^16.9.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1",
-    "semantic-ui-react": "^0.87.3"
+    "semantic-ui-react": "^0.87.3",
+    "react-grid-layout": "^0.16.6",
+    "react-resizable": "^1.8.0",
+    "react-sortable-pane": "^1.1.0",
+    "styled-components": "^4.3.2",
+    "af-react-grid": "^2.0.3",
+    "history": "^4.9.0",
+    "lodash": "^4.17.15",
+    "prop-types": "^15.7.2"
   },
   "scripts": {
     "start": "react-scripts start",
