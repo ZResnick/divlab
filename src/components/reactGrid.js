@@ -135,7 +135,7 @@ class divlab extends React.PureComponent {
 		};
 		const i = el.add ? '+' : el.i;
 		return (
-			<div style={{ border: '1px solid red' }} key={i} data-grid={el}>
+			<div style={{ border: '1px solid red', display: 'flex', justifyContent: 'center', flexDirection: "row", overflow: "hidden"}} key={i} data-grid={el}>
 				{el.add ? (
 					<span
 						className="add text"
@@ -342,7 +342,7 @@ class divlab extends React.PureComponent {
 											return (
 												<Draggable
 													id={String(Math.floor(Math.random() * 100000000))}
-													style={{ margin: '8px' }}
+													
 													key={idx}
 												>
 													<Item>{item}</Item>

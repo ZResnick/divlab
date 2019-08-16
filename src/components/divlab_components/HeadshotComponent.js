@@ -4,8 +4,9 @@ export default function HeadshotComponent(props) {
   let { imageUrl } = props.info;
 
   let divStyle = {
-    width: '360px',
-    height: '360px',
+    height: '100%',
+    width: '100%',
+    margin: '0px'
   };
 
   return imageUrl.length ? (
