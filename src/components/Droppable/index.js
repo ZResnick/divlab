@@ -4,11 +4,13 @@ import PropTypes from 'prop-types';
 class Droppable extends Component {
 	state = {};
 
+	// work in progress
 	drop = e => {
 		e.preventDefault();
 		const data = e.dataTransfer.getData('transfer');
 		// const element = document.getElementById(data);
 		if (data) {
+			// when dropping image, data is null and errors
 			e.target.appendChild(document.getElementById(data));
 		}
 
