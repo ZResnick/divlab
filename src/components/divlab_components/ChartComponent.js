@@ -47,11 +47,13 @@ export default function ChartComponent(props) {
     },
   };
 
-  return (
+  return labels.length || datasets.length || dataTypes.length ? (
     <div>
       <div style={{ width: 500 }}>
         <Chart type="bar" data={data} options={options} />
       </div>
     </div>
+  ) : (
+    <img alt="" src="images/ChartExample.png" />
   );
 }

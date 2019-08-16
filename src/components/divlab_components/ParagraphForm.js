@@ -7,6 +7,7 @@ export default class ParagraphForm extends Component {
     super();
     this.state = {
       content: '',
+      id: '',
       edit: true,
     };
     this.switchEdit = this.switchEdit.bind(this);
@@ -32,6 +33,14 @@ export default class ParagraphForm extends Component {
       <div>
         <Form onSubmit={this.switchEdit}>
           <Form.Input
+            label="div ID"
+            type="text"
+            name="id"
+            value={this.state.id}
+            placeholder="<div> #ID"
+            onChange={this.handleChange}
+          />
+          <Form.Input
             label="Paragraph Content"
             type="text"
             name="content"
@@ -43,9 +52,9 @@ export default class ParagraphForm extends Component {
         </Form>
       </div>
     ) : (
-      <div>
+      <div id={this.state.id && this.state.id}>
         <ParagraphComponent info={this.state} />
-        <Button onClick={this.switchEdit} width={6}>
+        <Button className="edit-button-on" onClick={this.switchEdit} width={6}>
           Edit
         </Button>
       </div>
