@@ -229,113 +229,78 @@ class divlab extends React.PureComponent {
 						visible={visible}
 						width="wide"
 					>
-						<a href="#chart">
-							<Menu.Item as="a">
-								<Icon name="home" />
-								Home
-							</Menu.Item>
-						</a>
 						<Menu.Item as="a">
+							<Icon name="home" />
+							Home
+						</Menu.Item>
+						<Menu.Item
+							as="a"
+							onClick={() => {
+								this.setState({
+									components: [...this.state.components, <CardForm />],
+								});
+							}}
+						>
 							<Icon name="address card" />
 							Card
 						</Menu.Item>
-						<Menu.Item as="a">
-							<div>
-								<button
-									className="ui button"
-									onClick={() => {
-										this.setState({
-											components: [...this.state.components, <CardForm />],
-										});
-									}}
-								>
-									Add Card
-								</button>
-							</div>
-						</Menu.Item>
-						<Menu.Item as="a">
-							<Icon name="address card" />
+						<Menu.Item
+							as="a"
+							onClick={() => {
+								this.setState({
+									components: [...this.state.components, <ChartForm />],
+								});
+							}}
+						>
+							<Icon name="chart bar" />
 							Chart
 						</Menu.Item>
-						<Menu.Item as="a">
-							<div>
-								<button
-									className="ui button"
-									onClick={() => {
-										this.setState({
-											components: [...this.state.components, <ChartForm />],
-										});
-									}}
-								>
-									Add Chart
-								</button>
-							</div>
-						</Menu.Item>
-						<Menu.Item as="a">
-							<Icon name="address card" />
+						<Menu.Item
+							as="a"
+							onClick={() => {
+								this.setState({
+									components: [...this.state.components, <HeaderForm />],
+								});
+							}}
+						>
+							<Icon name="header" />
 							Header
 						</Menu.Item>
-						<Menu.Item as="a">
-							<div>
-								<button
-									className="ui button"
-									onClick={() => {
-										this.setState({
-											components: [...this.state.components, <HeaderForm />],
-										});
-									}}
-								>
-									Add Header
-								</button>
-							</div>
-						</Menu.Item>
-						<Menu.Item as="a">
-							<Icon name="address card" />
+						<Menu.Item
+							as="a"
+							onClick={() => {
+								this.setState({
+									components: [...this.state.components, <HeadshotForm />],
+								});
+							}}
+						>
+							<Icon name="image" />
 							Headshot
 						</Menu.Item>
-						<Menu.Item as="a">
-							<div>
-								<button
-									className="ui button"
-									onClick={() => {
-										this.setState({
-											components: [...this.state.components, <HeadshotForm />],
-										});
-									}}
-								>
-									Add Headshot
-								</button>
-							</div>
-						</Menu.Item>
-						<Menu.Item as="a">
-							<Icon name="address card" />
+
+						<Menu.Item
+							as="a"
+							onClick={() => {
+								this.setState({
+									components: [...this.state.components, <ParagraphForm />],
+								});
+							}}
+						>
+							<Icon name="paragraph" />
 							Paragraph
-						</Menu.Item>
-						<Menu.Item as="a">
-							<div>
-								<button
-									className="ui button"
-									onClick={() => {
-										this.setState({
-											components: [...this.state.components, <ParagraphForm />],
-										});
-									}}
-								>
-									Add Paragraph
-								</button>
-							</div>
-						</Menu.Item>
-						<Menu.Item as="a">
-							<Icon name="camera" />
-							Channels
 						</Menu.Item>
 					</Sidebar>
 
 					<Sidebar.Pusher dimmed={visible}>
 						<Segment basic>
-							<Header as="h3">Application Content</Header>
+							{/* <Header as="h3">Application Content</Header> */}
 
-							<div style={{ display: 'flex', flexDirection: 'row' }}>
+							<div
+								style={{
+									display: 'flex',
+									flexDirection: 'row',
+								}}
+							>
 								<div>
 									<Droppable style={droppableStyle1}>
 										{this.state.components.map((item, idx) => {
