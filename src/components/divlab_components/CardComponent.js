@@ -24,7 +24,7 @@ const CardComponent = props => {
 		</Card>
 	) : (
 		<div>
-			<img alt="" src="images/CardExample.png" />
+			<Image alt="" src="images/CardExample.png" />
 		</div>
 	);
 };

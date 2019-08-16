@@ -79,3 +79,94 @@ code {
   position: absolute;
   left: -999999px;
 }
+
+.animate-welcome {
+  padding-top: 15%;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 10;
+  color: black;
+  font-size: 60px;
+  animation-name: moveInRight;
+  animation-duration: 2s;
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateY(300px);
+  }
+  80% {
+    transform: translateY(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+.animate-caption {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 10;
+  color: black;
+  letter-spacing: 4px;
+  animation-name: captionAnimation;
+  animation-duration: 3.2s;
+}
+
+@keyframes captionAnimation {
+  0% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 1;
+  }
+}
+
+#homepage {
+  background-color: rgb(255, 208, 0);
+  min-width: 100%;
+  height: 100%;
+  padding-bottom: 100%;
+}
+
+#navbar {
+  background-color: rgb(255, 208, 0);
+  min-height: 100px;
+  text-align: right;
+  padding-right: 4%;
+  padding-top: 20px;
+}
+
+.navlink {
+  padding-right: 25px;
+  padding-left: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-right: 25px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 10;
+  color: black;
+  letter-spacing: 2px;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 50px;
+}
+
+.navlink:hover {
+  padding-right: 25px;
+  padding-left: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-right: 25px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 10;
+  color: rgb(214, 214, 214);
+  background-color: black;
+  letter-spacing: 2px;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 25px;
+}
