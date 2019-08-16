@@ -9,6 +9,6 @@ export default function Paragraph(props) {
   return content.length ? (
     <div style={divStyle}>{content}</div>
   ) : (
-    <img alt="" src="images/paragraph.png" />
+    <img alt="" src="images/ParagraphExample.png" />
   );
 }
