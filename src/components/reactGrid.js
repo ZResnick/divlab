@@ -135,7 +135,7 @@ class divlab extends React.PureComponent {
 		};
 		const i = el.add ? '+' : el.i;
 		return (
-			<div style={{ border: '1px solid red', display: 'flex', justifyContent: 'center', flexDirection: "row", overflow: "hidden"}} key={i} data-grid={el}>
+			<div style={{ border: '1px solid red', overflow: 'hidden'}} key={i} data-grid={el}>
 				{el.add ? (
 					<span
 						className="add text"
