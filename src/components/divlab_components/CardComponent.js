@@ -3,7 +3,7 @@ import { Card, Icon, Image } from 'semantic-ui-react';
 
 const CardComponent = props => {
   const { name, description } = props.info;
-  return (
+  return name.length || description.length ? (
     <Card>
       <Image
         src="https://banner2.kisspng.com/20180301/fuq/kisspng-avatar-clip-art-man-avatar-5a980ea414e0e3.9798835715199146600855.jpg"
@@ -22,6 +22,8 @@ const CardComponent = props => {
         22 Friends
       </Card.Content>
     </Card>
+  ) : (
+    <img alt="" src="images/CardExample.png" />
   );
 };
 

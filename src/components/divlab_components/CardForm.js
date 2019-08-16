@@ -8,6 +8,7 @@ export default class CardForm extends Component {
     this.state = {
       name: '',
       description: '',
+      id: '',
       edit: false,
     };
     this.switchEdit = this.switchEdit.bind(this);
@@ -33,6 +34,14 @@ export default class CardForm extends Component {
       <div>
         <Form onSubmit={this.switchEdit}>
           <Form.Input
+            label="div ID"
+            type="text"
+            name="id"
+            value={this.state.id}
+            placeholder="<div> #ID"
+            onChange={this.handleChange}
+          />
+          <Form.Input
             label="Name"
             type="text"
             name="name"
@@ -52,9 +61,9 @@ export default class CardForm extends Component {
         </Form>
       </div>
     ) : (
-      <div>
+      <div id={this.state.id && this.state.id}>
         <CardComponent info={this.state} />
-        <Button onClick={this.switchEdit} width={6}>
+        <Button className="edit-button-on" onClick={this.switchEdit} width={6}>
           Edit
         </Button>
       </div>

@@ -50,6 +50,6 @@ export default function HeaderComponent(props) {
       <p style={headerStyle}>{title}</p>
     </div>
   ) : (
-    <img alt="" src="images/headerExample.png" />
+    <img alt="" src="images/HeaderExample.png" />
   );
 }

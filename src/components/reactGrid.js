@@ -5,8 +5,8 @@ import _ from 'lodash';
 import styled from 'styled-components';
 import Draggable from './Draggable';
 import Droppable from './Droppable';
-import CardForm from './card-form';
-import ChartForm from '../components/divlab_components/ChartForm';
+// import CardForm from './card-form';
+import HeaderForm from '../components/divlab_components/HeaderForm';
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
@@ -29,7 +29,7 @@ const droppableStyle1 = {
   backgroundColor: '#555',
   width: '250px',
   height: '400px',
-  margin: '32px'
+  margin: '32px',
 };
 
 const droppableStyle2 = {
@@ -40,7 +40,7 @@ const droppableStyle2 = {
   backgroundColor: '#f0f0f0',
   width: '800px',
   height: '1100px',
-  margin: '32px'
+  margin: '32px',
 };
 
 const droppableStyle3 = {
@@ -48,14 +48,14 @@ const droppableStyle3 = {
   border: '1px solid red',
   width: '250px',
   height: '200px',
-  margin: '5px'
+  margin: '5px',
 };
 
 const droppableStyle31 = {
   backgroundColor: '#555',
   border: '1px solid red',
   flexGrow: '1',
-  margin: '5px'
+  margin: '5px',
 };
 
 const droppableStyle4 = {
@@ -64,7 +64,7 @@ const droppableStyle4 = {
   border: '1px solid red',
   width: '775px',
   height: '1050px',
-  margin: '5px'
+  margin: '5px',
 };
 
 const droppableStyle5 = {
@@ -72,7 +72,7 @@ const droppableStyle5 = {
   border: '1px solid red',
   width: '382px',
   height: '340px',
-  margin: '5px'
+  margin: '5px',
 };
 
 class divlab extends React.PureComponent {
@@ -80,7 +80,7 @@ class divlab extends React.PureComponent {
     className: 'layout',
     cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
     rowHeight: 100,
-    onLayoutChange: function() {}
+    onLayoutChange: function() {},
   };
 
   constructor(props) {
@@ -96,12 +96,12 @@ class divlab extends React.PureComponent {
           h: 2,
           add: i === (list.length - 1).toString(),
           isResizable: true,
-          static: false
+          static: false,
         };
       }),
 
       newCounter: 0,
-      cardArr: []
+      cardArr: [],
     };
 
     this.onAddItem = this.onAddItem.bind(this);
@@ -113,7 +113,7 @@ class divlab extends React.PureComponent {
       position: 'absolute',
       right: '2px',
       top: 0,
-      cursor: 'pointer'
+      cursor: 'pointer',
     };
     const i = el.add ? '+' : el.i;
     return (
@@ -153,10 +153,10 @@ class divlab extends React.PureComponent {
         w: 2,
         h: 2,
         isResizable: this.state.isResizable,
-        static: this.state.static
+        static: this.state.static,
       }),
       // Increment the counter to ensure key is always unique.
-      newCounter: this.state.newCounter + 1
+      newCounter: this.state.newCounter + 1,
     });
   }
 
@@ -164,7 +164,7 @@ class divlab extends React.PureComponent {
   onBreakpointChange(breakpoint, cols) {
     this.setState({
       breakpoint: breakpoint,
-      cols: cols
+      cols: cols,
     });
   }
 
@@ -196,7 +196,7 @@ class divlab extends React.PureComponent {
               className="ui button"
               onClick={() => {
                 this.setState({
-                  cardArr: [...this.state.cardArr, <ChartForm />]
+                  cardArr: [...this.state.cardArr, <HeaderForm />],
                 });
               }}
             >
