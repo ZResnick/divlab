@@ -10,7 +10,7 @@ export default class ChartForm extends Component {
       datasets: '',
       dataTypes: '',
       id: '',
-      edit: true,
+      edit: true
     };
     this.switchEdit = this.switchEdit.bind(this);
   }
@@ -19,13 +19,13 @@ export default class ChartForm extends Component {
     evt.preventDefault();
     console.log(this.state.edit);
     this.setState({
-      edit: !this.state.edit,
+      edit: !this.state.edit
     });
   }
 
   handleChange = evt => {
     this.setState({
-      [evt.target.name]: evt.target.value,
+      [evt.target.name]: evt.target.value
     });
   };
 
@@ -65,13 +65,17 @@ export default class ChartForm extends Component {
             placeholder="Datasets for each Data Category, separated by ' || '"
             onChange={this.handleChange}
           />
-          <Button type="submit">Preview</Button>
+          <Button className="edit-button-on" type="submit">
+            Preview
+          </Button>
         </Form>
       </div>
     ) : (
       <div id={this.state.id && this.state.id}>
         <ChartComponent info={this.state} />
-        <Button onClick={this.switchEdit}>Edit</Button>
+        <Button className="edit-button-on" onClick={this.switchEdit}>
+          Edit
+        </Button>
       </div>
     );
   }

@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import Draggable from './Draggable';
 import Droppable from './Droppable';
 import CardForm from './card-form';
+import ChartForm from '../components/divlab_components/ChartForm';
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
@@ -195,7 +196,7 @@ class divlab extends React.PureComponent {
               className="ui button"
               onClick={() => {
                 this.setState({
-                  cardArr: [...this.state.cardArr, <CardForm />]
+                  cardArr: [...this.state.cardArr, <ChartForm />]
                 });
               }}
             >
@@ -214,70 +215,70 @@ class divlab extends React.PureComponent {
           </Droppable>
         </div>
         <div style={{ width: '1000px' }}>
-          <Droppable id="dr2">
-            <button
-              onClick={() => {
-                const imgs = document.querySelectorAll(
-                  '.react-resizable-handle-se'
-                );
-                const editButtonsOn = document.querySelectorAll(
-                  '.edit-button-on'
-                );
-                const editButtonsOff = document.querySelectorAll(
-                  '.edit-button-off'
-                );
-                const divs = document.querySelectorAll('.react-grid-item');
-                const xs = document.getElementsByName('X');
+          {/* <Droppable id="dr2"> */}
+          <button
+            onClick={() => {
+              const imgs = document.querySelectorAll(
+                '.react-resizable-handle-se'
+              );
+              const editButtonsOn = document.querySelectorAll(
+                '.edit-button-on'
+              );
+              const editButtonsOff = document.querySelectorAll(
+                '.edit-button-off'
+              );
+              const divs = document.querySelectorAll('.react-grid-item');
+              const xs = document.getElementsByName('X');
 
-                editButtonsOn.forEach(item => {
-                  if (item.classList.contains('edit-button-on')) {
-                    item.classList.replace('edit-button-on', 'edit-button-off');
-                  }
-                });
+              editButtonsOn.forEach(item => {
+                if (item.classList.contains('edit-button-on')) {
+                  item.classList.replace('edit-button-on', 'edit-button-off');
+                }
+              });
 
-                editButtonsOff.forEach(item => {
-                  if (item.classList.contains('edit-button-off')) {
-                    item.classList.replace('edit-button-off', 'edit-button-on');
-                  }
-                });
-                imgs.forEach(i => {
-                  if (i.classList.contains('react-resizable-handle')) {
-                    i.classList.remove('react-resizable-handle');
-                  } else {
-                    i.classList.add('react-resizable-handle');
-                  }
-                });
+              editButtonsOff.forEach(item => {
+                if (item.classList.contains('edit-button-off')) {
+                  item.classList.replace('edit-button-off', 'edit-button-on');
+                }
+              });
+              imgs.forEach(i => {
+                if (i.classList.contains('react-resizable-handle')) {
+                  i.classList.remove('react-resizable-handle');
+                } else {
+                  i.classList.add('react-resizable-handle');
+                }
+              });
 
-                xs.forEach(x => {
-                  if (x.textContent === 'x') {
-                    x.textContent = '';
-                  } else {
-                    x.textContent = 'x';
-                  }
-                });
-                divs.forEach(div => {
-                  if (div.style.border) {
-                    div.style.border = null;
-                  } else {
-                    div.style.border = '1px solid red';
-                  }
-                });
-              }}
+              xs.forEach(x => {
+                if (x.textContent === 'x') {
+                  x.textContent = '';
+                } else {
+                  x.textContent = 'x';
+                }
+              });
+              divs.forEach(div => {
+                if (div.style.border) {
+                  div.style.border = null;
+                } else {
+                  div.style.border = '1px solid red';
+                }
+              });
+            }}
+          >
+            Borders off
+          </button>
+          <button onClick={this.onAddItem}>Add Item</button>
+          <Droppable>
+            <ResponsiveReactGridLayout
+              onLayoutChange={this.onLayoutChange}
+              style={{ width: '800px' }}
+              // onBreakpointChange={this.onBreakpointChange}
+              {...this.props}
             >
-              Borders off
-            </button>
-            <button onClick={this.onAddItem}>Add Item</button>
-            <Droppable>
-              <ResponsiveReactGridLayout
-                onLayoutChange={this.onLayoutChange}
-                style={{ width: '800px' }}
-                // onBreakpointChange={this.onBreakpointChange}
-                {...this.props}
-              >
-                {_.map(this.state.items, el => this.createElement(el))}
-              </ResponsiveReactGridLayout>
-            </Droppable>
+              {_.map(this.state.items, el => this.createElement(el))}
+            </ResponsiveReactGridLayout>
           </Droppable>
+          {/* </Droppable> */}
         </div>
       </div>
     );
