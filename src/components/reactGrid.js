@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import Draggable from './Draggable';
 import Droppable from './Droppable';
 import CardForm from '../components/divlab_components/CardForm';
-import ChartForm from '../components/divlab_components/ChartForm';
 import HeaderForm from '../components/divlab_components/HeaderForm';
 import HeadshotForm from '../components/divlab_components/HeadshotForm';
 import ParagraphForm from '../components/divlab_components/ParagraphForm';
@@ -248,7 +247,7 @@ class divlab extends React.PureComponent {
 							as="a"
 							onClick={() => {
 								this.setState({
-									components: [...this.state.components, <ChartForm />],
+									components: [...this.state.components, <CardForm />],
 								});
 							}}
 						>
