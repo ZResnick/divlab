@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import ChartComponent from './ChartComponent';
+import SidewaysCardComponent from './SidewaysCardComponent';
 import { Button, Form } from 'semantic-ui-react';
 
-export default class ChartForm extends Component {
+export default class CardForm extends Component {
   constructor() {
     super();
     this.state = {
-      labels: '',
-      datasets: '',
-      dataTypes: '',
+      name: '',
+      description: '',
+      caption: '',
+      imageUrl: '',
       id: '',
-      edit: true
+      edit: true,
     };
     this.switchEdit = this.switchEdit.bind(this);
   }
@@ -19,19 +20,20 @@ export default class ChartForm extends Component {
     evt.preventDefault();
     console.log(this.state.edit);
     this.setState({
-      edit: !this.state.edit
+      edit: !this.state.edit,
     });
   }
 
   handleChange = evt => {
     this.setState({
-      [evt.target.name]: evt.target.value
+      [evt.target.name]: evt.target.value,
     });
+    console.log(this.state.content);
   };
 
   render() {
     return this.state.edit ? (
-      <div id={this.state.id && this.state.id}>
+      <div>
         <Form onSubmit={this.switchEdit}>
           <Form.Input
             label="div ID"
@@ -42,27 +44,35 @@ export default class ChartForm extends Component {
             onChange={this.handleChange}
           />
           <Form.Input
-            label="Labels"
+            label="Image URL"
             type="text"
-            name="labels"
-            value={this.state.labels}
-            placeholder="Labels for x-axis"
+            name="imageUrl"
+            value={this.state.imageUrl}
+            placeholder="Image URL"
             onChange={this.handleChange}
           />
           <Form.Input
-            label="Data Categories"
+            label="Name"
             type="text"
-            name="dataTypes"
-            value={this.state.dataTypes}
-            placeholder="Data Categories"
+            name="name"
+            value={this.state.name}
+            placeholder="Name"
             onChange={this.handleChange}
           />
           <Form.Input
-            label="Data"
+            label="Caption"
             type="text"
-            name="datasets"
-            value={this.state.datasets}
-            placeholder="Datasets for each Data Category, separated by ' || '"
+            name="caption"
+            value={this.state.caption}
+            placeholder="Caption"
+            onChange={this.handleChange}
+          />
+          <Form.Input
+            label="Description"
+            type="text"
+            name="description"
+            value={this.state.description}
+            placeholder="Description"
             onChange={this.handleChange}
           />
           <Button className="edit-button-on" type="submit">
@@ -72,8 +82,8 @@ export default class ChartForm extends Component {
       </div>
     ) : (
       <div id={this.state.id && this.state.id}>
-        <ChartComponent info={this.state} />
-        <Button className="edit-button-on" onClick={this.switchEdit}>
+        <SidewaysCardComponent info={this.state} />
+        <Button className="edit-button-on" onClick={this.switchEdit} width={6}>
           Edit
         </Button>
       </div>
