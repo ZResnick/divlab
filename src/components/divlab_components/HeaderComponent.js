@@ -6,22 +6,24 @@ export default function HeaderComponent(props) {
   let links = temp && temp.map(el => el.split(', '));
 
   let divStyle = {
-    width: '100%',
-    height: '500px',
+    width: '1200px',
+    height: '600px',
     backgroundImage: `url(${backgroundUrl})`,
+    backgroundSize: 'stretch',
+    backgroundRepeat: 'no-repeat'
   };
 
   let headerStyle = {
     color: 'white',
-    fontSize: '36px',
+    fontSize: '48px',
     fontFamily: 'Corben, cursive',
     fontStyle: 'cursive',
-    paddingTop: '16%',
+    paddingTop: '16%'
   };
 
   let navbarStyle = {
     paddingTop: '3%',
-    textAlign: 'right',
+    textAlign: 'right'
   };
 
   let navLinkStyle = {
@@ -33,7 +35,7 @@ export default function HeaderComponent(props) {
     padding: '5px',
     paddingLeft: '8px',
     paddingRight: '8px',
-    borderRadius: '20px',
+    borderRadius: '20px'
   };
   return backgroundUrl.length || title.length || navlinks.length ? (
     <div style={divStyle}>
