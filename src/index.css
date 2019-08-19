@@ -10,6 +10,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(255, 208, 0);
 }
 
 code {
@@ -181,4 +182,5 @@ img.ui.image {
 
 .ui.card {
   width: 100%;
+  margin: 0 auto;
 }
