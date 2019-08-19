@@ -3,27 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@bit/lekanmedia.shared-ui.selector": "0.0.9",
-    "@bit/mui-org.material-ui-icons.star-border": "^3.9.2",
-    "@bit/mui-org.material-ui.grid-list": "^3.9.2",
-    "@bit/mui-org.material-ui.grid-list-tile": "^3.9.2",
-    "@bit/mui-org.material-ui.grid-list-tile-bar": "^3.9.2",
-    "@bit/mui-org.material-ui.icon-button": "^3.9.2",
-    "@bit/primefaces.primereact.chart": "^3.1.8",
-    "bit-bin": "^14.2.4",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-router-dom": "^5.0.1",
-    "react-scripts": "3.1.1",
-    "semantic-ui-react": "^0.87.3",
-    "react-grid-layout": "^0.16.6",
-    "react-resizable": "^1.8.0",
-    "react-sortable-pane": "^1.1.0",
-    "styled-components": "^4.3.2",
     "af-react-grid": "^2.0.3",
+    "firebase": "^6.4.0",
     "history": "^4.9.0",
     "lodash": "^4.17.15",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-grid-layout": "^0.16.6",
+    "react-resizable": "^1.8.0",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.1.1",
+    "react-sortable-pane": "^1.1.0",
+    "semantic-ui-react": "^0.87.3",
+    "styled-components": "^4.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -45,12 +38,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "bit": {
-    "env": {
-      "compiler": "bit.envs/bundlers/webpack-css-modules@4.0.1"
-    },
-    "componentsDefaultDirectory": "src/components/{namespace}/{name}",
-    "packageManager": "npm"
   }
 }

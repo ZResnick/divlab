@@ -1,16 +1,20 @@
 import React from 'react';
 import { Card, Image } from 'semantic-ui-react';
 
-const CardComponent = props => {
-  const { name, description, footer, caption, imageUrl } = props.info;
-
+const SidewaysCardComponent = props => {
+  const { name, description, caption, imageUrl } = props.info;
   return name.length ||
     description.length ||
-    footer.length ||
     caption.length ||
     imageUrl.length ? (
-    <Card>
+    <Card
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+      }}
+    >
       <Image src={imageUrl} wrapped ui={false} />
+
       <Card.Content>
         <Card.Header>{name}</Card.Header>
         <Card.Meta>
@@ -18,7 +22,6 @@ const CardComponent = props => {
         </Card.Meta>
         <Card.Description>{description}</Card.Description>
       </Card.Content>
-      <Card.Content extra>{footer}</Card.Content>
     </Card>
   ) : (
     <div>
@@ -27,4 +30,4 @@ const CardComponent = props => {
   );
 };
 
-export default CardComponent;
+export default SidewaysCardComponent;
