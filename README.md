@@ -1,6 +1,6 @@
 ## <divlab />
 
-A collaborative effor between:
+A collaborative effort between:
 
 ### `Zachary Resnick, Joonho Han, Elliot Gonzalez :)`
 
