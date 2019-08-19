@@ -175,6 +175,7 @@ class divlab extends React.PureComponent {
 			// Increment the counter to ensure key is always unique.
 			newCounter: this.state.newCounter + 1,
 		});
+		this.initLocalStorage();
 	}
 
 	// We're using the cols coming back from this to calculate where to add new items.
@@ -202,6 +203,12 @@ class divlab extends React.PureComponent {
 		});
 
 		console.log(divs);
+	};
+
+	initLocalStorage = () => {
+		localStorage.setItem('html', document.querySelector('html').innerHTML);
+		const userHtml = localStorage.getItem('html');
+		console.log(userHtml);
 	};
 
 	render() {
