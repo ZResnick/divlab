@@ -3,13 +3,6 @@
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
-		"@bit/mui-org.material-ui-icons.star-border": "^3.9.2",
-		"@bit/mui-org.material-ui.grid-list": "^3.9.2",
-		"@bit/mui-org.material-ui.grid-list-tile": "^3.9.2",
-		"@bit/mui-org.material-ui.grid-list-tile-bar": "^3.9.2",
-		"@bit/mui-org.material-ui.icon-button": "^3.9.2",
-		"@bit/primefaces.primereact.chart": "^3.1.8",
-		"bit-bin": "^14.2.4",
 		"react": "^16.9.0",
 		"react-dom": "^16.9.0",
 		"react-router-dom": "^5.0.1",
