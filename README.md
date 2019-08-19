@@ -1,4 +1,8 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## <divlab />
+
+A collaborative effor between:
+
+### `Zachary Resnick, Joonho Han, Elliot Gonzalez :)`
 
 ## Available Scripts
 

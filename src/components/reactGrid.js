@@ -213,7 +213,11 @@ class divlab extends React.PureComponent {
     });
 
     console.log(divs);
-  };
+	};
+
+	allowDrop = e => {
+		e.stopPropagation();
+	}
 
   render() {
     const { visible } = this.state;
