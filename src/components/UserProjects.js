@@ -21,11 +21,15 @@ class UserProjects extends React.Component {
           <Card.Group>
             <Card>
               <Card.Content id="newCardSymbol">
-                <Link to="/divlab">+</Link>
+                <Link to="/divlab">
+                  <span className="newItemSign">+</span>
+                </Link>
               </Card.Content>
               <Card.Content>
                 <Card.Header>
-                  <Link to="/divlab">Add a new project</Link>
+                  <Link to="/divlab">
+                    <span className="newProjectText">ADD A NEW PROJECT</span>
+                  </Link>
                 </Card.Header>
               </Card.Content>
             </Card>
@@ -35,7 +39,9 @@ class UserProjects extends React.Component {
                   <Card key={page.id}>
                     <Image src="/images/projectImage.png" wrapped ui={false} />
                     <Card.Content>
-                      <Card.Header>{page.data.title}</Card.Header>
+                      <Card.Header>
+                        <span className="projectTitles">{page.data.title}</span>
+                      </Card.Header>
                     </Card.Content>
                   </Card>
                 );
