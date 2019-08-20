@@ -9,7 +9,7 @@ const Navbar = props => {
   console.log(auth, profile);
   return (
     <div id="navbar">
-      {auth.uid ? (
+      {auth.auth.uid ? (
         <nav>
           <div>
             <Link id="mainHeader" className="navlink" to="/home">
@@ -20,7 +20,7 @@ const Navbar = props => {
             <Link className="navlink" to="/divlab">
               NEW PROJECT
             </Link>
-            <Link className="navlink" to="/divlab">
+            <Link className="navlink" to="/projects">
               {profile.initials}
             </Link>
             <Link className="navlink" to="/" onClick={props.signOut}>
@@ -54,7 +54,7 @@ const Navbar = props => {
  */
 const mapStateToProps = state => {
   return {
-    auth: state.firebase.auth,
+    auth: state.firebase,
     profile: state.firebase.profile,
   };
 };

@@ -31,7 +31,7 @@ export const signIn = credentials => async (
       .auth()
       .signInWithEmailAndPassword(credentials.email, credentials.password);
     dispatch(loginSuccess());
-    history.push('/divlab');
+    history.push('/projects');
   } catch (err) {
     dispatch(loginError(err));
     console.error(err);

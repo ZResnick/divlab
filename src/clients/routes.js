@@ -4,6 +4,7 @@ import Home from '../components/Home';
 import divlab from '../components/reactGrid';
 import SignIn from '../components/SignIn';
 import SignUp from '../components/SignUp';
+import UserProjects from '../components/UserProjects';
 
 export default class Routes extends Component {
   render() {
@@ -12,6 +13,7 @@ export default class Routes extends Component {
         <Route exact path="/home" component={Home} />
         <Route exact path="/signIn" component={SignIn} />
         <Route exact path="/signUp" component={SignUp} />
+        <Route exact path="/projects" component={UserProjects} />
         <Route path="/divlab" component={divlab} />
         <Route component={Home} />
       </Switch>

@@ -211,3 +211,28 @@ img.ui.image {
   border-radius: 25px;
   background-color: aliceblue;
 }
+
+.myProjects {
+  padding: 15px;
+  text-align: center;
+  color: white;
+  font-weight: thin;
+  font-size: 18px;
+  background-color: rgb(65, 65, 65);
+  letter-spacing: 2px;
+}
+
+.cardGroup {
+  padding: 15px;
+}
+
+#newCardSymbol {
+  font-size: 6em;
+  font-weight: lighter;
+  background-color: rgb(80, 80, 80);
+  color: white;
+}
+
+#noProjects {
+  padding-left: 30px;
+}
