@@ -10,7 +10,7 @@ import HeaderForm from '../components/divlab_components/HeaderForm';
 import HeadshotForm from '../components/divlab_components/HeadshotForm';
 import ParagraphForm from '../components/divlab_components/ParagraphForm';
 import SidewaysCardForm from '../components/divlab_components/SidewaysCardForm';
-
+// import { renderToString } from 'react-dom/server';
 import {
   Button,
   Header,
@@ -21,7 +21,103 @@ import {
   Sidebar
 } from 'semantic-ui-react';
 
+function getFromLS(key) {
+  let ls = {};
+  if (global.localStorage) {
+    try {
+      ls = JSON.parse(global.localStorage.getItem('rgl-7')) || {};
+    } catch (e) {
+      /*Ignore*/
+    }
+  }
+  return ls[key];
+}
+
+function getDivsFromLS(key) {
+  let ls = {};
+  if (global.localStorage) {
+    try {
+      ls = JSON.parse(global.localStorage.getItem('div')) || {};
+    } catch (e) {
+      /*Ignore*/
+    }
+  }
+  return ls[key];
+}
+
+function getCounterFromLS(key) {
+  let ls = {};
+  if (global.localStorage) {
+    try {
+      ls = JSON.parse(global.localStorage.getItem('counter')) || {};
+    } catch (e) {
+      /*Ignore*/
+    }
+  }
+  return ls[key];
+}
+
+// function getCompsFromLS(key) {
+//   let ls = {};
+//   if (global.localStorage) {
+//     try {
+//       ls = JSON.parse(global.localStorage.getItem('comps')) || {};
+//     } catch (e) {
+//       /*Ignore*/
+//     }
+//   }
+//   return ls[key];
+// }
+
+function saveToLS(key, value) {
+  if (global.localStorage) {
+    global.localStorage.setItem(
+      'rgl-7',
+      JSON.stringify({
+        [key]: value
+      })
+    );
+  }
+}
+
+function saveDivsToLS(key, value) {
+  if (global.localStorage) {
+    global.localStorage.setItem(
+      'div',
+      JSON.stringify({
+        [key]: value
+      })
+    );
+  }
+}
+
+function saveCounterToLS(key, value) {
+  if (global.localStorage) {
+    global.localStorage.setItem(
+      'counter',
+      JSON.stringify({
+        [key]: value
+      })
+    );
+  }
+}
+
+// function saveCompsToLS(key, value) {
+//   if (global.localStorage) {
+//     global.localStorage.setItem(
+//       'comps',
+//       JSON.stringify({
+//         [key]: [value]
+//       })
+//     );
+//   }
+// }
+
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
+const originalLayout = getFromLS('items') || [];
+const originalCounter = getCounterFromLS('newCounter') || 0;
+// const originalComps = getCompsFromLS('components') || [];
+const originalDivs = getDivsFromLS('divs') || [];
 
 const Wrapper = styled.div`
   width: 100%;
@@ -100,8 +196,8 @@ class divlab extends React.PureComponent {
     cols: { lg: 120, md: 100, sm: 60, xs: 40, xxs: 20 },
 
     rowHeight: 2,
-    onLayoutChange: function() {},
-    verticalCompact: false
+    // onLayoutChange: function() {},
+    verticalCompact: true
   };
 
   constructor(props) {
@@ -109,21 +205,25 @@ class divlab extends React.PureComponent {
 
     this.state = {
       visible: false,
-      items: [0, 1, 2, 3, 4].map(function(i, key, list) {
-        return {
-          i: i.toString(),
-          x: i * 20,
-          y: 0,
-          w: 20,
-          h: 20,
-          add: i === (list.length - 1).toString(),
-          isResizable: true,
-          static: false
-        };
-      }),
-
-      newCounter: 0,
-      components: []
+      //   items: [0, 1, 2, 3, 4].map(function(i, key, list) {
+      //     return {
+      //       i: i.toString(),
+      //       x: i * 20,
+      //       y: 0,
+      //       w: 20,
+      //       h: 20,
+      //       add: i === (list.length - 1).toString(),
+      //       isResizable: true,
+      //       static: false
+      //     };
+      //   }),
+      items: JSON.parse(JSON.stringify(originalLayout)),
+      newCounter: JSON.parse(JSON.stringify(originalCounter)),
+      //   newCounter: 0,
+      components: [],
+      //   components: JSON.parse(JSON.stringify(originalComps)),
+      //   divs: []
+      divs: JSON.parse(JSON.stringify(originalDivs))
     };
 
     this.onAddItem = this.onAddItem.bind(this);
@@ -147,6 +247,7 @@ class divlab extends React.PureComponent {
         style={{ border: '1px solid red', overflow: 'hidden' }}
         key={i}
         data-grid={el}
+        id={i}
       >
         {el.add ? (
           <span
@@ -174,18 +275,20 @@ class divlab extends React.PureComponent {
   onAddItem() {
     /*eslint no-console: 0*/
     // console.log('adding', 'n' + this.state.newCounter);
+
     this.setState({
       // Add a new item. It must have a unique key!
       items: this.state.items.concat({
         i: 'n' + this.state.newCounter,
-        x: (this.state.items.length * 2) % (this.state.cols || 120),
+        // i: 'n' + Math.floor(Math.random() * 10000000),
+        x: (this.state.items.length * 20) % (this.state.cols || 120),
         // y: Infinity, // puts it at the bottom
 
         y: 1,
-        w: 2,
-        h: 2,
-        isResizable: this.state.isResizable,
-        static: this.state.static
+        w: 20,
+        h: 20,
+        isResizable: true,
+        static: false
       }),
       // Increment the counter to ensure key is always unique.
       newCounter: this.state.newCounter + 1
@@ -200,10 +303,9 @@ class divlab extends React.PureComponent {
     });
   }
 
-  onLayoutChange(layout) {
-    this.props.onLayoutChange(layout);
-    this.setState({ layout: layout });
-  }
+  onLayoutChange = items => {
+    this.setState({ items: items });
+  };
 
   onRemoveItem(i) {
     console.log('removing', i);
@@ -217,12 +319,52 @@ class divlab extends React.PureComponent {
     });
 
     console.log(divs);
-	};
+  };
 
-	allowDrop = e => {
-		e.stopPropagation();
-	}
+  allowDrop = e => {
+    e.stopPropagation();
+  };
+  save = () => {
+    saveToLS('items', this.state.items);
+    saveCounterToLS('newCounter', this.state.newCounter);
+    saveDivsToLS('divs', this.state.divs);
+    const divs = Array.from(document.querySelectorAll('.react-grid-item'));
+    let divsArr = [...divs].map(div => {
+      return {
+        id: div.id,
+        innerHTML: div.innerHTML,
+        className: div.className
+      };
+    });
+    this.setState({ divs: divsArr });
 
+    // window.location.reload();
+
+    console.log(this.state);
+  };
+
+  clear = () => {
+    global.localStorage.clear();
+    // this.setState({ items: JSON.parse(JSON.stringify(originalLayout)) });
+    this.setState({ items: [], newCounter: 0 });
+    window.location.reload();
+  };
+
+  restore = () => {
+    // let div = document.getElementById(this.state.divs[0].id);
+    // //console.log(div.childNodes[3]);
+    // let newDiv = document.createElement('div');
+    // newDiv.innerHTML = this.state.divs[0].innerHTML;
+    // div.appendChild(newDiv);
+    for (let i = 0; i < this.state.divs.length; i++) {
+      let div = this.state.divs[i];
+      let domDiv = document.getElementById(div.id);
+      let newDiv = document.createElement('div');
+      newDiv.setAttribute('style', 'padding: 15px');
+      newDiv.innerHTML = div.innerHTML;
+      domDiv.appendChild(newDiv);
+    }
+  };
   render() {
     const { visible } = this.state;
     return (
@@ -338,6 +480,9 @@ class divlab extends React.PureComponent {
                 </div>
                 <div>
                   {/* <Droppable id="dr2"> */}
+                  <button onClick={this.save}>SAVE</button>
+                  <button onClick={this.clear}>CLEAR</button>
+                  <button onClick={this.restore}>RESTORE</button>
                   <button
                     onClick={() => {
                       const imgs = document.querySelectorAll(
@@ -401,6 +546,7 @@ class divlab extends React.PureComponent {
                   <Droppable>
                     <ResponsiveReactGridLayout
                       onLayoutChange={this.onLayoutChange}
+                      //   layout={this.state.layout}
                       style={{
                         width: '1200px',
                         minHeight: '1000px',
