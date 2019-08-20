@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { signOut } from '../store/authReducer';
 
-const Navbar = () => (
+const Navbar = props => (
   <div id="navbar">
     <nav>
       <Link className="navlink" to="/home">
@@ -10,6 +12,12 @@ const Navbar = () => (
       <Link className="navlink" to="/divlab">
         {'<divlab />'}
       </Link>
+      <Link className="navlink" to="/signIn">
+        Sign In
+      </Link>
+      <Link className="navlink" onClick={props.signOut}>
+        Sign Out
+      </Link>
     </nav>
   </div>
 );
@@ -17,8 +25,23 @@ const Navbar = () => (
 /**
  * CONTAINER
  */
+const mapStateToProps = state => {
+  console.log(state);
+  return {};
+};
 
-export default Navbar;
+const mapDispatchToProps = dispatch => {
+  return {
+    signOut: () => {
+      dispatch(signOut());
+    },
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Navbar);
 
 /**
  * PROP TYPES

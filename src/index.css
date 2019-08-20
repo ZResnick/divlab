@@ -184,3 +184,8 @@ img.ui.image {
   width: 100%;
   margin: 0 auto;
 }
+
+.errorMessage {
+  font-size: 10px;
+  color: red;
+}
