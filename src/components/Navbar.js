@@ -11,24 +11,38 @@ const Navbar = props => {
     <div id="navbar">
       {auth.uid ? (
         <nav>
-          <Link className="navlink" to="/home">
-            Home
-          </Link>
-          <Link className="navlink" to="/divlab">
-            {profile.initials}
-          </Link>
-          <Link className="navlink" to="/" onClick={props.signOut}>
-            Sign Out
-          </Link>
+          <div>
+            <Link id="mainHeader" className="navlink" to="/home">
+              {'<divlab />'}
+            </Link>
+          </div>
+          <div>
+            <Link className="navlink" to="/divlab">
+              NEW PROJECT
+            </Link>
+            <Link className="navlink" to="/divlab">
+              {profile.initials}
+            </Link>
+            <Link className="navlink" to="/" onClick={props.signOut}>
+              SIGN OUT
+            </Link>
+          </div>
         </nav>
       ) : (
         <nav>
-          <Link className="navlink" to="/home">
-            Home
-          </Link>
-          <Link className="navlink" to="/signIn">
-            Sign In
-          </Link>
+          <div>
+            <Link id="mainHeader" className="navlink" to="/home">
+              {'<divlab />'}
+            </Link>
+          </div>
+          <div>
+            <Link className="navlink" to="/divlab">
+              TRY IT
+            </Link>
+            <Link className="navlink" to="/signIn">
+              SIGN IN
+            </Link>
+          </div>
         </nav>
       )}
     </div>

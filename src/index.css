@@ -133,12 +133,23 @@ code {
   padding-bottom: 100%;
 }
 
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#mainHeader {
+  margin-left: 30px;
+  font-size: 24px;
+}
+
 #navbar {
   background-color: rgb(255, 208, 0);
   min-height: 100px;
   text-align: right;
   padding-right: 4%;
-  padding-top: 20px;
+  padding-top: 35px;
 }
 
 .navlink {
