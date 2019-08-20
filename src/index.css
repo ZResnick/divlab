@@ -223,7 +223,7 @@ img.ui.image {
 }
 
 .cardGroup {
-  padding: 15px;
+  padding: 25px;
 }
 
 #newCardSymbol {
@@ -231,6 +231,41 @@ img.ui.image {
   font-weight: lighter;
   background-color: rgb(80, 80, 80);
   color: white;
+}
+
+.newItemSign {
+  color: white;
+}
+
+.newItemSign:hover {
+  color: white;
+  font-weight: normal;
+}
+
+.newProjectText {
+  color: black;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 1px;
+  font-weight: 10;
+}
+
+.newProjectText:hover {
+  color: black;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bolder;
+}
+
+.projectTitles {
+  color: black;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 1px;
+  font-weight: 10;
+}
+
+.projectTitles:hover {
+  color: black;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bolder;
 }
 
 #noProjects {
