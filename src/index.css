@@ -133,12 +133,23 @@ code {
   padding-bottom: 100%;
 }
 
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#mainHeader {
+  margin-left: 30px;
+  font-size: 24px;
+}
+
 #navbar {
   background-color: rgb(255, 208, 0);
   min-height: 100px;
   text-align: right;
   padding-right: 4%;
-  padding-top: 20px;
+  padding-top: 35px;
 }
 
 .navlink {
@@ -183,4 +194,45 @@ img.ui.image {
 .ui.card {
   width: 100%;
   margin: 0 auto;
+}
+
+.errorMessage {
+  font-size: 10px;
+  color: red;
+}
+
+#signInForm {
+  max-width: 40%;
+  text-align: left;
+  margin: auto;
+  margin-top: 5%;
+  border-style: solid;
+  padding: 20px;
+  border-radius: 25px;
+  background-color: aliceblue;
+}
+
+.myProjects {
+  padding: 15px;
+  text-align: center;
+  color: white;
+  font-weight: thin;
+  font-size: 18px;
+  background-color: rgb(65, 65, 65);
+  letter-spacing: 2px;
+}
+
+.cardGroup {
+  padding: 15px;
+}
+
+#newCardSymbol {
+  font-size: 6em;
+  font-weight: lighter;
+  background-color: rgb(80, 80, 80);
+  color: white;
+}
+
+#noProjects {
+  padding-left: 30px;
 }

@@ -18,7 +18,7 @@ import {
   Image,
   Menu,
   Segment,
-  Sidebar
+  Sidebar,
 } from 'semantic-ui-react';
 
 function getFromLS(key) {
@@ -143,7 +143,7 @@ const droppableStyle1 = {
   //
   minWidth: '250px',
   minHeight: '500px',
-  margin: '32px'
+  margin: '32px',
 };
 
 const droppableStyle2 = {
@@ -154,7 +154,7 @@ const droppableStyle2 = {
   backgroundColor: '#f0f0f0',
   width: '800px',
   height: '1100px',
-  margin: '32px'
+  margin: '32px',
 };
 
 const droppableStyle3 = {
@@ -162,14 +162,14 @@ const droppableStyle3 = {
   border: '1px solid red',
   width: '250px',
   height: '200px',
-  margin: '5px'
+  margin: '5px',
 };
 
 const droppableStyle31 = {
   backgroundColor: '#555',
   border: '1px solid red',
   flexGrow: '1',
-  margin: '5px'
+  margin: '5px',
 };
 
 const droppableStyle4 = {
@@ -178,7 +178,7 @@ const droppableStyle4 = {
   border: '1px solid red',
   width: '775px',
   height: '1050px',
-  margin: '5px'
+  margin: '5px',
 };
 
 const droppableStyle5 = {
@@ -186,7 +186,7 @@ const droppableStyle5 = {
   border: '1px solid red',
   width: '382px',
   height: '340px',
-  margin: '5px'
+  margin: '5px',
 };
 
 class divlab extends React.PureComponent {
@@ -196,8 +196,13 @@ class divlab extends React.PureComponent {
     cols: { lg: 120, md: 100, sm: 60, xs: 40, xxs: 20 },
 
     rowHeight: 2,
+<<<<<<< HEAD
     // onLayoutChange: function() {},
     verticalCompact: true
+=======
+    onLayoutChange: function() {},
+    verticalCompact: false,
+>>>>>>> master
   };
 
   constructor(props) {
@@ -205,6 +210,7 @@ class divlab extends React.PureComponent {
 
     this.state = {
       visible: false,
+<<<<<<< HEAD
       //   items: [0, 1, 2, 3, 4].map(function(i, key, list) {
       //     return {
       //       i: i.toString(),
@@ -224,6 +230,23 @@ class divlab extends React.PureComponent {
       //   components: JSON.parse(JSON.stringify(originalComps)),
       //   divs: []
       divs: JSON.parse(JSON.stringify(originalDivs))
+=======
+      items: [0, 1, 2, 3, 4].map(function(i, key, list) {
+        return {
+          i: i.toString(),
+          x: i * 20,
+          y: 0,
+          w: 20,
+          h: 20,
+          add: i === (list.length - 1).toString(),
+          isResizable: true,
+          static: false,
+        };
+      }),
+
+      newCounter: 0,
+      components: [],
+>>>>>>> master
     };
 
     this.onAddItem = this.onAddItem.bind(this);
@@ -239,7 +262,7 @@ class divlab extends React.PureComponent {
       position: 'absolute',
       right: '2px',
       top: 0,
-      cursor: 'pointer'
+      cursor: 'pointer',
     };
     const i = el.add ? '+' : el.i;
     return (
@@ -285,13 +308,20 @@ class divlab extends React.PureComponent {
         // y: Infinity, // puts it at the bottom
 
         y: 1,
+<<<<<<< HEAD
         w: 20,
         h: 20,
         isResizable: true,
         static: false
+=======
+        w: 2,
+        h: 2,
+        isResizable: this.state.isResizable,
+        static: this.state.static,
+>>>>>>> master
       }),
       // Increment the counter to ensure key is always unique.
-      newCounter: this.state.newCounter + 1
+      newCounter: this.state.newCounter + 1,
     });
   }
 
@@ -299,7 +329,7 @@ class divlab extends React.PureComponent {
   onBreakpointChange(breakpoint, cols) {
     this.setState({
       breakpoint: breakpoint,
-      cols: cols
+      cols: cols,
     });
   }
 
@@ -324,6 +354,7 @@ class divlab extends React.PureComponent {
   allowDrop = e => {
     e.stopPropagation();
   };
+<<<<<<< HEAD
   save = () => {
     saveToLS('items', this.state.items);
     saveCounterToLS('newCounter', this.state.newCounter);
@@ -337,6 +368,8 @@ class divlab extends React.PureComponent {
       };
     });
     this.setState({ divs: divsArr });
+=======
+>>>>>>> master
 
     // window.location.reload();
 
@@ -400,7 +433,7 @@ class divlab extends React.PureComponent {
               as="a"
               onClick={() => {
                 this.setState({
-                  components: [...this.state.components, <CardForm />]
+                  components: [...this.state.components, <CardForm />],
                 });
               }}
             >
@@ -411,7 +444,7 @@ class divlab extends React.PureComponent {
               as="a"
               onClick={() => {
                 this.setState({
-                  components: [...this.state.components, <SidewaysCardForm />]
+                  components: [...this.state.components, <SidewaysCardForm />],
                 });
               }}
             >
@@ -422,7 +455,7 @@ class divlab extends React.PureComponent {
               as="a"
               onClick={() => {
                 this.setState({
-                  components: [...this.state.components, <HeaderForm />]
+                  components: [...this.state.components, <HeaderForm />],
                 });
               }}
             >
@@ -433,7 +466,7 @@ class divlab extends React.PureComponent {
               as="a"
               onClick={() => {
                 this.setState({
-                  components: [...this.state.components, <HeadshotForm />]
+                  components: [...this.state.components, <HeadshotForm />],
                 });
               }}
             >
@@ -445,7 +478,7 @@ class divlab extends React.PureComponent {
               as="a"
               onClick={() => {
                 this.setState({
-                  components: [...this.state.components, <ParagraphForm />]
+                  components: [...this.state.components, <ParagraphForm />],
                 });
               }}
             >
@@ -461,7 +494,7 @@ class divlab extends React.PureComponent {
               <div
                 style={{
                   display: 'flex',
-                  flexDirection: 'row'
+                  flexDirection: 'row',
                 }}
               >
                 <div>
@@ -551,7 +584,7 @@ class divlab extends React.PureComponent {
                         width: '1200px',
                         minHeight: '1000px',
                         // border: '1px solid blue',
-                        backgroundColor: 'white'
+                        backgroundColor: 'white',
                       }}
                       // onBreakpointChange={this.onBreakpointChange}
                       {...this.props}
