@@ -48,7 +48,7 @@ class SignIn extends Component {
             />
             <Form.Input
               label="Password"
-              type="text"
+              type="password"
               name="password"
               value={this.state.password}
               placeholder="Password"

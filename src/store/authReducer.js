@@ -9,11 +9,15 @@ const initState = {
 const LOGIN_ERROR = 'LOGIN_ERROR';
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 const SIGN_OUT_SUCCESS = 'SIGN_OUT_SUCCESS';
+const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
+const SIGN_UP_ERROR = 'SIGN_UP_ERROR';
 
 //actions
 const loginError = error => ({ type: LOGIN_ERROR, error });
 const loginSuccess = () => ({ type: LOGIN_SUCCESS });
 const signOutSuccess = () => ({ type: SIGN_OUT_SUCCESS });
+const signUpSuccess = () => ({ type: SIGN_UP_SUCCESS });
+const signUpError = err => ({ type: SIGN_UP_ERROR, err });
 
 //THUNKS
 export const signIn = credentials => async (
@@ -42,9 +46,36 @@ export const signOut = () => async (
   try {
     const firebase = await getFirebase();
     await firebase.auth().signOut();
-    history.push('/');
     dispatch(signOutSuccess());
+    history.push('/');
   } catch (err) {
+    console.error(err);
+  }
+};
+
+export const signUp = newUser => async (
+  dispatch,
+  getState,
+  { getFirebase, getFirestore }
+) => {
+  try {
+    const firebase = await getFirebase();
+    const firestore = await getFirestore();
+    const response = await firebase
+      .auth()
+      .createUserWithEmailAndPassword(newUser.email, newUser.password);
+    await firestore
+      .collection('users')
+      .doc(response.user.uid)
+      .set({
+        firstName: newUser.firstName,
+        lastName: newUser.lastName,
+        initials: `<${newUser.firstName[0]}${newUser.lastName[0]} />`,
+      });
+    dispatch(signUpSuccess());
+    history.push('/');
+  } catch (err) {
+    dispatch(signUpError(err));
     console.error(err);
   }
 };
@@ -65,6 +96,12 @@ const authReducer = (state = initState, action) => {
     case SIGN_OUT_SUCCESS:
       console.log('Sign Out Success!');
       return state;
+    case SIGN_UP_SUCCESS:
+      console.log('Sign Up Success!');
+      return { ...state, authError: null };
+    case SIGN_UP_ERROR:
+      console.log('Sign Up Failed');
+      return { ...state, authError: action.err.message };
     default:
       return state;
   }

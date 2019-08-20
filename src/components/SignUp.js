@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Button, Form } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
 import { signUp } from '../store/authReducer';
 import { connect } from 'react-redux';
 
-export default class SignUp extends Component {
+class SignUp extends Component {
   constructor() {
     super();
     this.state = {
@@ -20,7 +19,7 @@ export default class SignUp extends Component {
 
   handelChange = evt => {
     this.setState({
-      [evt.target.id]: evt.target.value,
+      [evt.target.name]: evt.target.value,
     });
   };
 
@@ -30,10 +29,14 @@ export default class SignUp extends Component {
     this.setState({
       email: '',
       password: '',
+      firstName: '',
+      lastName: '',
     });
   };
 
   render() {
+    const { authError } = this.props;
+
     return (
       <div>
         <div id="signInForm">
@@ -64,15 +67,15 @@ export default class SignUp extends Component {
             />
             <Form.Input
               label="Password"
-              type="text"
+              type="password"
               name="password"
               value={this.state.password}
               placeholder="Password"
               onChange={this.handleChange}
             />
-            {/* <div className="errorMessage">
+            <div className="errorMessage">
               {authError && <span>{authError}</span>}
-            </div> */}
+            </div>
             <Button type="submit">Sign Up</Button>
           </Form>
         </div>
@@ -80,3 +83,20 @@ export default class SignUp extends Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    signUp: credentials => dispatch(signUp(credentials)),
+  };
+};
+
+const mapStateToProps = state => {
+  return {
+    authError: state.auth.authError,
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignUp);
