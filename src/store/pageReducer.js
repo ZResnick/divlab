@@ -38,16 +38,38 @@ export const getAllPages = userId => async (
   }
 };
 
-export const addAPage = page => async (
+//The below will save a new page to a users page collection
+export const addAPage = (userId, pageData) => async (
   dispatch,
-  getState, //the firestore functions on line 38 WILL NOT WORK WITHOUT THIS GETSTATE!!!
+  getState,
   { getFirebase, getFirestore }
 ) => {
   try {
-    const firestore = getFirestore(); //this is the call that gets us access to firestore:
-    //gets us a reference to the Songs Collection and then adds a document using .add({document })
-    await firestore.collection('pages').add({ ...page });
-    // history.push('/');
+    const firestore = getFirestore();
+    await firestore
+      .collection('users')
+      .doc(userId)
+      .collection('pages')
+      .add({ ...pageData });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+//The below will update a page that already exists in the users page collection
+export const editAPage = (userId, pageData) => async (
+  dispatch,
+  getState,
+  { getFirebase, getFirestore }
+) => {
+  try {
+    const firestore = getFirestore();
+    await firestore
+      .collection('users')
+      .doc(userId)
+      .collection('pages')
+      .doc(pageData.id)
+      .set({ ...pageData });
   } catch (err) {
     console.error(err);
   }
