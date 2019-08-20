@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { Button, Form } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import { signUp } from '../store/authReducer';
+import { connect } from 'react-redux';
 
 export default class SignUp extends Component {
   constructor() {
@@ -22,38 +26,55 @@ export default class SignUp extends Component {
 
   handelSubmit = evt => {
     evt.preventDefault();
+    this.props.signUp(this.state);
+    this.setState({
+      email: '',
+      password: '',
+    });
   };
 
   render() {
     return (
       <div>
-        <div>
-          <form onSubmit={this.handleSubmit}>
-            <h5>Sign Up</h5>
-            <div>
-              <label htmlFor="email">Email</label>
-              <input type="email" id="email" onChange={this.handleChange} />
-            </div>
-            <div>
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                id="password"
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className="input-field">
-              <label htmlFor="firstName">First Name</label>
-              <input type="text" id="firstName" onChange={this.handleChange} />
-            </div>
-            <div className="input-field">
-              <label htmlFor="lastName">Last Name</label>
-              <input type="text" id="lastName" onChange={this.handleChange} />
-            </div>
-            <div className="input-field">
-              <button className="btn pink lighten-1 z-depth-0">Sign Up</button>
-            </div>
-          </form>
+        <div id="signInForm">
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Input
+              label="First Name"
+              type="text"
+              name="firstName"
+              value={this.state.firstName}
+              placeholder="First Name"
+              onChange={this.handleChange}
+            />
+            <Form.Input
+              label="Last Name"
+              type="text"
+              name="lastName"
+              value={this.state.lastName}
+              placeholder="Last Name"
+              onChange={this.handleChange}
+            />
+            <Form.Input
+              label="Email"
+              type="email"
+              name="email"
+              value={this.state.email}
+              placeholder="Email"
+              onChange={this.handleChange}
+            />
+            <Form.Input
+              label="Password"
+              type="text"
+              name="password"
+              value={this.state.password}
+              placeholder="Password"
+              onChange={this.handleChange}
+            />
+            {/* <div className="errorMessage">
+              {authError && <span>{authError}</span>}
+            </div> */}
+            <Button type="submit">Sign Up</Button>
+          </Form>
         </div>
       </div>
     );

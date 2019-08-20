@@ -189,3 +189,14 @@ img.ui.image {
   font-size: 10px;
   color: red;
 }
+
+#signInForm {
+  max-width: 30%;
+  text-align: left;
+  margin: auto;
+  margin-top: 5%;
+  border-style: solid;
+  padding: 20px;
+  border-radius: 25px;
+  background-color: aliceblue;
+}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signIn } from '../store/authReducer';
+import { Button, Form } from 'semantic-ui-react';
 
 class SignIn extends Component {
   constructor() {
@@ -17,17 +18,17 @@ class SignIn extends Component {
 
   handelChange = evt => {
     this.setState({
-      [evt.target.id]: evt.target.value,
+      [evt.target.name]: evt.target.value,
     });
   };
 
   handelSubmit = evt => {
     evt.preventDefault();
+    this.props.signIn(this.state);
     this.setState({
       email: '',
       password: '',
     });
-    this.props.signIn(this.state);
   };
 
   render() {
@@ -35,32 +36,32 @@ class SignIn extends Component {
 
     return (
       <div>
-        <div className="container">
-          <form onSubmit={this.handleSubmit}>
-            <h5>Sign In</h5>
-            <div>
-              <label htmlFor="email">Email</label>
-              <input type="email" id="email" onChange={this.handleChange} />
-            </div>
-            <div>
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                id="password"
-                onChange={this.handleChange}
-              />
-            </div>
-            <div>
-              <button type="submit">Sign In</button>
-              <Link to="/signUp">
-                <button>Sign Up</button>
-              </Link>
-            </div>
+        <div id="signInForm">
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Input
+              label="Email"
+              type="email"
+              name="email"
+              value={this.state.email}
+              placeholder="Email"
+              onChange={this.handleChange}
+            />
+            <Form.Input
+              label="Password"
+              type="text"
+              name="password"
+              value={this.state.password}
+              placeholder="Password"
+              onChange={this.handleChange}
+            />
             <div className="errorMessage">
-              {authError && <p>{authError}</p>}
+              {authError && <span>{authError}</span>}
             </div>
-          </form>
+            <Button type="submit">Sign In</Button>
+          </Form>
         </div>
+        <br />
+        <Link to="/signUp">Sign Up</Link>
       </div>
     );
   }
