@@ -82,7 +82,8 @@ class divlab extends React.PureComponent {
     };
 
     this.onAddItem = this.onAddItem.bind(this);
-    this.onBreakpointChange = this.onBreakpointChange.bind(this);
+		this.onBreakpointChange = this.onBreakpointChange.bind(this);
+		this.reactDomRender = this.reactDomRender.bind(this)
   }
 
   handleHideClick = () => this.setState({ visible: false });
@@ -95,6 +96,7 @@ class divlab extends React.PureComponent {
 			const state = JSON.parse(this.props.pages.find(doc => doc.id === 'fnvhkyWjAz4YDRW6qrSF').data.pageData);
 			this.setState({...state})
 		}
+		// this.reactDomRender()
 	}
 
   createElement(el) {
@@ -109,7 +111,7 @@ class divlab extends React.PureComponent {
       <div
         style={{ border: '1px solid red', overflow: 'hidden' }}
         key={i}
-        data-grid={el} id={'n' + i}
+        data-grid={el} id={i}
       >
         {el.add ? (
           <span
@@ -201,13 +203,17 @@ class divlab extends React.PureComponent {
 	}
 
 	// Test injection method
-	reactDomRender = (state) => {
-		if (document.querySelector('#n0')) {
-			const temp = document.querySelector('#n0');
-			const newDiv = document.createElement('div')
-			newDiv.id = 'newDiv'
-			temp.appendChild(newDiv);
-			ReactDOM.render(<ParagraphForm info={{content: 'hello', id: 1, edit: false}} />, document.getElementById('newDiv'))
+	reactDomRender(state) {
+		console.log('I am not working right...')
+		if (document.getElementById(`n0`)) {
+			console.log('I am testing...')
+			for (let i = 0; i < this.state.divs.length; i++) {
+				const temp = document.getElementById(`n${i}`);
+				const newDiv = document.createElement('div')
+				newDiv.id = `newDiv${i}`
+				temp.appendChild(newDiv);
+				ReactDOM.render(<ParagraphForm info={{content: 'hello', id: `paragraph${i}`, edit: false}} />, document.getElementById(`n${i}`))
+			}
 		}
 	}
 
@@ -393,6 +399,7 @@ class divlab extends React.PureComponent {
                   </Button>
                   <Button onClick={this.onAddItem}>Add Item</Button>
 									<Button onClick={this.save}>Save</Button>
+									<Button onclick={() => this.reactDomRender(this.state)}>Test</Button>
                   <Droppable>
                     <ResponsiveReactGridLayout
                       onLayoutChange={this.onLayoutChange}
@@ -414,7 +421,6 @@ class divlab extends React.PureComponent {
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
-				{/* {this.reactDomRender()} */}
       </div>
     );
   }
