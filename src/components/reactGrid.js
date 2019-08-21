@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom'
 
 import { WidthProvider, Responsive } from 'react-grid-layout';
 import _ from 'lodash';
@@ -11,11 +12,12 @@ import HeadshotForm from '../components/divlab_components/HeadshotForm';
 import ParagraphForm from '../components/divlab_components/ParagraphForm';
 import SidewaysCardForm from '../components/divlab_components/SidewaysCardForm';
 
+
 import {
   Button,
-  Header,
+  // Header,
   Icon,
-  Image,
+  // Image,
   Menu,
   Segment,
   Sidebar,
@@ -23,13 +25,13 @@ import {
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
-const Wrapper = styled.div`
-  width: 100%;
-  padding: 32px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-`;
+// const Wrapper = styled.div`
+//   width: 100%;
+//   padding: 32px;
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: center;
+// `;
 
 const Item = styled.div`
   color: #555;
@@ -50,48 +52,48 @@ const droppableStyle1 = {
   margin: '32px',
 };
 
-const droppableStyle2 = {
-  display: 'flex',
-  justifyContent: 'center',
-  alignContent: 'flex-start',
-  flexWrap: 'wrap',
-  backgroundColor: '#f0f0f0',
-  width: '800px',
-  height: '1100px',
-  margin: '32px',
-};
+// const droppableStyle2 = {
+//   display: 'flex',
+//   justifyContent: 'center',
+//   alignContent: 'flex-start',
+//   flexWrap: 'wrap',
+//   backgroundColor: '#f0f0f0',
+//   width: '800px',
+//   height: '1100px',
+//   margin: '32px',
+// };
 
-const droppableStyle3 = {
-  backgroundColor: '#555',
-  border: '1px solid red',
-  width: '250px',
-  height: '200px',
-  margin: '5px',
-};
+// const droppableStyle3 = {
+//   backgroundColor: '#555',
+//   border: '1px solid red',
+//   width: '250px',
+//   height: '200px',
+//   margin: '5px',
+// };
 
-const droppableStyle31 = {
-  backgroundColor: '#555',
-  border: '1px solid red',
-  flexGrow: '1',
-  margin: '5px',
-};
+// const droppableStyle31 = {
+//   backgroundColor: '#555',
+//   border: '1px solid red',
+//   flexGrow: '1',
+//   margin: '5px',
+// };
 
-const droppableStyle4 = {
-  backgroundColor: '#f0f0f0',
-  overflow: 'scroll',
-  border: '1px solid red',
-  width: '775px',
-  height: '1050px',
-  margin: '5px',
-};
+// const droppableStyle4 = {
+//   backgroundColor: '#f0f0f0',
+//   overflow: 'scroll',
+//   border: '1px solid red',
+//   width: '775px',
+//   height: '1050px',
+//   margin: '5px',
+// };
 
-const droppableStyle5 = {
-  backgroundColor: '#f0f0f0',
-  border: '1px solid red',
-  width: '382px',
-  height: '340px',
-  margin: '5px',
-};
+// const droppableStyle5 = {
+//   backgroundColor: '#f0f0f0',
+//   border: '1px solid red',
+//   width: '382px',
+//   height: '340px',
+//   margin: '5px',
+// };
 
 class divlab extends React.PureComponent {
   static defaultProps = {
@@ -101,7 +103,7 @@ class divlab extends React.PureComponent {
 
     rowHeight: 2,
     onLayoutChange: function() {},
-    verticalCompact: false,
+    // verticalCompact: false,
   };
 
   constructor(props) {
@@ -123,7 +125,9 @@ class divlab extends React.PureComponent {
       }),
 
       newCounter: 0,
-      components: [],
+			components: [],
+			usedComponents: [],
+			divs: [],
     };
 
     this.onAddItem = this.onAddItem.bind(this);
@@ -146,7 +150,7 @@ class divlab extends React.PureComponent {
       <div
         style={{ border: '1px solid red', overflow: 'hidden' }}
         key={i}
-        data-grid={el}
+        data-grid={el} id={'n' + i}
       >
         {el.add ? (
           <span
@@ -217,14 +221,37 @@ class divlab extends React.PureComponent {
     });
 
     console.log(divs);
-  };
+	};
 
-  allowDrop = e => {
-    e.stopPropagation();
-  };
+
+	saveDivs = () => {
+		const divs = Array.from(document.querySelectorAll('.react-grid-item'));
+		let divsArr = [...divs].map(div => {
+			return {
+				id: div.id,
+				innerHTML: div.innerHTML,
+				className: div.className
+			}
+		})
+		this.setState({
+			divs: divsArr
+		})
+	}
+
+	// Test injection method
+	reactDomRender = (state) => {
+		if (document.querySelector('#n0')) {
+			const temp = document.querySelector('#n0');
+			const newDiv = document.createElement('div')
+			newDiv.id = 'newDiv'
+			temp.appendChild(newDiv);
+			ReactDOM.render(<ParagraphForm info={{content: 'hello', id: 1, edit: false}} />, document.getElementById('newDiv'))
+		}
+	}
 
   render() {
-    const { visible } = this.state;
+		const { visible } = this.state;
+		console.log(this.state)
     return (
       <div>
         <Button.Group>
@@ -325,6 +352,9 @@ class divlab extends React.PureComponent {
                 <div>
                   <Droppable style={droppableStyle1}>
                     {this.state.components.map((item, idx) => {
+											if (!this.state.usedComponents.includes(item)) {
+												this.state.usedComponents.push(item)
+											}
                       return (
                         <Draggable
                           id={String(Math.floor(Math.random() * 100000000))}
@@ -419,6 +449,7 @@ class divlab extends React.PureComponent {
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
+				{this.reactDomRender()}
       </div>
     );
   }
