@@ -3,12 +3,13 @@ import ParagraphComponent from './ParagraphComponent';
 import { Button, Form } from 'semantic-ui-react';
 
 export default class ParagraphForm extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
+		const { content, id, edit } = this.props.info;
 		this.state = {
-			content: '',
-			id: '',
-			edit: true,
+			content: content ? content : '',
+			id: id ? id : '',
+			edit: edit ? true : false,
 		};
 		this.switchEdit = this.switchEdit.bind(this);
 	}
