@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
+import {connect} from 'react-redux'
 
 import { WidthProvider, Responsive } from 'react-grid-layout';
 import _ from 'lodash';
@@ -11,6 +12,7 @@ import HeaderForm from '../components/divlab_components/HeaderForm';
 import HeadshotForm from '../components/divlab_components/HeadshotForm';
 import ParagraphForm from '../components/divlab_components/ParagraphForm';
 import SidewaysCardForm from '../components/divlab_components/SidewaysCardForm';
+import {addAPage, getAllPages} from '../store/pageReducer'
 
 
 import {
@@ -24,14 +26,6 @@ import {
 } from 'semantic-ui-react';
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
-
-// const Wrapper = styled.div`
-//   width: 100%;
-//   padding: 32px;
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: center;
-// `;
 
 const Item = styled.div`
   color: #555;
@@ -52,49 +46,6 @@ const droppableStyle1 = {
   margin: '32px',
 };
 
-// const droppableStyle2 = {
-//   display: 'flex',
-//   justifyContent: 'center',
-//   alignContent: 'flex-start',
-//   flexWrap: 'wrap',
-//   backgroundColor: '#f0f0f0',
-//   width: '800px',
-//   height: '1100px',
-//   margin: '32px',
-// };
-
-// const droppableStyle3 = {
-//   backgroundColor: '#555',
-//   border: '1px solid red',
-//   width: '250px',
-//   height: '200px',
-//   margin: '5px',
-// };
-
-// const droppableStyle31 = {
-//   backgroundColor: '#555',
-//   border: '1px solid red',
-//   flexGrow: '1',
-//   margin: '5px',
-// };
-
-// const droppableStyle4 = {
-//   backgroundColor: '#f0f0f0',
-//   overflow: 'scroll',
-//   border: '1px solid red',
-//   width: '775px',
-//   height: '1050px',
-//   margin: '5px',
-// };
-
-// const droppableStyle5 = {
-//   backgroundColor: '#f0f0f0',
-//   border: '1px solid red',
-//   width: '382px',
-//   height: '340px',
-//   margin: '5px',
-// };
-
 class divlab extends React.PureComponent {
   static defaultProps = {
     className: 'layout',
@@ -102,7 +53,7 @@ class divlab extends React.PureComponent {
     cols: { lg: 120, md: 100, sm: 60, xs: 40, xxs: 20 },
 
     rowHeight: 2,
-    onLayoutChange: function() {},
+    // onLayoutChange: this.onLayoutChange,
     // verticalCompact: false,
   };
 
@@ -111,19 +62,19 @@ class divlab extends React.PureComponent {
 
     this.state = {
       visible: false,
-      items: [0, 1, 2, 3, 4].map(function(i, key, list) {
-        return {
-          i: i.toString(),
-          x: i * 20,
-          y: 0,
-          w: 20,
-          h: 20,
-          add: i === (list.length - 1).toString(),
-          isResizable: true,
-          static: false,
-        };
-      }),
-
+      // items: [0, 1, 2, 3, 4].map(function(i, key, list) {
+      //   return {
+      //     i: i.toString(),
+      //     x: i * 20,
+      //     y: 0,
+      //     w: 20,
+      //     h: 20,
+      //     add: i === (list.length - 1).toString(),
+      //     isResizable: true,
+      //     static: false,
+      //   };
+      // }),
+			items: [],
       newCounter: 0,
 			components: [],
 			usedComponents: [],
@@ -131,12 +82,22 @@ class divlab extends React.PureComponent {
     };
 
     this.onAddItem = this.onAddItem.bind(this);
-    this.onBreakpointChange = this.onBreakpointChange.bind(this);
+		this.onBreakpointChange = this.onBreakpointChange.bind(this);
+		this.reactDomRender = this.reactDomRender.bind(this)
   }
 
   handleHideClick = () => this.setState({ visible: false });
   handleShowClick = () => this.setState({ visible: true });
   handleSidebarHide = () => this.setState({ visible: false });
+
+	componentDidMount() {
+		this.props.auth.auth.uid && this.props.getAllPages(this.props.auth.auth.uid);
+		if (this.props.pages.length) {
+			const state = JSON.parse(this.props.pages.find(doc => doc.id === 'fnvhkyWjAz4YDRW6qrSF').data.pageData);
+			this.setState({...state})
+		}
+		// this.reactDomRender()
+	}
 
   createElement(el) {
     const removeStyle = {
@@ -150,7 +111,7 @@ class divlab extends React.PureComponent {
       <div
         style={{ border: '1px solid red', overflow: 'hidden' }}
         key={i}
-        data-grid={el} id={'n' + i}
+        data-grid={el} id={i}
       >
         {el.add ? (
           <span
@@ -186,8 +147,8 @@ class divlab extends React.PureComponent {
         // y: Infinity, // puts it at the bottom
 
         y: 1,
-        w: 2,
-        h: 2,
+        w: 20,
+        h: 20,
         isResizable: this.state.isResizable,
         static: this.state.static,
       }),
@@ -204,9 +165,9 @@ class divlab extends React.PureComponent {
     });
   }
 
-  onLayoutChange(layout) {
-    this.props.onLayoutChange(layout);
-    this.setState({ layout: layout });
+  onLayoutChange = (items) => {
+
+    this.setState({ items});
   }
 
   onRemoveItem(i) {
@@ -224,7 +185,7 @@ class divlab extends React.PureComponent {
 	};
 
 
-	saveDivs = () => {
+	save = () => {
 		const divs = Array.from(document.querySelectorAll('.react-grid-item'));
 		let divsArr = [...divs].map(div => {
 			return {
@@ -236,22 +197,31 @@ class divlab extends React.PureComponent {
 		this.setState({
 			divs: divsArr
 		})
+
+		this.props.addAPage(this.props.auth.auth.uid, JSON.stringify(this.state))
+
 	}
 
 	// Test injection method
-	reactDomRender = (state) => {
-		if (document.querySelector('#n0')) {
-			const temp = document.querySelector('#n0');
-			const newDiv = document.createElement('div')
-			newDiv.id = 'newDiv'
-			temp.appendChild(newDiv);
-			ReactDOM.render(<ParagraphForm info={{content: 'hello', id: 1, edit: false}} />, document.getElementById('newDiv'))
+	reactDomRender(state) {
+		console.log('I am not working right...')
+		if (document.getElementById(`n0`)) {
+			console.log('I am testing...')
+			for (let i = 0; i < this.state.divs.length; i++) {
+				const temp = document.getElementById(`n${i}`);
+				const newDiv = document.createElement('div')
+				newDiv.id = `newDiv${i}`
+				temp.appendChild(newDiv);
+				ReactDOM.render(<ParagraphForm info={{content: 'hello', id: `paragraph${i}`, edit: false}} />, document.getElementById(`n${i}`))
+			}
 		}
 	}
 
   render() {
 		const { visible } = this.state;
 		console.log(this.state)
+		// console.log(this.props.pages)
+
     return (
       <div>
         <Button.Group>
@@ -368,16 +338,16 @@ class divlab extends React.PureComponent {
                 </div>
                 <div>
                   {/* <Droppable id="dr2"> */}
-                  <button
+                  <Button
                     onClick={() => {
                       const imgs = document.querySelectorAll(
                         '.react-resizable-handle-se'
                       );
                       const editButtonsOn = document.querySelectorAll(
-                        '.edit-button-on'
+                        '.edit-Button-on'
                       );
                       const editButtonsOff = document.querySelectorAll(
-                        '.edit-button-off'
+                        '.edit-Button-off'
                       );
                       const divs = document.querySelectorAll(
                         '.react-grid-item'
@@ -385,19 +355,19 @@ class divlab extends React.PureComponent {
                       const xs = document.getElementsByName('X');
 
                       editButtonsOn.forEach(item => {
-                        if (item.classList.contains('edit-button-on')) {
+                        if (item.classList.contains('edit-Button-on')) {
                           item.classList.replace(
-                            'edit-button-on',
-                            'edit-button-off'
+                            'edit-Button-on',
+                            'edit-Button-off'
                           );
                         }
                       });
 
                       editButtonsOff.forEach(item => {
-                        if (item.classList.contains('edit-button-off')) {
+                        if (item.classList.contains('edit-Button-off')) {
                           item.classList.replace(
-                            'edit-button-off',
-                            'edit-button-on'
+                            'edit-Button-off',
+                            'edit-Button-on'
                           );
                         }
                       });
@@ -426,8 +396,10 @@ class divlab extends React.PureComponent {
                     }}
                   >
                     Borders off
-                  </button>
-                  <button onClick={this.onAddItem}>Add Item</button>
+                  </Button>
+                  <Button onClick={this.onAddItem}>Add Item</Button>
+									<Button onClick={this.save}>Save</Button>
+									<Button onclick={() => this.reactDomRender(this.state)}>Test</Button>
                   <Droppable>
                     <ResponsiveReactGridLayout
                       onLayoutChange={this.onLayoutChange}
@@ -449,10 +421,31 @@ class divlab extends React.PureComponent {
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
-				{this.reactDomRender()}
       </div>
     );
   }
 }
 
-export default divlab;
+const mapStateToProps = state => {
+  return {
+    auth: state.firebase,
+		profile: state.firebase.profile,
+    pages: state.pages,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addAPage: (userId, pageContent) => {
+      dispatch(addAPage(userId, pageContent));
+		},
+		getAllPages: user => {
+			dispatch(getAllPages(user));
+		},
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(divlab);
