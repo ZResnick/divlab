@@ -13,6 +13,7 @@ import HeadshotForm from '../components/divlab_components/HeadshotForm';
 import ParagraphForm from '../components/divlab_components/ParagraphForm';
 import SidewaysCardForm from '../components/divlab_components/SidewaysCardForm';
 import { addAPage, getAllPages } from '../store/pageReducer';
+import { setHTML } from '../utils/utils';
 
 import {
 	Button,
@@ -66,7 +67,8 @@ class divlab extends React.PureComponent {
 			newCounter: 0,
 			components: [],
 			usedComponents: [],
-			divs: [],
+			// divs: [],
+			html: '',
 		};
 
 		this.onAddItem = this.onAddItem.bind(this);
@@ -87,14 +89,10 @@ class divlab extends React.PureComponent {
 					.pageData
 			);
 
-			setTimeout(() => {
-				this.saveDivs();
-			}, 10);
+			// setTimeout(() => {
+			// 	this.saveDivs();
+			// }, 10);
 
-			console.log(
-				'ComponentDidMount line 90: this.state.divs >>>',
-				this.state.divs
-			);
 			this.setState({
 				...newState,
 				divs: this.state.divs,
@@ -156,7 +154,7 @@ class divlab extends React.PureComponent {
 
 	onAddItem() {
 		/*eslint no-console: 0*/
-		// console.log('adding', 'n' + this.state.newCounter);
+
 		this.setState({
 			// Add a new item. It must have a unique key!
 			items: this.state.items.concat({
@@ -188,7 +186,6 @@ class divlab extends React.PureComponent {
 	};
 
 	onRemoveItem(i) {
-		console.log('removing', i);
 		this.setState({ items: _.reject(this.state.items, { i: i }) });
 	}
 
@@ -197,47 +194,35 @@ class divlab extends React.PureComponent {
 		divs.forEach(item => {
 			item.classList.remove('react-resizable');
 		});
-
-		console.log(divs);
 	};
 
-	saveDivs = () => {
-		const divs = Array.from(document.querySelectorAll('.react-grid-item'));
-		console.log('Line 190 >>> ', divs);
-		let divsArr = [...divs].map(div => {
-			return {
-				id: div.id,
-				innerHTML: div.innerHTML,
-				className: div.className,
-			};
-		});
-		this.setState({
-			divs: divsArr,
-		});
-		console.log('I ran and this is state:', this.state);
-	};
+	// saveDivs = () => {
+	// 	const divs = Array.from(document.querySelectorAll('.react-grid-item'));
 
-	save = () => {
-		// const divs = Array.from(document.querySelectorAll('.react-grid-item'));
-		// console.log('Line 190 >>> ', divs);
-		// let divsArr = [...divs].map(div => {
-		// 	return {
-		// 		id: div.id,
-		// 		innerHTML: div.innerHTML,
-		// 		className: div.className,
-		// 	};
-		// });
-		// this.setState({
-		// 	divs: divsArr,
-		// });
+	// 	let divsArr = [...divs].map(div => {
+	// 		return {
+	// 			id: div.id,
+	// 			innerHTML: div.innerHTML,
+	// 			className: div.className,
+	// 		};
+	// 	});
+	// 	this.setState({
+	// 		divs: divsArr,
+	// 	});
+	// };
 
+	save = async () => {
+		const html = setHTML();
+		console.log(html);
+		await this.setState({
+			html,
+		});
 		this.props.addAPage(this.props.auth.auth.uid, JSON.stringify(this.state));
 	};
 
 	// Test injection method
 	reactDomRender(state) {
-		console.log('I AM RUNNING IN THE TEST >>> ', this.state);
-		for (let i = 0; i < this.state.divs.length; i++) {
+		for (let i = 0; i < this.state.items.length; i++) {
 			const temp = document.getElementById(`n${i}`);
 			const newDiv = document.createElement('div');
 			newDiv.id = `newDiv${i}`;
@@ -254,8 +239,6 @@ class divlab extends React.PureComponent {
 
 	render() {
 		const { visible } = this.state;
-		console.log(this.state);
-		// console.log(this.props.pages)
 
 		return (
 			<div>

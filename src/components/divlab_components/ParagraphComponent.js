@@ -9,11 +9,11 @@ export default function Paragraph(props) {
 
 	const { content, id } = props.info;
 	return content.length || id.length ? (
-		<div id={id} style={divStyle}>
+		<div style={divStyle} id={id}>
 			<p
 				dangerouslySetInnerHTML={{ __html: '<!-- ParagraphContentStart -->' }}
 			/>
-			{content}
+			<p>{content}</p>
 			<p dangerouslySetInnerHTML={{ __html: '<!-- ParagraphContentEnd -->' }} />
 		</div>
 	) : (
