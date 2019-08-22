@@ -51,7 +51,7 @@ export const addAPage = (userId, pageData) => async (
 			.doc(userId)
 			.collection('pages')
 			.add({ pageData });
-		history.push('/projects');
+		// history.push('/projects');
 	} catch (err) {
 		console.error(err);
 	}
