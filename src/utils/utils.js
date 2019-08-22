@@ -3,14 +3,17 @@ import ReactDOM from 'react-dom';
 
 import ParagraphForm from '../components/divlab_components/ParagraphForm';
 
-// export function setLocalStorageHTML() {
-// 	console.log(document.querySelector('.react-grid-layout'));
+export function setLocalStorageHTML() {
+	console.log(document.querySelector('.react-grid-layout'));
 
-// 	if (document.querySelector('.react-grid-layout')) {
-// 		localStorage.setItem('canvas', document.querySelector('.react-grid-layout').innerHTML);
-// 		console.log('setLocalStorageHTML ran succesfully!');
-// 	}
-// }
+	if (document.querySelector('.react-grid-layout')) {
+		localStorage.setItem(
+			'canvas',
+			document.querySelector('.react-grid-layout').innerHTML
+		);
+		console.log('setLocalStorageHTML ran succesfully!');
+	}
+}
 
 export function setHTML() {
 	let canvas = document.querySelector('.react-grid-layout');
@@ -24,4 +27,11 @@ export function reactDomRender(state) {
 			document.querySelector('.react-grid-layout')
 		);
 	}
+}
+
+export function paragraphContentParser() {
+	let paragraphRegex = /(?<=<!-- ParagraphContentStart --><\/p><p>)(.*?)(?=<\/p><p><!-- ParagraphContentEnd -->)/g;
+	let canvas = document.querySelector('.react-grid-layout');
+	let output = canvas.innerHTML.match(paragraphRegex);
+	return output;
 }

@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
-
 import { WidthProvider, Responsive } from 'react-grid-layout';
 import _ from 'lodash';
 import styled from 'styled-components';
+
 import Draggable from './Draggable';
 import Droppable from './Droppable';
 import CardForm from '../components/divlab_components/CardForm';
@@ -13,7 +13,7 @@ import HeadshotForm from '../components/divlab_components/HeadshotForm';
 import ParagraphForm from '../components/divlab_components/ParagraphForm';
 import SidewaysCardForm from '../components/divlab_components/SidewaysCardForm';
 import { addAPage, getAllPages } from '../store/pageReducer';
-import { setHTML } from '../utils/utils';
+import { setHTML, paragraphContentParser } from '../utils/utils';
 
 import {
 	Button,
@@ -417,9 +417,7 @@ class divlab extends React.PureComponent {
 									</Button>
 									<Button onClick={this.onAddItem}>Add Item</Button>
 									<Button onClick={this.save}>Save</Button>
-									<Button onClick={() => this.reactDomRender(this.state)}>
-										Test
-									</Button>
+									<Button onClick={paragraphContentParser}>Test</Button>
 									<Droppable>
 										<ResponsiveReactGridLayout
 											onLayoutChange={this.onLayoutChange}
