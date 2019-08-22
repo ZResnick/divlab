@@ -71,7 +71,7 @@ export const editAPage = (userId, pageId, pageData) => async (
       .collection('pages')
       .doc(pageId)
       .set({ pageData });
-    history.push('/projects');
+    // history.push('/projects');
   } catch (err) {
     console.error(err);
   }

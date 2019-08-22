@@ -89,18 +89,18 @@ class divlab extends React.PureComponent {
         this.props.pages.find(doc => doc.id === `${this.props.match.params.id}`)
           .data.pageData
       );
-
+      console.log('i an new firebase state', newState);
       // setTimeout(() => {
       // 	this.saveDivs();
       // }, 10);
 
-      this.setState({
-        ...newState,
-        divs: this.state.divs,
-      });
-      setTimeout(() => {
-        this.reactDomRender(this.state);
-      }, 10);
+      this.setState(
+        newState
+        // divs: this.state.divs,
+      );
+      // setTimeout(() => {
+      //   this.reactDomRender(this.state);
+      // }, 10);
       // this.setState({
       // 	divs: this.state.divs,
       // 	components: newState.components,
@@ -213,11 +213,11 @@ class divlab extends React.PureComponent {
   // };
 
   save = async () => {
-    const html = setHTML();
-    console.log(html);
-    await this.setState({
-      html,
-    });
+    // const html = setHTML();
+    // console.log(html);
+    // await this.setState({
+    //   html,
+    // });
     if (this.props.match.params.id) {
       this.props.editAPage(
         this.props.auth.auth.uid,

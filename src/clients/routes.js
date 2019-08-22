@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import Home from '../components/Home';
 import divlab from '../components/reactGrid';
+import divlabTwo from '../components/divlab2';
 import SignIn from '../components/SignIn';
 import SignUp from '../components/SignUp';
 import UserProjects from '../components/UserProjects';
@@ -14,7 +15,7 @@ export default class Routes extends Component {
         <Route exact path="/signIn" component={SignIn} />
         <Route exact path="/signUp" component={SignUp} />
         <Route exact path="/projects" component={UserProjects} />
-        <Route exact path="/divlab/:id" component={divlab} />
+        <Route exact path="/divlab/:id" component={divlabTwo} />
         <Route path="/divlab" component={divlab} />
         <Route component={Home} />
       </Switch>
