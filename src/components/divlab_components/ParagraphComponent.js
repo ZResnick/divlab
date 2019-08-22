@@ -10,7 +10,11 @@ export default function Paragraph(props) {
 	const { content, id } = props.info;
 	return content.length || id.length ? (
 		<div id={id} style={divStyle}>
-			<p>{content}</p>
+			<p
+				dangerouslySetInnerHTML={{ __html: '<!-- ParagraphContentStart -->' }}
+			/>
+			{content}
+			<p dangerouslySetInnerHTML={{ __html: '<!-- ParagraphContentEnd -->' }} />
 		</div>
 	) : (
 		<img alt="" src="images/ParagraphExample.png" />
