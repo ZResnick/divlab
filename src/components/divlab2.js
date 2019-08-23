@@ -52,14 +52,8 @@ const droppableStyle1 = {
 class divlabTwo extends React.PureComponent {
   static defaultProps = {
     className: 'layout',
-    // cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
     cols: { lg: 120, md: 100, sm: 60, xs: 40, xxs: 20 },
-
     rowHeight: 2
-    // onLayoutChange: function(items) {
-    //   this.setState({ items });
-    // }
-    // verticalCompact: false,
   };
 
   constructor(props) {
@@ -71,15 +65,12 @@ class divlabTwo extends React.PureComponent {
       newCounter: 0,
       components: [],
       usedComponents: [],
-      // divs: [],
       html: ''
     };
 
     this.onAddItem = this.onAddItem.bind(this);
     this.onBreakpointChange = this.onBreakpointChange.bind(this);
     this.reactDomRender = this.reactDomRender.bind(this);
-    // this.onLayoutChange = this.onLayoutChange.bind(this);
-    // this.onLayoutChange = this.onLayoutChange.bind(this);
   }
 
   handleHideClick = () => this.setState({ visible: false });
@@ -94,7 +85,6 @@ class divlabTwo extends React.PureComponent {
         this.props.pages.find(doc => doc.id === `${this.props.match.params.id}`)
           .data.pageData
       );
-      //console.log('i an new firebase state', newState);
       this.setState({ ...newState.canvas, html: newState.html });
       setTimeout(() => {
         this.reactDomRender(this.state);
@@ -138,19 +128,17 @@ class divlabTwo extends React.PureComponent {
       );
     }
 
-    // console.log(this.state);
   };
 
   // Test injection method
   reactDomRender(state) {
     let paragraphContent = paragraphContentParser(state.html);
-    console.log(paragraphContent.length);
+    console.log(paragraphContent);
     for (let i = 0; i < paragraphContent.length; i++) {
       let temp = document.getElementById(`n${i}`);
       let newDiv = document.createElement('div');
       newDiv.id = `newDiv${i}`;
       temp.style.padding = '8px';
-      // console.log(temp);
       temp.appendChild(newDiv);
       let component = paragraphContent[i] ? (
         <ParagraphForm
@@ -242,18 +230,6 @@ class divlabTwo extends React.PureComponent {
     this.setState({ items });
   };
 
-  // onResizeStop = items => {
-  //   this.setState({ items });
-
-  //   console.log('resize', this.state.items);
-  // };
-
-  // onDragStop = items => {
-  //   this.setState({ items });
-
-  //   // console.log('stop', this.state.items);
-  // };
-
   onRemoveItem(i) {
     this.setState({ items: _.reject(this.state.items, { i: i }) });
   }
@@ -264,21 +240,6 @@ class divlabTwo extends React.PureComponent {
       item.classList.remove('react-resizable');
     });
   };
-
-  // saveDivs = () => {
-  // 	const divs = Array.from(document.querySelectorAll('.react-grid-item'));
-
-  // 	let divsArr = [...divs].map(div => {
-  // 		return {
-  // 			id: div.id,
-  // 			innerHTML: div.innerHTML,
-  // 			className: div.className,
-  // 		};
-  // 	});
-  // 	this.setState({
-  // 		divs: divsArr,
-  // 	});
-  // };
 
   render() {
     const { visible } = this.state;
@@ -470,8 +431,6 @@ class divlabTwo extends React.PureComponent {
                   <Droppable>
                     <ResponsiveReactGridLayout
                       onLayoutChange={this.onLayoutChange}
-                      // onDragStop={this.onDragStop}
-                      // onResizeStop={this.onResizeStop}
                       style={{
                         width: '1200px',
                         minHeight: '1000px',
