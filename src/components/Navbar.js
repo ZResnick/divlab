@@ -4,71 +4,78 @@ import { connect } from 'react-redux';
 import { signOut } from '../store/authReducer';
 
 const Navbar = props => {
-	const { auth, profile } = props;
+  const { auth, profile } = props;
 
-	return (
-		<div id="navbar">
-			{auth.auth.uid ? (
-				<nav>
-					<div>
-						<Link id="mainHeader" className="navlink" to="/home">
-							{'<divlab />'}
-						</Link>
-					</div>
-					<div>
-						<Link className="navlink" to="/divlab">
-							NEW PROJECT
-						</Link>
-						<Link className="navlink" to="/projects">
-							{profile.initials}
-						</Link>
-						<Link className="navlink" to="/" onClick={props.signOut}>
-							SIGN OUT
-						</Link>
-					</div>
-				</nav>
-			) : (
-				<nav>
-					<div>
-						<Link id="mainHeader" className="navlink" to="/home">
-							{'<divlab />'}
-						</Link>
-					</div>
-					<div>
-						<Link className="navlink" to="/divlab">
-							TRY IT
-						</Link>
-						<Link className="navlink" to="/signIn">
-							SIGN IN
-						</Link>
-					</div>
-				</nav>
-			)}
-		</div>
-	);
+  return (
+    <div id="navbar">
+      {auth.auth.uid ? (
+        <nav>
+          <div>
+            <Link id="mainHeader" className="navlink" to="/home">
+              {'<divlab />'}
+            </Link>
+          </div>
+          <div>
+            <Link className="navlink" to="/divlab">
+              NEW PROJECT
+            </Link>
+            <a
+              href="/projects"
+              className="navlink"
+
+              //   onClick={() => {
+              //     window.location.refresh();
+              //   }}
+            >
+              {profile.initials}
+            </a>
+            <Link className="navlink" to="/" onClick={props.signOut}>
+              SIGN OUT
+            </Link>
+          </div>
+        </nav>
+      ) : (
+        <nav>
+          <div>
+            <Link id="mainHeader" className="navlink" to="/home">
+              {'<divlab />'}
+            </Link>
+          </div>
+          <div>
+            <Link className="navlink" to="/divlab">
+              TRY IT
+            </Link>
+            <Link className="navlink" to="/signIn">
+              SIGN IN
+            </Link>
+          </div>
+        </nav>
+      )}
+    </div>
+  );
 };
 
 /**
  * CONTAINER
  */
 const mapStateToProps = state => {
-	return {
-		auth: state.firebase,
-		profile: state.firebase.profile,
-	};
+  return {
+    auth: state.firebase,
+    profile: state.firebase.profile
+  };
 };
 
 const mapDispatchToProps = dispatch => {
-	return {
-		signOut: () => {
-			dispatch(signOut());
-		},
-	};
+  return {
+    signOut: () => {
+      dispatch(signOut());
+    }
+  };
 };
 
 export default connect(
-	mapStateToProps,
-	mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Navbar);
 
 /**
