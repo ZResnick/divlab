@@ -133,32 +133,33 @@ class divlab extends React.PureComponent {
   // Test injection method
   reactDomRender(state) {
     let paragraphContent = paragraphContentParser(state.html);
-    console.log(paragraphContent);
-    for (let i = 0; i < paragraphContent.length; i++) {
-      let temp = document.getElementById(`n${i}`);
-      let newDiv = document.createElement('div');
-      newDiv.id = `newDiv${i}`;
-      temp.style.padding = '8px';
-      temp.appendChild(newDiv);
-      let component = paragraphContent[i] ? (
-        <ParagraphForm
-          info={{
-            content: paragraphContent[i],
-            id: `paragraph${i}`,
-            edit: false
-          }}
-        />
-      ) : (
-        <ParagraphForm
-          info={{
-            content: '',
-            id: `paragraph${i}`,
-            edit: false
-          }}
-        />
-      );
-      ReactDOM.render(component, document.getElementById(`newDiv${i}`));
-    }
+		if (paragraphContent) {
+			for (let i = 0; i < paragraphContent.length; i++) {
+				let temp = document.getElementById(`n${i}`);
+				let newDiv = document.createElement('div');
+				newDiv.id = `newDiv${i}`;
+				temp.style.padding = '8px';
+				temp.appendChild(newDiv);
+				let component = paragraphContent[i] ? (
+					<ParagraphForm
+						info={{
+							content: paragraphContent[i],
+							id: `paragraph${i}`,
+							edit: false
+						}}
+					/>
+				) : (
+					<ParagraphForm
+						info={{
+							content: '',
+							id: `paragraph${i}`,
+							edit: false
+						}}
+					/>
+				);
+				ReactDOM.render(component, document.getElementById(`newDiv${i}`));
+			}
+		}
   }
 
   createElement(el) {

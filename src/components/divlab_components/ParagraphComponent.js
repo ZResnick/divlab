@@ -9,7 +9,7 @@ export default function Paragraph(props) {
 
 	const { content, id } = props.info;
 	return content.length || id.length ? (
-		<div style={divStyle} id={id}>
+		<div style={divStyle} id={id} name="ParagraphComponent">
 			<p
 				dangerouslySetInnerHTML={{ __html: '<!-- ParagraphContentStart -->' }}
 			/>

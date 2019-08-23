@@ -15,7 +15,7 @@ import HeadshotForm from '../components/divlab_components/HeadshotForm';
 import ParagraphForm from '../components/divlab_components/ParagraphForm';
 import SidewaysCardForm from '../components/divlab_components/SidewaysCardForm';
 import { addAPage, getAllPages, editAPage } from '../store/pageReducer';
-import { setHTML, paragraphContentParser } from '../utils/utils';
+import { setHTML, paragraphContentParser, headshotParser } from '../utils/utils';
 
 import {
   Button,
@@ -132,19 +132,47 @@ class divlabTwo extends React.PureComponent {
 
   // Test injection method
   reactDomRender(state) {
-    let paragraphContent = paragraphContentParser(state.html);
-		if (paragraphContent) {
-			for (let i = 0; i < paragraphContent.length; i++) {
+    // let paragraphContent = paragraphContentParser(state.html);
+		// if (paragraphContent) {
+		// 	for (let i = 0; i < paragraphContent.length; i++) {
+		// 		let temp = document.getElementById(`n${i}`);
+		// 		let newDiv = document.createElement('div');
+		// 		newDiv.id = `newDiv${i}`;
+		// 		temp.style.padding = '8px';
+		// 		temp.appendChild(newDiv);
+		// 		let component = paragraphContent[i] ? (
+		// 			<ParagraphForm
+		// 				info={{
+		// 					content: paragraphContent[i],
+		// 					id: `paragraph${i}`,
+		// 					edit: false
+		// 				}}
+		// 			/>
+		// 		) : (
+		// 			<ParagraphForm
+		// 				info={{
+		// 					content: '',
+		// 					id: `paragraph${i}`,
+		// 					edit: false
+		// 				}}
+		// 			/>
+		// 		);
+		// 		ReactDOM.render(component, document.getElementById(`newDiv${i}`));
+		// 	}
+		// }
+    let headshotContent = headshotParser(state.html);
+		if (headshotContent) {
+			for (let i = 0 ; i < headshotContent.length ; i++) {
 				let temp = document.getElementById(`n${i}`);
 				let newDiv = document.createElement('div');
 				newDiv.id = `newDiv${i}`;
 				temp.style.padding = '8px';
 				temp.appendChild(newDiv);
-				let component = paragraphContent[i] ? (
-					<ParagraphForm
+				let component = headshotContent[i] ? (
+					<HeadshotForm
 						info={{
-							content: paragraphContent[i],
-							id: `paragraph${i}`,
+							imageUrl: headshotContent[i],
+							id: `headshot${i}`,
 							edit: false
 						}}
 					/>

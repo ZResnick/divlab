@@ -3,13 +3,22 @@ import HeadshotComponent from './HeadshotComponent';
 import { Button, Form } from 'semantic-ui-react';
 
 export default class HeadshotForm extends Component {
-	constructor() {
-		super();
-		this.state = {
-			imageUrl: '',
-			id: '',
-			edit: true,
-		};
+	constructor(props) {
+		super(props);
+		if (this.props.info) {
+			const { imageUrl, id, edit } = this.props.info;
+			this.state = {
+				imageUrl,
+				id,
+				edit,
+			};
+		} else {
+			this.state = {
+				imageUrl: '',
+				id: '',
+				edit: true,
+			};
+		}
 		this.switchEdit = this.switchEdit.bind(this);
 	}
 
