@@ -51,6 +51,7 @@ export const addAPage = (userId, pageData) => async (
       .doc(userId)
       .collection('pages')
       .add({ pageData });
+    dispatch(getAllPages(userId));
     history.push('/projects');
   } catch (err) {
     console.error(err);
@@ -71,6 +72,7 @@ export const editAPage = (userId, pageId, pageData) => async (
       .collection('pages')
       .doc(pageId)
       .set({ pageData });
+    dispatch(getAllPages(userId));
     // history.push('/projects');
   } catch (err) {
     console.error(err);

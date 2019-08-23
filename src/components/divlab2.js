@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { WidthProvider, Responsive } from 'react-grid-layout';
+import GridLayout from 'react-grid-layout';
 import _ from 'lodash';
 import styled from 'styled-components';
 import history from '../history';
@@ -23,7 +24,7 @@ import {
   // Image,
   Menu,
   Segment,
-  Sidebar,
+  Sidebar
 } from 'semantic-ui-react';
 import { throwStatement, tsImportEqualsDeclaration } from '@babel/types';
 
@@ -45,7 +46,7 @@ const droppableStyle1 = {
   //
   minWidth: '250px',
   minHeight: '500px',
-  margin: '32px',
+  margin: '32px'
 };
 
 class divlabTwo extends React.PureComponent {
@@ -54,8 +55,10 @@ class divlabTwo extends React.PureComponent {
     // cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
     cols: { lg: 120, md: 100, sm: 60, xs: 40, xxs: 20 },
 
-    rowHeight: 2,
-    // onLayoutChange: this.onLayoutChange,
+    rowHeight: 2
+    // onLayoutChange: function(items) {
+    //   this.setState({ items });
+    // }
     // verticalCompact: false,
   };
 
@@ -69,12 +72,14 @@ class divlabTwo extends React.PureComponent {
       components: [],
       usedComponents: [],
       // divs: [],
-      html: '',
+      html: ''
     };
 
     this.onAddItem = this.onAddItem.bind(this);
     this.onBreakpointChange = this.onBreakpointChange.bind(this);
     this.reactDomRender = this.reactDomRender.bind(this);
+    // this.onLayoutChange = this.onLayoutChange.bind(this);
+    // this.onLayoutChange = this.onLayoutChange.bind(this);
   }
 
   handleHideClick = () => this.setState({ visible: false });
@@ -119,7 +124,7 @@ class divlabTwo extends React.PureComponent {
       position: 'absolute',
       right: '2px',
       top: 0,
-      cursor: 'pointer',
+      cursor: 'pointer'
     };
     const i = el.add ? '+' : el.i;
     return (
@@ -164,12 +169,10 @@ class divlabTwo extends React.PureComponent {
 
         y: 1,
         w: 20,
-        h: 20,
-        isResizable: this.state.isResizable,
-        static: this.state.static,
+        h: 20
       }),
       // Increment the counter to ensure key is always unique.
-      newCounter: this.state.newCounter + 1,
+      newCounter: this.state.newCounter + 1
     });
   }
 
@@ -177,14 +180,25 @@ class divlabTwo extends React.PureComponent {
   onBreakpointChange(breakpoint, cols) {
     this.setState({
       breakpoint: breakpoint,
-      cols: cols,
+      cols: cols
     });
   }
 
   onLayoutChange = items => {
     this.setState({ items });
-    console.log('i am moving', this.state);
   };
+
+  // onResizeStop = items => {
+  //   this.setState({ items });
+
+  //   console.log('resize', this.state.items);
+  // };
+
+  // onDragStop = items => {
+  //   this.setState({ items });
+
+  //   // console.log('stop', this.state.items);
+  // };
 
   onRemoveItem(i) {
     this.setState({ items: _.reject(this.state.items, { i: i }) });
@@ -230,7 +244,9 @@ class divlabTwo extends React.PureComponent {
         JSON.stringify(this.state)
       );
     }
-    history.push('/projects');
+
+    console.log(this.state);
+    // history.push('/projects');
   };
 
   // Test injection method
@@ -286,7 +302,7 @@ class divlabTwo extends React.PureComponent {
               as="a"
               onClick={() => {
                 this.setState({
-                  components: [...this.state.components, <CardForm />],
+                  components: [...this.state.components, <CardForm />]
                 });
               }}
             >
@@ -297,7 +313,7 @@ class divlabTwo extends React.PureComponent {
               as="a"
               onClick={() => {
                 this.setState({
-                  components: [...this.state.components, <SidewaysCardForm />],
+                  components: [...this.state.components, <SidewaysCardForm />]
                 });
               }}
             >
@@ -308,7 +324,7 @@ class divlabTwo extends React.PureComponent {
               as="a"
               onClick={() => {
                 this.setState({
-                  components: [...this.state.components, <HeaderForm />],
+                  components: [...this.state.components, <HeaderForm />]
                 });
               }}
             >
@@ -319,7 +335,7 @@ class divlabTwo extends React.PureComponent {
               as="a"
               onClick={() => {
                 this.setState({
-                  components: [...this.state.components, <HeadshotForm />],
+                  components: [...this.state.components, <HeadshotForm />]
                 });
               }}
             >
@@ -331,7 +347,7 @@ class divlabTwo extends React.PureComponent {
               as="a"
               onClick={() => {
                 this.setState({
-                  components: [...this.state.components, <ParagraphForm />],
+                  components: [...this.state.components, <ParagraphForm />]
                 });
               }}
             >
@@ -347,7 +363,7 @@ class divlabTwo extends React.PureComponent {
               <div
                 style={{
                   display: 'flex',
-                  flexDirection: 'row',
+                  flexDirection: 'row'
                 }}
               >
                 <div>
@@ -430,20 +446,31 @@ class divlabTwo extends React.PureComponent {
                   </Button>
                   <Button onClick={this.onAddItem}>Add new container</Button>
                   <Button onClick={this.save}>Save</Button>
-                  <Button onClick={paragraphContentParser}>Test</Button>
+                  <Button
+                    onClick={() => {
+                      console.log(this.state);
+                    }}
+                  >
+                    Test
+                  </Button>
                   <Droppable>
                     <ResponsiveReactGridLayout
                       onLayoutChange={this.onLayoutChange}
+                      // onDragStop={this.onDragStop}
+                      // onResizeStop={this.onResizeStop}
                       style={{
                         width: '1200px',
                         minHeight: '1000px',
                         // border: '1px solid blue',
-                        backgroundColor: 'white',
+                        backgroundColor: 'white'
                       }}
                       // onBreakpointChange={this.onBreakpointChange}
                       {...this.props}
                     >
-                      {_.map(this.state.items, el => this.createElement(el))}
+                      {_.map(this.state.items, el => {
+                        console.log(this.props);
+                        return this.createElement(el);
+                      })}
                     </ResponsiveReactGridLayout>
                   </Droppable>
                   {/* </Droppable> */}
@@ -461,7 +488,7 @@ const mapStateToProps = state => {
   return {
     auth: state.firebase,
     profile: state.firebase.profile,
-    pages: state.pages,
+    pages: state.pages
   };
 };
 
@@ -475,7 +502,7 @@ const mapDispatchToProps = dispatch => {
     },
     getAllPages: user => {
       dispatch(getAllPages(user));
-    },
+    }
   };
 };
 
