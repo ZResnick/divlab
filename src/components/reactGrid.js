@@ -5,6 +5,7 @@ import { WidthProvider, Responsive } from 'react-grid-layout';
 import GridLayout from 'react-grid-layout';
 import _ from 'lodash';
 import styled from 'styled-components';
+import history from '../history';
 
 import Draggable from './Draggable';
 import Droppable from './Droppable';
@@ -51,12 +52,8 @@ const droppableStyle1 = {
 class divlab extends React.PureComponent {
   static defaultProps = {
     className: 'layout',
-    // cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
     cols: { lg: 120, md: 100, sm: 60, xs: 40, xxs: 20 },
-
     rowHeight: 2
-    // onLayoutChange: this.onLayoutChange,
-    // verticalCompact: false,
   };
 
   constructor(props) {
@@ -68,7 +65,6 @@ class divlab extends React.PureComponent {
       newCounter: 0,
       components: [],
       usedComponents: [],
-      // divs: [],
       html: ''
     };
 
@@ -84,36 +80,85 @@ class divlab extends React.PureComponent {
   componentDidMount() {
     this.props.auth.auth.uid &&
       this.props.getAllPages(this.props.auth.auth.uid);
-    console.log(this.props);
     if (this.props.pages.length && this.props.match.params.id) {
       const newState = JSON.parse(
         this.props.pages.find(doc => doc.id === `${this.props.match.params.id}`)
           .data.pageData
       );
-      console.log('i an new firebase state', newState);
-      // setTimeout(() => {
-      // 	this.saveDivs();
-      // }, 10);
+      this.setState({ ...newState.canvas, html: newState.html });
+      setTimeout(() => {
+        this.reactDomRender(this.state);
+      }, 10);
+    }
+  }
 
-      this.setState(
-        newState
-        // divs: this.state.divs,
+  save = async () => {
+    const { items, visible, newCounter } = this.state;
+    const html = setHTML();
+    await this.setState({ html });
+
+    if (this.props.match.params.id) {
+      this.props.editAPage(
+        this.props.auth.auth.uid,
+        this.props.match.params.id,
+        JSON.stringify({
+          canvas: {
+            items,
+            visible,
+            newCounter,
+            components: [],
+            usedComponents: []
+          },
+          html
+        })
       );
-      // setTimeout(() => {
-      //   this.reactDomRender(this.state);
-      // }, 10);
-      // this.setState({
-      // 	divs: this.state.divs,
-      // 	components: newState.components,
-      // 	visible: newState.visible,
-      // 	items: newState.items,
-      // 	newCounter: newState.newCounter,
-      // 	usedComponents: newState.usedComponents,
-      // });
-      // this.saveDivs();
+    } else {
+      await this.props.addAPage(
+        this.props.auth.auth.uid,
+        JSON.stringify({
+          canvas: {
+            items,
+            visible,
+            newCounter,
+            components: [],
+            usedComponents: []
+          },
+          html
+        })
+      );
     }
 
-    // this.reactDomRender()
+  };
+
+  // Test injection method
+  reactDomRender(state) {
+    let paragraphContent = paragraphContentParser(state.html);
+    console.log(paragraphContent);
+    for (let i = 0; i < paragraphContent.length; i++) {
+      let temp = document.getElementById(`n${i}`);
+      let newDiv = document.createElement('div');
+      newDiv.id = `newDiv${i}`;
+      temp.style.padding = '8px';
+      temp.appendChild(newDiv);
+      let component = paragraphContent[i] ? (
+        <ParagraphForm
+          info={{
+            content: paragraphContent[i],
+            id: `paragraph${i}`,
+            edit: false
+          }}
+        />
+      ) : (
+        <ParagraphForm
+          info={{
+            content: '',
+            id: `paragraph${i}`,
+            edit: false
+          }}
+        />
+      );
+      ReactDOM.render(component, document.getElementById(`newDiv${i}`));
+    }
   }
 
   createElement(el) {
@@ -166,9 +211,7 @@ class divlab extends React.PureComponent {
 
         y: 1,
         w: 20,
-        h: 20,
-        isResizable: this.state.isResizable,
-        static: this.state.static
+        h: 20
       }),
       // Increment the counter to ensure key is always unique.
       newCounter: this.state.newCounter + 1
@@ -183,18 +226,8 @@ class divlab extends React.PureComponent {
     });
   }
 
-  // onLayoutChange = items => {
-  //   this.setState({ items });
-  // };
-
-  onResizeStop = items => {
+  onLayoutChange = items => {
     this.setState({ items });
-    console.log('resize', this.state.items);
-  };
-
-  onDragStop = items => {
-    this.setState({ items });
-    console.log('stop', this.state.items);
   };
 
   onRemoveItem(i) {
@@ -208,58 +241,9 @@ class divlab extends React.PureComponent {
     });
   };
 
-  // saveDivs = () => {
-  // 	const divs = Array.from(document.querySelectorAll('.react-grid-item'));
-
-  // 	let divsArr = [...divs].map(div => {
-  // 		return {
-  // 			id: div.id,
-  // 			innerHTML: div.innerHTML,
-  // 			className: div.className,
-  // 		};
-  // 	});
-  // 	this.setState({
-  // 		divs: divsArr,
-  // 	});
-  // };
-
-  save = async () => {
-    // const html = setHTML();
-    // console.log(html);
-    // await this.setState({
-    //   html,
-    // });
-    if (this.props.match.params.id) {
-      this.props.editAPage(
-        this.props.auth.auth.uid,
-        this.props.match.params.id,
-        JSON.stringify(this.state)
-      );
-    } else {
-      this.props.addAPage(this.props.auth.auth.uid, JSON.stringify(this.state));
-    }
-  };
-
-  // Test injection method
-  reactDomRender(state) {
-    for (let i = 0; i < this.state.items.length; i++) {
-      const temp = document.getElementById(`n${i}`);
-      const newDiv = document.createElement('div');
-      newDiv.id = `newDiv${i}`;
-      temp.style.padding = '8px';
-      temp.appendChild(newDiv);
-      let component = (
-        <ParagraphForm
-          info={{ content: 'hello', id: `paragraph${i}`, edit: false }}
-        />
-      );
-      ReactDOM.render(component, document.getElementById(`newDiv${i}`));
-    }
-  }
-
   render() {
     const { visible } = this.state;
-
+    console.log('iam render', this.state);
     return (
       <div>
         <Button.Group>
@@ -437,12 +421,16 @@ class divlab extends React.PureComponent {
                   </Button>
                   <Button onClick={this.onAddItem}>Add new container</Button>
                   <Button onClick={this.save}>Save</Button>
-                  <Button onClick={paragraphContentParser}>Test</Button>
+                  <Button
+                    onClick={() => {
+                      console.log(this.state);
+                    }}
+                  >
+                    Test
+                  </Button>
                   <Droppable>
                     <ResponsiveReactGridLayout
-                      // onLayoutChange={this.onLayoutChange}
-                      onDragStop={this.onDragStop}
-                      onResizeStop={this.onResizeStop}
+                      onLayoutChange={this.onLayoutChange}
                       style={{
                         width: '1200px',
                         minHeight: '1000px',
@@ -452,7 +440,10 @@ class divlab extends React.PureComponent {
                       // onBreakpointChange={this.onBreakpointChange}
                       {...this.props}
                     >
-                      {_.map(this.state.items, el => this.createElement(el))}
+                      {_.map(this.state.items, el => {
+                        console.log(this.props);
+                        return this.createElement(el);
+                      })}
                     </ResponsiveReactGridLayout>
                   </Droppable>
                   {/* </Droppable> */}
