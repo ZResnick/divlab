@@ -46,7 +46,7 @@ export function headshotParser(canvas) {
 }
 
 export function regexer(canvas) {
-  let re = /HeadshotComponent|ParagraphComponent|CardComponent|(?<=<!-- HeadshotSrcStart --><\/span><img alt="" src=")(.*?)(?="><span><!-- HeadshotSrcEnd -->)|(?<=<!-- ParagraphContentStart --><\/p><p>)(.*?)(?=<\/p><p><!-- ParagraphContentEnd -->)/g;
+  let re = /HeadshotComponent|ParagraphComponent|CardComponent|(?<=<!-- HeadshotSrcStart --><\/span><img alt="" src=")(.*?)(?="><span><!-- HeadshotSrcEnd -->)|(?<=<!-- CardHeaderStart --><\/span><div class="header">)(.*?)(?=<\/div><span><!-- CardHeaderEnd -->)|(?<=<!-- CardImgStart --><\/span><div class="image"><img src=")(.*?)(?="><\/div><span><!-- CardImgEnd -->)|(?<=<!-- CardCaptionStart --><\/span><span class="date">)(.*?)(?=<\/span><span><!-- CardCaptionEnd -->)|(?<=<!-- CardDescriptionStart --><\/span><div class="description">)(.*?)(?=<\/div><span><!-- CardDescriptionEnd -->)|(?<=<!-- CardFooterStart --><\/span><div class="extra content">)(.*?)(?=<\/div><span><!-- CardFooterEnd -->)|(?<=<!-- ParagraphContentStart --><\/p><p>)(.*?)(?=<\/p><p><!-- ParagraphContentEnd -->)/g;
   let output = canvas.match(re);
   console.log(output);
   return output;

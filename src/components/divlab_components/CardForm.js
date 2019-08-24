@@ -12,7 +12,7 @@ export default class CardForm extends Component {
         id,
         caption,
         footer,
-        ImageUrl,
+        imageUrl,
         edit,
       } = this.props.info;
       this.state = {
@@ -21,7 +21,7 @@ export default class CardForm extends Component {
         id,
         caption,
         footer,
-        ImageUrl,
+        imageUrl,
         edit,
       };
     } else {

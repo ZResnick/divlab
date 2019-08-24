@@ -142,7 +142,11 @@ class divlabTwo extends React.PureComponent {
       let counter = 0;
       for (let i = 0; i < data.length; i++) {
         let curEl = data[i];
-        if (curEl === 'HeadshotComponent' || curEl === 'ParagraphComponent') {
+        if (
+          curEl === 'HeadshotComponent' ||
+          curEl === 'ParagraphComponent' ||
+          'CardComponent'
+        ) {
           switch (curEl) {
             case 'HeadshotComponent':
               let temp = document.getElementById(`n${counter}`);
@@ -172,6 +176,37 @@ class divlabTwo extends React.PureComponent {
                 <ParagraphForm
                   info={{
                     content: data[i + 1],
+                    id: `paragraph${i}`,
+                    edit: false,
+                  }}
+                />,
+                document.getElementById(`newDiv${counter}`)
+              );
+              counter++;
+              break;
+            case 'CardComponent':
+              let temp3 = document.getElementById(`n${counter}`);
+              let newDiv3 = document.createElement('div');
+              newDiv3.id = `newDiv${counter}`;
+              temp3.style.padding = '8px';
+              temp3.appendChild(newDiv3);
+              console.log(
+                'DATA',
+                data[i],
+                data[i + 1],
+                data[i + 2],
+                data[i + 3],
+                data[i + 4],
+                data[i + 5]
+              );
+              ReactDOM.render(
+                <CardForm
+                  info={{
+                    imageUrl: data[i + 1],
+                    name: data[i + 2],
+                    caption: data[i + 3],
+                    description: data[i + 4],
+                    footer: data[i + 5],
                     id: `paragraph${i}`,
                     edit: false,
                   }}
