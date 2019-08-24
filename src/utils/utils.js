@@ -4,58 +4,58 @@ import ReactDOM from 'react-dom';
 import ParagraphForm from '../components/divlab_components/ParagraphForm';
 
 export function setLocalStorageHTML() {
-	console.log(document.querySelector('.react-grid-layout'));
+  console.log(document.querySelector('.react-grid-layout'));
 
-	if (document.querySelector('.react-grid-layout')) {
-		localStorage.setItem(
-			'canvas',
-			document.querySelector('.react-grid-layout').innerHTML
-		);
-		console.log('setLocalStorageHTML ran succesfully!');
-	}
+  if (document.querySelector('.react-grid-layout')) {
+    localStorage.setItem(
+      'canvas',
+      document.querySelector('.react-grid-layout').innerHTML
+    );
+    console.log('setLocalStorageHTML ran succesfully!');
+  }
 }
 
 export function setHTML() {
-	let canvas = document.querySelector('.react-grid-layout');
-	return canvas.innerHTML;
+  let canvas = document.querySelector('.react-grid-layout');
+  return canvas.innerHTML;
 }
 
 export function reactDomRender(state) {
-	if (document.querySelector('.react-grid-layout')) {
-		ReactDOM.render(
-			state.usedComponents[0],
-			document.querySelector('.react-grid-layout')
-		);
-	}
+  if (document.querySelector('.react-grid-layout')) {
+    ReactDOM.render(
+      state.usedComponents[0],
+      document.querySelector('.react-grid-layout')
+    );
+  }
 }
 
 export function paragraphContentParser(canvas) {
-	let paragraphRegex = /(?<=<!-- ParagraphContentStart --><\/p><p>)(.*?)(?=<\/p><p><!-- ParagraphContentEnd -->)/g;
-	let output = canvas.match(paragraphRegex);
-	let output1 = [...canvas.matchAll(paragraphRegex)];
-	console.log(output1);
-	// console.log('FOUND>', output1[2][0], 'INDEX>', output1[2]['index']);
-	// let array;
-	// while ((array = paragraphRegex.exec(canvas)) !== null) {
-	// 	console.log(
-	// 		`Found ${array[0]}. Next starts at ${paragraphRegex.lastIndex}`
-	// 	);
-	// }
-	return output;
+  let paragraphRegex = /(?<=<!-- ParagraphContentStart --><\/p><p>)(.*?)(?=<\/p><p><!-- ParagraphContentEnd -->)/g;
+  let output = canvas.match(paragraphRegex);
+  let output1 = [...canvas.matchAll(paragraphRegex)];
+  console.log(output1);
+  // console.log('FOUND>', output1[2][0], 'INDEX>', output1[2]['index']);
+  // let array;
+  // while ((array = paragraphRegex.exec(canvas)) !== null) {
+  // 	console.log(
+  // 		`Found ${array[0]}. Next starts at ${paragraphRegex.lastIndex}`
+  // 	);
+  // }
+  return output;
 }
 export function headshotParser(canvas) {
-	let headshotRegex = /(?<=<!-- HeadshotSrcStart --><\/span><img alt="" src=")(.*?)(?="><span><!-- HeadshotSrcEnd -->)/g;
-	let output = canvas.match(headshotRegex);
-	let output1 = [...canvas.matchAll(headshotRegex)];
-	console.log(output1);
-	// console.log('FOUND>', output1[2][0], 'INDEX>', output1[2]['index']);
-	// let array;
-	// while ((array = paragraphRegex.exec(canvas)) !== null) {
-	// 	console.log(
-	// 		`Found ${array[0]}. Next starts at ${paragraphRegex.lastIndex}`
-	// 	);
-	// }
-	return output;
+  let headshotRegex = /(?<=<!-- HeadshotSrcStart --><\/span><img alt="" src=")(.*?)(?="><span><!-- HeadshotSrcEnd -->)/g;
+  let output = canvas.match(headshotRegex);
+  let output1 = [...canvas.matchAll(headshotRegex)];
+  console.log(output1);
+  // console.log('FOUND>', output1[2][0], 'INDEX>', output1[2]['index']);
+  // let array;
+  // while ((array = paragraphRegex.exec(canvas)) !== null) {
+  // 	console.log(
+  // 		`Found ${array[0]}. Next starts at ${paragraphRegex.lastIndex}`
+  // 	);
+  // }
+  return output;
 }
 
 /*
@@ -72,4 +72,13 @@ That function is what needs to be called on line 98 of divlab2.
 Inside the for loop is where we'll put the switch statement that will search by type nd inject the props
 */
 
-export function regexer(canvas) {}
+export function regexer(canvas) {
+  // let typesAndContent = [];
+  // if (paragraphContentParser(canvas))
+  //   typesAndContent.push(...paragraphContentParser(canvas));
+  // if (headshotParser(canvas)) typesAndContent.push(...headshotParser(canvas));
+  let re = /HeadshotComponent|ParagraphComponent|(?<=<!-- HeadshotSrcStart --><\/span><img alt="" src=")(.*?)(?="><span><!-- HeadshotSrcEnd -->)|(?<=<!-- ParagraphContentStart --><\/p><p>)(.*?)(?=<\/p><p><!-- ParagraphContentEnd -->)/g;
+  let output = canvas.match(re);
+  console.log(output);
+  return output;
+}
