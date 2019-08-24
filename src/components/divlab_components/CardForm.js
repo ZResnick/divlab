@@ -40,7 +40,6 @@ export default class CardForm extends Component {
 
   switchEdit(evt) {
     evt.preventDefault();
-    console.log(this.state.edit);
     this.setState({
       edit: !this.state.edit,
     });
@@ -50,7 +49,6 @@ export default class CardForm extends Component {
     this.setState({
       [evt.target.name]: evt.target.value,
     });
-    console.log(this.state.content);
   };
 
   render() {

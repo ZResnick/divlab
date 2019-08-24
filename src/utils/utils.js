@@ -33,20 +33,17 @@ export function paragraphContentParser(canvas) {
   let paragraphRegex = /(?<=<!-- ParagraphContentStart --><\/p><p>)(.*?)(?=<\/p><p><!-- ParagraphContentEnd -->)/g;
   let output = canvas.match(paragraphRegex);
   let output1 = [...canvas.matchAll(paragraphRegex)];
-  console.log(output1);
   return output;
 }
 export function headshotParser(canvas) {
   let headshotRegex = /(?<=<!-- HeadshotSrcStart --><\/span><img alt="" src=")(.*?)(?="><span><!-- HeadshotSrcEnd -->)/g;
   let output = canvas.match(headshotRegex);
   let output1 = [...canvas.matchAll(headshotRegex)];
-  console.log(output1);
-
   return output;
 }
 
 export function regexer(canvas) {
-  let re = /HeadshotComponent|ParagraphComponent|CardComponent|(?<=<!-- HeadshotSrcStart --><\/span><img alt="" src=")(.*?)(?="><span><!-- HeadshotSrcEnd -->)|(?<=<!-- CardHeaderStart --><\/span><div class="header">)(.*?)(?=<\/div><span><!-- CardHeaderEnd -->)|(?<=<!-- CardImgStart --><\/span><div class="image"><img src=")(.*?)(?="><\/div><span><!-- CardImgEnd -->)|(?<=<!-- CardCaptionStart --><\/span><span class="date">)(.*?)(?=<\/span><span><!-- CardCaptionEnd -->)|(?<=<!-- CardDescriptionStart --><\/span><div class="description">)(.*?)(?=<\/div><span><!-- CardDescriptionEnd -->)|(?<=<!-- CardFooterStart --><\/span><div class="extra content">)(.*?)(?=<\/div><span><!-- CardFooterEnd -->)|(?<=<!-- ParagraphContentStart --><\/p><p>)(.*?)(?=<\/p><p><!-- ParagraphContentEnd -->)/g;
+  let re = /HeadshotComponent|(?<=<!-- HeadshotSrcStart --><\/span><img alt="" src=")(.*?)(?="><span><!-- HeadshotSrcEnd -->)|CardComponent|(?<=<!-- CardHeaderStart --><\/span><div class="header">)(.*?)(?=<\/div><span><!-- CardHeaderEnd -->)|(?<=<!-- CardImgStart --><\/span><div class="image"><img src=")(.*?)(?="><\/div><span><!-- CardImgEnd -->)|(?<=<!-- CardCaptionStart --><\/span><span class="date">)(.*?)(?=<\/span><span><!-- CardCaptionEnd -->)|(?<=<!-- CardDescriptionStart --><\/span><div class="description">)(.*?)(?=<\/div><span><!-- CardDescriptionEnd -->)|(?<=<!-- CardFooterStart --><\/span><div class="extra content">)(.*?)(?=<\/div><span><!-- CardFooterEnd -->)|ParagraphComponent|(?<=<!-- ParagraphContentStart --><\/p><p>)(.*?)(?=<\/p><p><!-- ParagraphContentEnd -->)|HeaderComponent|(?<="width: 1200px; height: 600px; background-image: url\(&quot;)(.*?)(?=;\); background-repeat: no-repeat;")|(?<=<!-- HeaderTitleStart --><\/span><p style="color: white; font-size: 48px; font-family: Corben, cursive; padding-top: 16%;">)(.*?)(?=<\/p><span><!-- HeaderTitleEnd -->)/g;
   let output = canvas.match(re);
   console.log(output);
   return output;
