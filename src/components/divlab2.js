@@ -235,6 +235,7 @@ class divlabTwo extends React.PureComponent {
                   info={{
                     backgroundUrl: data[i + 1],
                     title: data[i + 2],
+                    navlinks: '',
                     id: `paragraph${i}`,
                     edit: false,
                   }}
