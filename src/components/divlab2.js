@@ -151,6 +151,10 @@ class divlabTwo extends React.PureComponent {
           switch (curEl) {
             case 'HeadshotComponent':
               let temp = document.getElementById(`n${counter}`);
+              while (!temp) {
+                counter++;
+                temp = document.getElementById(`n${counter}`);
+              }
               let newDiv = document.createElement('div');
               newDiv.id = `newDiv${counter}`;
               temp.style.padding = '8px';
@@ -169,6 +173,10 @@ class divlabTwo extends React.PureComponent {
               break;
             case 'ParagraphComponent':
               let temp2 = document.getElementById(`n${counter}`);
+              while (!temp2) {
+                counter++;
+                temp2 = document.getElementById(`n${counter}`);
+              }
               let newDiv2 = document.createElement('div');
               newDiv2.id = `newDiv${counter}`;
               temp2.style.padding = '8px';
@@ -187,6 +195,10 @@ class divlabTwo extends React.PureComponent {
               break;
             case 'CardComponent':
               let temp3 = document.getElementById(`n${counter}`);
+              while (!temp3) {
+                counter++;
+                temp3 = document.getElementById(`n${counter}`);
+              }
               let newDiv3 = document.createElement('div');
               newDiv3.id = `newDiv${counter}`;
               temp3.style.padding = '8px';
@@ -209,6 +221,10 @@ class divlabTwo extends React.PureComponent {
               break;
             case 'HeaderComponent':
               let temp4 = document.getElementById(`n${counter}`);
+              while (!temp4) {
+                counter++;
+                temp4 = document.getElementById(`n${counter}`);
+              }
               let newDiv4 = document.createElement('div');
               newDiv4.id = `newDiv${counter}`;
               temp4.style.padding = '8px';
