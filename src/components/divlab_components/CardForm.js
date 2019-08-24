@@ -3,17 +3,38 @@ import CardComponent from './CardComponent';
 import { Button, Form } from 'semantic-ui-react';
 
 export default class CardForm extends Component {
-  constructor() {
-    super();
-    this.state = {
-      name: '',
-      description: '',
-      caption: '',
-      footer: '',
-      imageUrl: '',
-      id: '',
-      edit: true,
-    };
+  constructor(props) {
+    super(props);
+    if (this.props.info) {
+      const {
+        name,
+        description,
+        id,
+        caption,
+        footer,
+        ImageUrl,
+        edit,
+      } = this.props.info;
+      this.state = {
+        name,
+        description,
+        id,
+        caption,
+        footer,
+        ImageUrl,
+        edit,
+      };
+    } else {
+      this.state = {
+        name: '',
+        description: '',
+        caption: '',
+        footer: '',
+        imageUrl: '',
+        id: '',
+        edit: true,
+      };
+    }
     this.switchEdit = this.switchEdit.bind(this);
   }
 

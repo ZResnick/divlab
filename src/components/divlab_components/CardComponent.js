@@ -9,16 +9,40 @@ const CardComponent = props => {
     footer.length ||
     caption.length ||
     imageUrl.length ? (
-    <Card>
+    <Card name="CardComponent">
+      <span dangerouslySetInnerHTML={{ __html: '<!-- CardImgStart -->' }} />
       <Image src={imageUrl} wrapped ui={false} />
+      <span dangerouslySetInnerHTML={{ __html: '<!-- CardImgEnd -->' }} />
+
       <Card.Content>
+        <span
+          dangerouslySetInnerHTML={{ __html: '<!-- CardHeaderStart -->' }}
+        />
         <Card.Header>{name}</Card.Header>
+        <span dangerouslySetInnerHTML={{ __html: '<!-- CardHeaderEnd -->' }} />
+
         <Card.Meta>
+          <span
+            dangerouslySetInnerHTML={{ __html: '<!-- CardCaptionStart -->' }}
+          />
           <span className="date">{caption}</span>
+          <span
+            dangerouslySetInnerHTML={{ __html: '<!-- CardCaptionEnd -->' }}
+          />
         </Card.Meta>
+
+        <span
+          dangerouslySetInnerHTML={{ __html: '<!-- CardDescriptionStart -->' }}
+        />
         <Card.Description>{description}</Card.Description>
+        <span
+          dangerouslySetInnerHTML={{ __html: '<!-- CardDescriptionEnd -->' }}
+        />
       </Card.Content>
+
+      <span dangerouslySetInnerHTML={{ __html: '<!-- CardFooterStart -->' }} />
       <Card.Content extra>{footer}</Card.Content>
+      <span dangerouslySetInnerHTML={{ __html: '<!-- CardFooterEnd -->' }} />
     </Card>
   ) : (
     <div>

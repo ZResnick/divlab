@@ -34,13 +34,6 @@ export function paragraphContentParser(canvas) {
   let output = canvas.match(paragraphRegex);
   let output1 = [...canvas.matchAll(paragraphRegex)];
   console.log(output1);
-  // console.log('FOUND>', output1[2][0], 'INDEX>', output1[2]['index']);
-  // let array;
-  // while ((array = paragraphRegex.exec(canvas)) !== null) {
-  // 	console.log(
-  // 		`Found ${array[0]}. Next starts at ${paragraphRegex.lastIndex}`
-  // 	);
-  // }
   return output;
 }
 export function headshotParser(canvas) {
@@ -48,36 +41,12 @@ export function headshotParser(canvas) {
   let output = canvas.match(headshotRegex);
   let output1 = [...canvas.matchAll(headshotRegex)];
   console.log(output1);
-  // console.log('FOUND>', output1[2][0], 'INDEX>', output1[2]['index']);
-  // let array;
-  // while ((array = paragraphRegex.exec(canvas)) !== null) {
-  // 	console.log(
-  // 		`Found ${array[0]}. Next starts at ${paragraphRegex.lastIndex}`
-  // 	);
-  // }
+
   return output;
 }
 
-/*
-For more complicated components, it may be easiest to regex for a whole component, then regex through that string for the content specific to that single component
-
-
-
-We need to make a version of the above function for each component.
-
-We then need to make one function FORMATTER that aggregates those functions and returns an ordered array (ordered by the index they were found at).
-
-That function is what needs to be called on line 98 of divlab2.
-
-Inside the for loop is where we'll put the switch statement that will search by type nd inject the props
-*/
-
 export function regexer(canvas) {
-  // let typesAndContent = [];
-  // if (paragraphContentParser(canvas))
-  //   typesAndContent.push(...paragraphContentParser(canvas));
-  // if (headshotParser(canvas)) typesAndContent.push(...headshotParser(canvas));
-  let re = /HeadshotComponent|ParagraphComponent|(?<=<!-- HeadshotSrcStart --><\/span><img alt="" src=")(.*?)(?="><span><!-- HeadshotSrcEnd -->)|(?<=<!-- ParagraphContentStart --><\/p><p>)(.*?)(?=<\/p><p><!-- ParagraphContentEnd -->)/g;
+  let re = /HeadshotComponent|ParagraphComponent|CardComponent|(?<=<!-- HeadshotSrcStart --><\/span><img alt="" src=")(.*?)(?="><span><!-- HeadshotSrcEnd -->)|(?<=<!-- ParagraphContentStart --><\/p><p>)(.*?)(?=<\/p><p><!-- ParagraphContentEnd -->)/g;
   let output = canvas.match(re);
   console.log(output);
   return output;
