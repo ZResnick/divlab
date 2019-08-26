@@ -7,38 +7,53 @@ const SidewaysCardComponent = props => {
     description.length ||
     caption.length ||
     imageUrl.length ? (
-    <Card name="SidewaysCardComponent"
+    <Card
+      name="SidewaysCardComponent"
       style={{
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: 'row'
       }}
     >
-      <span dangerouslySetInnerHTML={{ __html: '<!-- SidewaysCardImgStart -->' }} />
+      <span
+        dangerouslySetInnerHTML={{ __html: '<!-- SidewaysCardImgStart -->' }}
+      />
       <Image src={imageUrl} wrapped ui={false} />
-      <span dangerouslySetInnerHTML={{ __html: '<!-- SidewaysCardImgEnd -->' }} />
+      <span
+        dangerouslySetInnerHTML={{ __html: '<!-- SidewaysCardImgEnd -->' }}
+      />
       <Card.Content>
-			<span
-          dangerouslySetInnerHTML={{ __html: '<!-- SidewaysCardHeaderStart -->' }}
+        <span
+          dangerouslySetInnerHTML={{
+            __html: '<!-- SidewaysCardHeaderStart -->'
+          }}
         />
         <Card.Header>{name}</Card.Header>
-				<span
+        <span
           dangerouslySetInnerHTML={{ __html: '<!-- SidewaysCardHeaderEnd -->' }}
         />
         <Card.Meta>
-				<span
-            dangerouslySetInnerHTML={{ __html: '<!-- SidewaysCardCaptionStart -->' }}
+          <span
+            dangerouslySetInnerHTML={{
+              __html: '<!-- SidewaysCardCaptionStart -->'
+            }}
           />
           <span className="date">{caption}</span>
-					<span
-            dangerouslySetInnerHTML={{ __html: '<!-- SidewaysCardCaptionEnd -->' }}
+          <span
+            dangerouslySetInnerHTML={{
+              __html: '<!-- SidewaysCardCaptionEnd -->'
+            }}
           />
         </Card.Meta>
-				<span
-          dangerouslySetInnerHTML={{ __html: '<!-- SidewaysCardDescriptionStart -->' }}
+        <span
+          dangerouslySetInnerHTML={{
+            __html: '<!-- SidewaysCardDescriptionStart -->'
+          }}
         />
         <Card.Description>{description}</Card.Description>
-				<span
-          dangerouslySetInnerHTML={{ __html: '<!-- SidewaysCardDescriptionEnd -->' }}
+        <span
+          dangerouslySetInnerHTML={{
+            __html: '<!-- SidewaysCardDescriptionEnd -->'
+          }}
         />
       </Card.Content>
     </Card>
