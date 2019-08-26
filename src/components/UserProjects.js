@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getAllPages } from '../store/pageReducer';
+import { getAllPages, deleteAPage } from '../store/pageReducer';
 
 // window.location.reload();
 
@@ -27,7 +27,7 @@ class UserProjects extends React.Component {
                   <span className="newItemSign">+</span>
                 </Link>
               </Card.Content>
-              <Card.Content style ={{height: "73.16px"}}>
+              <Card.Content style={{ height: '73.16px' }}>
                 <Card.Header>
                   <Link to="/divlab">
                     <span className="newProjectText">ADD A NEW PROJECT</span>
@@ -74,6 +74,9 @@ const mapDispatchToProps = dispatch => {
   return {
     getAllPages: user => {
       dispatch(getAllPages(user));
+    },
+    deleteAPage: (userId, pageId) => {
+      dispatch(deleteAPage(userId, pageId));
     },
   };
 };
