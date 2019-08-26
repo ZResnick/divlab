@@ -35,6 +35,7 @@ import {
   Menu,
   Segment,
   Sidebar,
+  Confirm,
 } from 'semantic-ui-react';
 import { throwStatement, tsImportEqualsDeclaration } from '@babel/types';
 
@@ -74,6 +75,7 @@ class divlabTwo extends React.PureComponent {
       components: [],
       usedComponents: [],
       html: '',
+      open: false,
     };
 
     this.onAddItem = this.onAddItem.bind(this);
@@ -81,6 +83,19 @@ class divlabTwo extends React.PureComponent {
     this.reactDomRender = this.reactDomRender.bind(this);
   }
 
+  //Opens and closes the delete modal
+  show = () => this.setState({ open: true });
+  handleConfirm = () => {
+    this.setState({ open: false });
+    console.log('hello there?');
+    this.props.deleteAPage(
+      this.props.auth.auth.uid,
+      this.props.match.params.id
+    );
+  };
+  handleCancel = () => this.setState({ open: false });
+
+  //
   handleHideClick = () => this.setState({ visible: false });
   handleShowClick = () => this.setState({ visible: true });
   handleSidebarHide = () => this.setState({ visible: false });
@@ -246,8 +261,8 @@ class divlabTwo extends React.PureComponent {
                 document.getElementById(`newDiv${counter}`)
               );
               counter++;
-							break;
-							case 'SidewaysCardComponent':
+              break;
+            case 'SidewaysCardComponent':
               let temp5 = document.getElementById(`n${counter}`);
               while (!temp5) {
                 counter++;
@@ -535,6 +550,13 @@ class divlabTwo extends React.PureComponent {
                 >
                   Export
                 </Button>
+                <Button onClick={this.show}>Delete Project</Button>
+                <Confirm
+                  open={this.state.open}
+                  content="Are you sure you want to delete this project?"
+                  onCancel={this.handleCancel}
+                  onConfirm={this.handleConfirm}
+                />
               </div>
               {/* Styling for centering grid here */}
               <div
