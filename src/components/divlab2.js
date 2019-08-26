@@ -47,8 +47,6 @@ const droppableStyle1 = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-  //   border: '1px solid #555',
-  //
   minWidth: '250px',
   minHeight: '500px',
   margin: '32px',
@@ -338,10 +336,10 @@ class divlabTwo extends React.PureComponent {
       <div>
         <Button.Group>
           <Button disabled={visible} onClick={this.handleShowClick}>
-            Show sidebar
+            Show Components
           </Button>
           <Button disabled={!visible} onClick={this.handleHideClick}>
-            Hide sidebar
+            Hide Components
           </Button>
         </Button.Group>
 
@@ -367,7 +365,8 @@ class divlabTwo extends React.PureComponent {
               as="a"
               onClick={() => {
                 this.setState({
-                  components: [...this.state.components, <CardForm />],
+									components: [...this.state.components, <CardForm />],
+									visible: false
                 });
               }}
             >
@@ -378,7 +377,9 @@ class divlabTwo extends React.PureComponent {
               as="a"
               onClick={() => {
                 this.setState({
-                  components: [...this.state.components, <SidewaysCardForm />],
+									components: [...this.state.components, <SidewaysCardForm />],
+									visible: false
+
                 });
               }}
             >
@@ -389,7 +390,9 @@ class divlabTwo extends React.PureComponent {
               as="a"
               onClick={() => {
                 this.setState({
-                  components: [...this.state.components, <HeaderForm />],
+									components: [...this.state.components, <HeaderForm />],
+									visible: false
+
                 });
               }}
             >
@@ -400,7 +403,9 @@ class divlabTwo extends React.PureComponent {
               as="a"
               onClick={() => {
                 this.setState({
-                  components: [...this.state.components, <HeadshotForm />],
+									components: [...this.state.components, <HeadshotForm />],
+									visible: false
+
                 });
               }}
             >
@@ -412,7 +417,9 @@ class divlabTwo extends React.PureComponent {
               as="a"
               onClick={() => {
                 this.setState({
-                  components: [...this.state.components, <ParagraphForm />],
+									components: [...this.state.components, <ParagraphForm />],
+									visible: false
+
                 });
               }}
             >
@@ -424,33 +431,8 @@ class divlabTwo extends React.PureComponent {
           <Sidebar.Pusher dimmed={visible}>
             <Segment basic>
               {/* <Header as="h3">Application Content</Header> */}
-
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                }}
-              >
-                <div>
-                  <Droppable style={droppableStyle1}>
-                    {this.state.components.map((item, idx) => {
-                      if (!this.state.usedComponents.includes(item)) {
-                        this.state.usedComponents.push(item);
-                      }
-                      return (
-                        <Draggable
-                          id={String(Math.floor(Math.random() * 100000000))}
-                          key={idx}
-                        >
-                          <Item>{item}</Item>
-                        </Draggable>
-                      );
-                    })}
-                  </Droppable>
-                </div>
-                <div>
-                  {/* <Droppable id="dr2"> */}
-                  <Button
+							<div style={{marginBottom: '10px'}}>
+							<Button
                     onClick={() => {
                       const imgs = document.querySelectorAll(
                         '.react-resizable-handle-se'
@@ -509,33 +491,69 @@ class divlabTwo extends React.PureComponent {
                   >
                     Toggle Preview
                   </Button>
-                  <Button onClick={this.onAddItem}>Add new container</Button>
+                  <Button onClick={this.onAddItem}>Add New Container</Button>
                   <Button onClick={this.save}>Save</Button>
                   <Button
                     onClick={() => {
-                      console.log(this.state);
+											let html = document.querySelector('html').innerHTML
+											html = '<html>\n' + html + '\n</html>'
+											let download = document.createElement('a');
+											download.style.display = 'none';
+											download.setAttribute('href', 'data:text/html;charset=utf-8,' + encodeURIComponent(html))
+											download.setAttribute('download', 'index')
+											document.body.appendChild(download)
+											download.click();
+											document.body.removeChild(download)
                     }}
                   >
-                    Test
+                    Export
                   </Button>
+							</div>
+							{/* Styling for centering grid here */}
+							<div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row', justifyContent: 'center'
+                }}
+              >
+                <div>
+                  <Droppable style={this.state.components.length ? droppableStyle1 : null}>
+                    {this.state.components.map((item, idx) => {
+                      if (!this.state.usedComponents.includes(item)) {
+                        this.state.usedComponents.push(item);
+                      }
+                      return (
+                        <Draggable
+                          id={String(Math.floor(Math.random() * 100000000))}
+                          key={idx}
+                        >
+                          <Item>{item}</Item>
+                        </Draggable>
+                      );
+                    })}
+                  </Droppable>
+                </div>
+                <div>
                   <Droppable>
+
                     <ResponsiveReactGridLayout
                       onLayoutChange={this.onLayoutChange}
                       style={{
-                        width: '1200px',
+												width: '1200px',
                         minHeight: '1000px',
                         // border: '1px solid blue',
                         backgroundColor: 'white',
                       }}
                       // onBreakpointChange={this.onBreakpointChange}
                       {...this.props}
-                    >
+											>
                       {_.map(this.state.items, el => {
-                        console.log(this.props);
+												console.log(this.props);
                         return this.createElement(el);
                       })}
                     </ResponsiveReactGridLayout>
                   </Droppable>
+
                   {/* </Droppable> */}
                 </div>
               </div>

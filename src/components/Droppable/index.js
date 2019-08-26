@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 class Droppable extends Component {
   state = {};
 
-  // work in progress
   drop = e => {
     e.preventDefault();
     const data = e.dataTransfer.getData('transfer');

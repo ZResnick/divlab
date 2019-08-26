@@ -27,7 +27,7 @@ class UserProjects extends React.Component {
                   <span className="newItemSign">+</span>
                 </Link>
               </Card.Content>
-              <Card.Content>
+              <Card.Content style ={{height: "73.16px"}}>
                 <Card.Header>
                   <Link to="/divlab">
                     <span className="newProjectText">ADD A NEW PROJECT</span>
