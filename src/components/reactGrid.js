@@ -15,7 +15,12 @@ import HeadshotForm from '../components/divlab_components/HeadshotForm';
 import ParagraphForm from '../components/divlab_components/ParagraphForm';
 import SidewaysCardForm from '../components/divlab_components/SidewaysCardForm';
 import { addAPage, getAllPages, editAPage } from '../store/pageReducer';
-import { setHTML, paragraphContentParser } from '../utils/utils';
+import {
+  setHTML,
+  paragraphContentParser,
+  headshotParser,
+  regexer,
+} from '../utils/utils';
 
 import {
   Button,
@@ -24,7 +29,7 @@ import {
   // Image,
   Menu,
   Segment,
-  Sidebar
+  Sidebar,
 } from 'semantic-ui-react';
 import { throwStatement, tsImportEqualsDeclaration } from '@babel/types';
 
@@ -42,18 +47,16 @@ const droppableStyle1 = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-  //   border: '1px solid #555',
-  //
   minWidth: '250px',
   minHeight: '500px',
-  margin: '32px'
+  margin: '32px',
 };
 
-class divlab extends React.PureComponent {
+class divlabTwo extends React.PureComponent {
   static defaultProps = {
     className: 'layout',
     cols: { lg: 120, md: 100, sm: 60, xs: 40, xxs: 20 },
-    rowHeight: 2
+    rowHeight: 2,
   };
 
   constructor(props) {
@@ -65,7 +68,7 @@ class divlab extends React.PureComponent {
       newCounter: 0,
       components: [],
       usedComponents: [],
-      html: ''
+      html: '',
     };
 
     this.onAddItem = this.onAddItem.bind(this);
@@ -107,9 +110,9 @@ class divlab extends React.PureComponent {
             visible,
             newCounter,
             components: [],
-            usedComponents: []
+            usedComponents: [],
           },
-          html
+          html,
         })
       );
     } else {
@@ -121,45 +124,130 @@ class divlab extends React.PureComponent {
             visible,
             newCounter,
             components: [],
-            usedComponents: []
+            usedComponents: [],
           },
-          html
+          html,
         })
       );
     }
-
   };
 
   // Test injection method
   reactDomRender(state) {
-    let paragraphContent = paragraphContentParser(state.html);
-		if (paragraphContent) {
-			for (let i = 0; i < paragraphContent.length; i++) {
-				let temp = document.getElementById(`n${i}`);
-				let newDiv = document.createElement('div');
-				newDiv.id = `newDiv${i}`;
-				temp.style.padding = '8px';
-				temp.appendChild(newDiv);
-				let component = paragraphContent[i] ? (
-					<ParagraphForm
-						info={{
-							content: paragraphContent[i],
-							id: `paragraph${i}`,
-							edit: false
-						}}
-					/>
-				) : (
-					<ParagraphForm
-						info={{
-							content: '',
-							id: `paragraph${i}`,
-							edit: false
-						}}
-					/>
-				);
-				ReactDOM.render(component, document.getElementById(`newDiv${i}`));
-			}
-		}
+    console.log('regexer>>>>>>>>>>>', regexer(state.html));
+    let data = regexer(state.html);
+    if (data) {
+      let counter = 0;
+      for (let i = 0; i < data.length; i++) {
+        let curEl = data[i];
+        if (
+          curEl === 'HeadshotComponent' ||
+          curEl === 'ParagraphComponent' ||
+          'CardComponent'
+        ) {
+          console.log(counter);
+          switch (curEl) {
+            case 'HeadshotComponent':
+              let temp = document.getElementById(`n${counter}`);
+              while (!temp) {
+                counter++;
+                temp = document.getElementById(`n${counter}`);
+              }
+              let newDiv = document.createElement('div');
+              newDiv.id = `newDiv${counter}`;
+              temp.style.padding = '8px';
+              temp.appendChild(newDiv);
+              ReactDOM.render(
+                <HeadshotForm
+                  info={{
+                    imageUrl: data[i + 1],
+                    id: `headshot${i}`,
+                    edit: false,
+                  }}
+                />,
+                document.getElementById(`newDiv${counter}`)
+              );
+              counter++;
+              break;
+            case 'ParagraphComponent':
+              let temp2 = document.getElementById(`n${counter}`);
+              while (!temp2) {
+                counter++;
+                temp2 = document.getElementById(`n${counter}`);
+              }
+              let newDiv2 = document.createElement('div');
+              newDiv2.id = `newDiv${counter}`;
+              temp2.style.padding = '8px';
+              temp2.appendChild(newDiv2);
+              ReactDOM.render(
+                <ParagraphForm
+                  info={{
+                    content: data[i + 1],
+                    id: `paragraph${i}`,
+                    edit: false,
+                  }}
+                />,
+                document.getElementById(`newDiv${counter}`)
+              );
+              counter++;
+              break;
+            case 'CardComponent':
+              let temp3 = document.getElementById(`n${counter}`);
+              while (!temp3) {
+                counter++;
+                temp3 = document.getElementById(`n${counter}`);
+              }
+              let newDiv3 = document.createElement('div');
+              newDiv3.id = `newDiv${counter}`;
+              temp3.style.padding = '8px';
+              temp3.appendChild(newDiv3);
+              ReactDOM.render(
+                <CardForm
+                  info={{
+                    imageUrl: data[i + 1],
+                    name: data[i + 2],
+                    caption: data[i + 3],
+                    description: data[i + 4],
+                    footer: data[i + 5],
+                    id: `paragraph${i}`,
+                    edit: false,
+                  }}
+                />,
+                document.getElementById(`newDiv${counter}`)
+              );
+              counter++;
+              break;
+            case 'HeaderComponent':
+              let temp4 = document.getElementById(`n${counter}`);
+              while (!temp4) {
+                counter++;
+                temp4 = document.getElementById(`n${counter}`);
+              }
+              let newDiv4 = document.createElement('div');
+              newDiv4.id = `newDiv${counter}`;
+              temp4.style.padding = '8px';
+              temp4.appendChild(newDiv4);
+              console.log('data', data[i], data[i + 1], data[i + 2]);
+              ReactDOM.render(
+                <HeaderForm
+                  info={{
+                    backgroundUrl: data[i + 1],
+                    title: data[i + 2],
+                    navlinks: '',
+                    id: `paragraph${i}`,
+                    edit: false,
+                  }}
+                />,
+                document.getElementById(`newDiv${counter}`)
+              );
+              counter++;
+              break;
+            default:
+              break;
+          }
+        }
+      }
+    }
   }
 
   createElement(el) {
@@ -167,7 +255,7 @@ class divlab extends React.PureComponent {
       position: 'absolute',
       right: '2px',
       top: 0,
-      cursor: 'pointer'
+      cursor: 'pointer',
     };
     const i = el.add ? '+' : el.i;
     return (
@@ -212,10 +300,10 @@ class divlab extends React.PureComponent {
 
         y: 1,
         w: 20,
-        h: 20
+        h: 20,
       }),
       // Increment the counter to ensure key is always unique.
-      newCounter: this.state.newCounter + 1
+      newCounter: this.state.newCounter + 1,
     });
   }
 
@@ -223,7 +311,7 @@ class divlab extends React.PureComponent {
   onBreakpointChange(breakpoint, cols) {
     this.setState({
       breakpoint: breakpoint,
-      cols: cols
+      cols: cols,
     });
   }
 
@@ -244,15 +332,14 @@ class divlab extends React.PureComponent {
 
   render() {
     const { visible } = this.state;
-    console.log('iam render', this.state);
     return (
       <div>
         <Button.Group>
           <Button disabled={visible} onClick={this.handleShowClick}>
-            Show sidebar
+            Show Components
           </Button>
           <Button disabled={!visible} onClick={this.handleHideClick}>
-            Hide sidebar
+            Hide Components
           </Button>
         </Button.Group>
 
@@ -278,7 +365,8 @@ class divlab extends React.PureComponent {
               as="a"
               onClick={() => {
                 this.setState({
-                  components: [...this.state.components, <CardForm />]
+									components: [...this.state.components, <CardForm />],
+									visible: false
                 });
               }}
             >
@@ -289,7 +377,9 @@ class divlab extends React.PureComponent {
               as="a"
               onClick={() => {
                 this.setState({
-                  components: [...this.state.components, <SidewaysCardForm />]
+									components: [...this.state.components, <SidewaysCardForm />],
+									visible: false
+
                 });
               }}
             >
@@ -300,7 +390,9 @@ class divlab extends React.PureComponent {
               as="a"
               onClick={() => {
                 this.setState({
-                  components: [...this.state.components, <HeaderForm />]
+									components: [...this.state.components, <HeaderForm />],
+									visible: false
+
                 });
               }}
             >
@@ -311,7 +403,9 @@ class divlab extends React.PureComponent {
               as="a"
               onClick={() => {
                 this.setState({
-                  components: [...this.state.components, <HeadshotForm />]
+									components: [...this.state.components, <HeadshotForm />],
+									visible: false
+
                 });
               }}
             >
@@ -323,7 +417,9 @@ class divlab extends React.PureComponent {
               as="a"
               onClick={() => {
                 this.setState({
-                  components: [...this.state.components, <ParagraphForm />]
+									components: [...this.state.components, <ParagraphForm />],
+									visible: false
+
                 });
               }}
             >
@@ -335,33 +431,8 @@ class divlab extends React.PureComponent {
           <Sidebar.Pusher dimmed={visible}>
             <Segment basic>
               {/* <Header as="h3">Application Content</Header> */}
-
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row'
-                }}
-              >
-                <div>
-                  <Droppable style={droppableStyle1}>
-                    {this.state.components.map((item, idx) => {
-                      if (!this.state.usedComponents.includes(item)) {
-                        this.state.usedComponents.push(item);
-                      }
-                      return (
-                        <Draggable
-                          id={String(Math.floor(Math.random() * 100000000))}
-                          key={idx}
-                        >
-                          <Item>{item}</Item>
-                        </Draggable>
-                      );
-                    })}
-                  </Droppable>
-                </div>
-                <div>
-                  {/* <Droppable id="dr2"> */}
-                  <Button
+							<div style={{marginBottom: '10px'}}>
+							<Button
                     onClick={() => {
                       const imgs = document.querySelectorAll(
                         '.react-resizable-handle-se'
@@ -420,33 +491,69 @@ class divlab extends React.PureComponent {
                   >
                     Toggle Preview
                   </Button>
-                  <Button onClick={this.onAddItem}>Add new container</Button>
+                  <Button onClick={this.onAddItem}>Add New Container</Button>
                   <Button onClick={this.save}>Save</Button>
                   <Button
                     onClick={() => {
-                      console.log(this.state);
+											let html = document.querySelector('html').innerHTML
+											html = '<html>\n' + html + '\n</html>'
+											let download = document.createElement('a');
+											download.style.display = 'none';
+											download.setAttribute('href', 'data:text/html;charset=utf-8,' + encodeURIComponent(html))
+											download.setAttribute('download', 'index')
+											document.body.appendChild(download)
+											download.click();
+											document.body.removeChild(download)
                     }}
                   >
-                    Test
+                    Export
                   </Button>
+							</div>
+							{/* Styling for centering grid here */}
+							<div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row', justifyContent: 'center'
+                }}
+              >
+                <div>
+                  <Droppable style={this.state.components.length ? droppableStyle1 : null}>
+                    {this.state.components.map((item, idx) => {
+                      if (!this.state.usedComponents.includes(item)) {
+                        this.state.usedComponents.push(item);
+                      }
+                      return (
+                        <Draggable
+                          id={String(Math.floor(Math.random() * 100000000))}
+                          key={idx}
+                        >
+                          <Item>{item}</Item>
+                        </Draggable>
+                      );
+                    })}
+                  </Droppable>
+                </div>
+                <div>
                   <Droppable>
+
                     <ResponsiveReactGridLayout
                       onLayoutChange={this.onLayoutChange}
                       style={{
-                        width: '1200px',
+												width: '1200px',
                         minHeight: '1000px',
                         // border: '1px solid blue',
-                        backgroundColor: 'white'
+                        backgroundColor: 'white',
                       }}
                       // onBreakpointChange={this.onBreakpointChange}
                       {...this.props}
-                    >
+											>
                       {_.map(this.state.items, el => {
-                        console.log(this.props);
+												console.log(this.props);
                         return this.createElement(el);
                       })}
                     </ResponsiveReactGridLayout>
                   </Droppable>
+
                   {/* </Droppable> */}
                 </div>
               </div>
@@ -462,7 +569,7 @@ const mapStateToProps = state => {
   return {
     auth: state.firebase,
     profile: state.firebase.profile,
-    pages: state.pages
+    pages: state.pages,
   };
 };
 
@@ -476,11 +583,11 @@ const mapDispatchToProps = dispatch => {
     },
     getAllPages: user => {
       dispatch(getAllPages(user));
-    }
+    },
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(divlab);
+)(divlabTwo);
