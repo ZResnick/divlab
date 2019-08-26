@@ -246,6 +246,31 @@ class divlabTwo extends React.PureComponent {
                 document.getElementById(`newDiv${counter}`)
               );
               counter++;
+							break;
+							case 'SidewaysCardComponent':
+              let temp5 = document.getElementById(`n${counter}`);
+              while (!temp5) {
+                counter++;
+                temp5 = document.getElementById(`n${counter}`);
+              }
+              let newDiv5 = document.createElement('div');
+              newDiv5.id = `newDiv${counter}`;
+              temp5.style.padding = '8px';
+              temp5.appendChild(newDiv5);
+              ReactDOM.render(
+                <SidewaysCardForm
+                  info={{
+                    imageUrl: data[i + 1],
+                    name: data[i + 2],
+                    caption: data[i + 3],
+                    description: data[i + 4],
+                    id: `paragraph${i}`,
+                    edit: false,
+                  }}
+                />,
+                document.getElementById(`newDiv${counter}`)
+              );
+              counter++;
               break;
             default:
               break;
