@@ -3,16 +3,24 @@ import SidewaysCardComponent from './SidewaysCardComponent';
 import { Button, Form } from 'semantic-ui-react';
 
 export default class CardForm extends Component {
-  constructor() {
-    super();
-    this.state = {
-      name: '',
-      description: '',
-      caption: '',
-      imageUrl: '',
-      id: '',
-      edit: true,
-    };
+  constructor(props) {
+		super(props);
+		if (this.props.info) {
+			const {name, description, id, caption, imageUrl, edit} = this.props.info
+			this.state = {
+				name, description, id, caption, imageUrl, edit
+			}
+		} else {
+			this.state = {
+				name: '',
+				description: '',
+				caption: '',
+				imageUrl: '',
+				id: '',
+				edit: true,
+			}
+
+		}
     this.switchEdit = this.switchEdit.bind(this);
   }
 
