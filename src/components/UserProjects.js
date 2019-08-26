@@ -14,7 +14,6 @@ class UserProjects extends React.Component {
 
   render() {
     const { pages } = this.props;
-    // console.log(pages);
     return (
       <div>
         <div className="myProjects">
@@ -67,7 +66,7 @@ const mapStateToProps = state => {
   return {
     auth: state.firebase,
     profile: state.firebase.profile,
-    pages: state.pages
+    pages: state.pages,
   };
 };
 
@@ -75,7 +74,7 @@ const mapDispatchToProps = dispatch => {
   return {
     getAllPages: user => {
       dispatch(getAllPages(user));
-    }
+    },
   };
 };
 

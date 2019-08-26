@@ -10,7 +10,7 @@ export default function HeaderComponent(props) {
     height: '600px',
     backgroundImage: `url(${backgroundUrl})`,
     backgroundSize: 'stretch',
-    backgroundRepeat: 'no-repeat'
+    backgroundRepeat: 'no-repeat',
   };
 
   let headerStyle = {
@@ -18,12 +18,12 @@ export default function HeaderComponent(props) {
     fontSize: '48px',
     fontFamily: 'Corben, cursive',
     fontStyle: 'cursive',
-    paddingTop: '16%'
+    paddingTop: '16%',
   };
 
   let navbarStyle = {
     paddingTop: '3%',
-    textAlign: 'right'
+    textAlign: 'right',
   };
 
   let navLinkStyle = {
@@ -35,10 +35,10 @@ export default function HeaderComponent(props) {
     padding: '5px',
     paddingLeft: '8px',
     paddingRight: '8px',
-    borderRadius: '20px'
+    borderRadius: '20px',
   };
   return backgroundUrl.length || title.length || navlinks.length ? (
-    <div style={divStyle}>
+    <div style={divStyle} name="HeaderComponent">
       <div style={navbarStyle}>
         {links &&
           links.map(link => {
@@ -49,7 +49,10 @@ export default function HeaderComponent(props) {
             );
           })}
       </div>
+
+      <span dangerouslySetInnerHTML={{ __html: '<!-- HeaderTitleStart -->' }} />
       <p style={headerStyle}>{title}</p>
+      <span dangerouslySetInnerHTML={{ __html: '<!-- HeaderTitleEnd -->' }} />
     </div>
   ) : (
     <img alt="" src="images/HeaderExample.png" />

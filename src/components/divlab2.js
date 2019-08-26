@@ -15,7 +15,12 @@ import HeadshotForm from '../components/divlab_components/HeadshotForm';
 import ParagraphForm from '../components/divlab_components/ParagraphForm';
 import SidewaysCardForm from '../components/divlab_components/SidewaysCardForm';
 import { addAPage, getAllPages, editAPage } from '../store/pageReducer';
-import { setHTML, paragraphContentParser, headshotParser } from '../utils/utils';
+import {
+  setHTML,
+  paragraphContentParser,
+  headshotParser,
+  regexer,
+} from '../utils/utils';
 
 import {
   Button,
@@ -24,7 +29,7 @@ import {
   // Image,
   Menu,
   Segment,
-  Sidebar
+  Sidebar,
 } from 'semantic-ui-react';
 import { throwStatement, tsImportEqualsDeclaration } from '@babel/types';
 
@@ -46,14 +51,14 @@ const droppableStyle1 = {
   //
   minWidth: '250px',
   minHeight: '500px',
-  margin: '32px'
+  margin: '32px',
 };
 
 class divlabTwo extends React.PureComponent {
   static defaultProps = {
     className: 'layout',
     cols: { lg: 120, md: 100, sm: 60, xs: 40, xxs: 20 },
-    rowHeight: 2
+    rowHeight: 2,
   };
 
   constructor(props) {
@@ -65,7 +70,7 @@ class divlabTwo extends React.PureComponent {
       newCounter: 0,
       components: [],
       usedComponents: [],
-      html: ''
+      html: '',
     };
 
     this.onAddItem = this.onAddItem.bind(this);
@@ -107,9 +112,9 @@ class divlabTwo extends React.PureComponent {
             visible,
             newCounter,
             components: [],
-            usedComponents: []
+            usedComponents: [],
           },
-          html
+          html,
         })
       );
     } else {
@@ -121,73 +126,130 @@ class divlabTwo extends React.PureComponent {
             visible,
             newCounter,
             components: [],
-            usedComponents: []
+            usedComponents: [],
           },
-          html
+          html,
         })
       );
     }
-
   };
 
   // Test injection method
   reactDomRender(state) {
-    // let paragraphContent = paragraphContentParser(state.html);
-		// if (paragraphContent) {
-		// 	for (let i = 0; i < paragraphContent.length; i++) {
-		// 		let temp = document.getElementById(`n${i}`);
-		// 		let newDiv = document.createElement('div');
-		// 		newDiv.id = `newDiv${i}`;
-		// 		temp.style.padding = '8px';
-		// 		temp.appendChild(newDiv);
-		// 		let component = paragraphContent[i] ? (
-		// 			<ParagraphForm
-		// 				info={{
-		// 					content: paragraphContent[i],
-		// 					id: `paragraph${i}`,
-		// 					edit: false
-		// 				}}
-		// 			/>
-		// 		) : (
-		// 			<ParagraphForm
-		// 				info={{
-		// 					content: '',
-		// 					id: `paragraph${i}`,
-		// 					edit: false
-		// 				}}
-		// 			/>
-		// 		);
-		// 		ReactDOM.render(component, document.getElementById(`newDiv${i}`));
-		// 	}
-		// }
-    let headshotContent = headshotParser(state.html);
-		if (headshotContent) {
-			for (let i = 0 ; i < headshotContent.length ; i++) {
-				let temp = document.getElementById(`n${i}`);
-				let newDiv = document.createElement('div');
-				newDiv.id = `newDiv${i}`;
-				temp.style.padding = '8px';
-				temp.appendChild(newDiv);
-				let component = headshotContent[i] ? (
-					<HeadshotForm
-						info={{
-							imageUrl: headshotContent[i],
-							id: `headshot${i}`,
-							edit: false
-						}}
-					/>
-				) : (
-					<ParagraphForm
-						info={{
-							content: '',
-							id: `paragraph${i}`,
-							edit: false
-						}}
-					/>
-				);
-				ReactDOM.render(component, document.getElementById(`newDiv${i}`));
-			}
-		}
+    console.log('regexer>>>>>>>>>>>', regexer(state.html));
+    let data = regexer(state.html);
+    if (data) {
+      let counter = 0;
+      for (let i = 0; i < data.length; i++) {
+        let curEl = data[i];
+        if (
+          curEl === 'HeadshotComponent' ||
+          curEl === 'ParagraphComponent' ||
+          'CardComponent'
+        ) {
+          console.log(counter);
+          switch (curEl) {
+            case 'HeadshotComponent':
+              let temp = document.getElementById(`n${counter}`);
+              while (!temp) {
+                counter++;
+                temp = document.getElementById(`n${counter}`);
+              }
+              let newDiv = document.createElement('div');
+              newDiv.id = `newDiv${counter}`;
+              temp.style.padding = '8px';
+              temp.appendChild(newDiv);
+              ReactDOM.render(
+                <HeadshotForm
+                  info={{
+                    imageUrl: data[i + 1],
+                    id: `headshot${i}`,
+                    edit: false,
+                  }}
+                />,
+                document.getElementById(`newDiv${counter}`)
+              );
+              counter++;
+              break;
+            case 'ParagraphComponent':
+              let temp2 = document.getElementById(`n${counter}`);
+              while (!temp2) {
+                counter++;
+                temp2 = document.getElementById(`n${counter}`);
+              }
+              let newDiv2 = document.createElement('div');
+              newDiv2.id = `newDiv${counter}`;
+              temp2.style.padding = '8px';
+              temp2.appendChild(newDiv2);
+              ReactDOM.render(
+                <ParagraphForm
+                  info={{
+                    content: data[i + 1],
+                    id: `paragraph${i}`,
+                    edit: false,
+                  }}
+                />,
+                document.getElementById(`newDiv${counter}`)
+              );
+              counter++;
+              break;
+            case 'CardComponent':
+              let temp3 = document.getElementById(`n${counter}`);
+              while (!temp3) {
+                counter++;
+                temp3 = document.getElementById(`n${counter}`);
+              }
+              let newDiv3 = document.createElement('div');
+              newDiv3.id = `newDiv${counter}`;
+              temp3.style.padding = '8px';
+              temp3.appendChild(newDiv3);
+              ReactDOM.render(
+                <CardForm
+                  info={{
+                    imageUrl: data[i + 1],
+                    name: data[i + 2],
+                    caption: data[i + 3],
+                    description: data[i + 4],
+                    footer: data[i + 5],
+                    id: `paragraph${i}`,
+                    edit: false,
+                  }}
+                />,
+                document.getElementById(`newDiv${counter}`)
+              );
+              counter++;
+              break;
+            case 'HeaderComponent':
+              let temp4 = document.getElementById(`n${counter}`);
+              while (!temp4) {
+                counter++;
+                temp4 = document.getElementById(`n${counter}`);
+              }
+              let newDiv4 = document.createElement('div');
+              newDiv4.id = `newDiv${counter}`;
+              temp4.style.padding = '8px';
+              temp4.appendChild(newDiv4);
+              console.log('data', data[i], data[i + 1], data[i + 2]);
+              ReactDOM.render(
+                <HeaderForm
+                  info={{
+                    backgroundUrl: data[i + 1],
+                    title: data[i + 2],
+                    navlinks: '',
+                    id: `paragraph${i}`,
+                    edit: false,
+                  }}
+                />,
+                document.getElementById(`newDiv${counter}`)
+              );
+              counter++;
+              break;
+            default:
+              break;
+          }
+        }
+      }
+    }
   }
 
   createElement(el) {
@@ -195,7 +257,7 @@ class divlabTwo extends React.PureComponent {
       position: 'absolute',
       right: '2px',
       top: 0,
-      cursor: 'pointer'
+      cursor: 'pointer',
     };
     const i = el.add ? '+' : el.i;
     return (
@@ -240,10 +302,10 @@ class divlabTwo extends React.PureComponent {
 
         y: 1,
         w: 20,
-        h: 20
+        h: 20,
       }),
       // Increment the counter to ensure key is always unique.
-      newCounter: this.state.newCounter + 1
+      newCounter: this.state.newCounter + 1,
     });
   }
 
@@ -251,7 +313,7 @@ class divlabTwo extends React.PureComponent {
   onBreakpointChange(breakpoint, cols) {
     this.setState({
       breakpoint: breakpoint,
-      cols: cols
+      cols: cols,
     });
   }
 
@@ -272,7 +334,6 @@ class divlabTwo extends React.PureComponent {
 
   render() {
     const { visible } = this.state;
-    console.log('iam render', this.state);
     return (
       <div>
         <Button.Group>
@@ -306,7 +367,7 @@ class divlabTwo extends React.PureComponent {
               as="a"
               onClick={() => {
                 this.setState({
-                  components: [...this.state.components, <CardForm />]
+                  components: [...this.state.components, <CardForm />],
                 });
               }}
             >
@@ -317,7 +378,7 @@ class divlabTwo extends React.PureComponent {
               as="a"
               onClick={() => {
                 this.setState({
-                  components: [...this.state.components, <SidewaysCardForm />]
+                  components: [...this.state.components, <SidewaysCardForm />],
                 });
               }}
             >
@@ -328,7 +389,7 @@ class divlabTwo extends React.PureComponent {
               as="a"
               onClick={() => {
                 this.setState({
-                  components: [...this.state.components, <HeaderForm />]
+                  components: [...this.state.components, <HeaderForm />],
                 });
               }}
             >
@@ -339,7 +400,7 @@ class divlabTwo extends React.PureComponent {
               as="a"
               onClick={() => {
                 this.setState({
-                  components: [...this.state.components, <HeadshotForm />]
+                  components: [...this.state.components, <HeadshotForm />],
                 });
               }}
             >
@@ -351,7 +412,7 @@ class divlabTwo extends React.PureComponent {
               as="a"
               onClick={() => {
                 this.setState({
-                  components: [...this.state.components, <ParagraphForm />]
+                  components: [...this.state.components, <ParagraphForm />],
                 });
               }}
             >
@@ -367,7 +428,7 @@ class divlabTwo extends React.PureComponent {
               <div
                 style={{
                   display: 'flex',
-                  flexDirection: 'row'
+                  flexDirection: 'row',
                 }}
               >
                 <div>
@@ -464,7 +525,7 @@ class divlabTwo extends React.PureComponent {
                         width: '1200px',
                         minHeight: '1000px',
                         // border: '1px solid blue',
-                        backgroundColor: 'white'
+                        backgroundColor: 'white',
                       }}
                       // onBreakpointChange={this.onBreakpointChange}
                       {...this.props}
@@ -490,7 +551,7 @@ const mapStateToProps = state => {
   return {
     auth: state.firebase,
     profile: state.firebase.profile,
-    pages: state.pages
+    pages: state.pages,
   };
 };
 
@@ -504,7 +565,7 @@ const mapDispatchToProps = dispatch => {
     },
     getAllPages: user => {
       dispatch(getAllPages(user));
-    }
+    },
   };
 };
 
