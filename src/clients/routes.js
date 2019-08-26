@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Route, Switch} from 'react-router-dom';
 import Home from '../components/Home';
 import divlab from '../components/reactGrid';
 import divlabTwo from '../components/divlab2';

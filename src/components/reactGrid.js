@@ -2,10 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { WidthProvider, Responsive } from 'react-grid-layout';
-import GridLayout from 'react-grid-layout';
 import _ from 'lodash';
 import styled from 'styled-components';
-import history from '../history';
 
 import Draggable from './Draggable';
 import Droppable from './Droppable';
@@ -14,24 +12,25 @@ import HeaderForm from '../components/divlab_components/HeaderForm';
 import HeadshotForm from '../components/divlab_components/HeadshotForm';
 import ParagraphForm from '../components/divlab_components/ParagraphForm';
 import SidewaysCardForm from '../components/divlab_components/SidewaysCardForm';
-import { addAPage, getAllPages, editAPage } from '../store/pageReducer';
+import {
+  addAPage,
+  getAllPages,
+  editAPage,
+  deleteAPage,
+} from '../store/pageReducer';
 import {
   setHTML,
-  paragraphContentParser,
-  headshotParser,
   regexer,
 } from '../utils/utils';
 
 import {
   Button,
-  // Header,
   Icon,
-  // Image,
   Menu,
   Segment,
   Sidebar,
+  Confirm,
 } from 'semantic-ui-react';
-import { throwStatement, tsImportEqualsDeclaration } from '@babel/types';
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
@@ -69,6 +68,7 @@ class divlabTwo extends React.PureComponent {
       components: [],
       usedComponents: [],
       html: '',
+      open: false,
     };
 
     this.onAddItem = this.onAddItem.bind(this);
@@ -76,6 +76,16 @@ class divlabTwo extends React.PureComponent {
     this.reactDomRender = this.reactDomRender.bind(this);
   }
 
+  //Opens and closes the delete modal
+  show = () => this.setState({ open: true });
+  handleConfirm = () => {
+    this.setState({ open: false });
+    this.props.deleteAPage(
+      this.props.auth.auth.uid,
+      this.props.match.params.id
+    );
+  };
+  handleCancel = () => this.setState({ open: false });
   handleHideClick = () => this.setState({ visible: false });
   handleShowClick = () => this.setState({ visible: true });
   handleSidebarHide = () => this.setState({ visible: false });
@@ -132,9 +142,7 @@ class divlabTwo extends React.PureComponent {
     }
   };
 
-  // Test injection method
   reactDomRender(state) {
-    console.log('regexer>>>>>>>>>>>', regexer(state.html));
     let data = regexer(state.html);
     if (data) {
       let counter = 0;
@@ -145,7 +153,6 @@ class divlabTwo extends React.PureComponent {
           curEl === 'ParagraphComponent' ||
           'CardComponent'
         ) {
-          console.log(counter);
           switch (curEl) {
             case 'HeadshotComponent':
               let temp = document.getElementById(`n${counter}`);
@@ -227,13 +234,37 @@ class divlabTwo extends React.PureComponent {
               newDiv4.id = `newDiv${counter}`;
               temp4.style.padding = '8px';
               temp4.appendChild(newDiv4);
-              console.log('data', data[i], data[i + 1], data[i + 2]);
               ReactDOM.render(
                 <HeaderForm
                   info={{
                     backgroundUrl: data[i + 1],
                     title: data[i + 2],
                     navlinks: '',
+                    id: `paragraph${i}`,
+                    edit: false,
+                  }}
+                />,
+                document.getElementById(`newDiv${counter}`)
+              );
+              counter++;
+              break;
+            case 'SidewaysCardComponent':
+              let temp5 = document.getElementById(`n${counter}`);
+              while (!temp5) {
+                counter++;
+                temp5 = document.getElementById(`n${counter}`);
+              }
+              let newDiv5 = document.createElement('div');
+              newDiv5.id = `newDiv${counter}`;
+              temp5.style.padding = '8px';
+              temp5.appendChild(newDiv5);
+              ReactDOM.render(
+                <SidewaysCardForm
+                  info={{
+                    imageUrl: data[i + 1],
+                    name: data[i + 2],
+                    caption: data[i + 3],
+                    description: data[i + 4],
                     id: `paragraph${i}`,
                     edit: false,
                   }}
@@ -365,8 +396,8 @@ class divlabTwo extends React.PureComponent {
               as="a"
               onClick={() => {
                 this.setState({
-									components: [...this.state.components, <CardForm />],
-									visible: false
+                  components: [...this.state.components, <CardForm />],
+                  visible: false,
                 });
               }}
             >
@@ -377,9 +408,8 @@ class divlabTwo extends React.PureComponent {
               as="a"
               onClick={() => {
                 this.setState({
-									components: [...this.state.components, <SidewaysCardForm />],
-									visible: false
-
+                  components: [...this.state.components, <SidewaysCardForm />],
+                  visible: false,
                 });
               }}
             >
@@ -390,9 +420,8 @@ class divlabTwo extends React.PureComponent {
               as="a"
               onClick={() => {
                 this.setState({
-									components: [...this.state.components, <HeaderForm />],
-									visible: false
-
+                  components: [...this.state.components, <HeaderForm />],
+                  visible: false,
                 });
               }}
             >
@@ -403,9 +432,8 @@ class divlabTwo extends React.PureComponent {
               as="a"
               onClick={() => {
                 this.setState({
-									components: [...this.state.components, <HeadshotForm />],
-									visible: false
-
+                  components: [...this.state.components, <HeadshotForm />],
+                  visible: false,
                 });
               }}
             >
@@ -417,9 +445,8 @@ class divlabTwo extends React.PureComponent {
               as="a"
               onClick={() => {
                 this.setState({
-									components: [...this.state.components, <ParagraphForm />],
-									visible: false
-
+                  components: [...this.state.components, <ParagraphForm />],
+                  visible: false,
                 });
               }}
             >
@@ -431,93 +458,106 @@ class divlabTwo extends React.PureComponent {
           <Sidebar.Pusher dimmed={visible}>
             <Segment basic>
               {/* <Header as="h3">Application Content</Header> */}
-							<div style={{marginBottom: '10px'}}>
-							<Button
-                    onClick={() => {
-                      const imgs = document.querySelectorAll(
-                        '.react-resizable-handle-se'
-                      );
-                      const editButtonsOn = document.querySelectorAll(
-                        '.edit-button-on'
-                      );
-                      const editButtonsOff = document.querySelectorAll(
-                        '.edit-button-off'
-                      );
-                      const divs = document.querySelectorAll(
-                        '.react-grid-item'
-                      );
-                      const xs = document.getElementsByName('X');
+              <div style={{ marginBottom: '10px' }}>
+                <Button
+                  onClick={() => {
+                    const imgs = document.querySelectorAll(
+                      '.react-resizable-handle-se'
+                    );
+                    const editButtonsOn = document.querySelectorAll(
+                      '.edit-button-on'
+                    );
+                    const editButtonsOff = document.querySelectorAll(
+                      '.edit-button-off'
+                    );
+                    const divs = document.querySelectorAll('.react-grid-item');
+                    const xs = document.getElementsByName('X');
 
-                      editButtonsOn.forEach(item => {
-                        if (item.classList.contains('edit-button-on')) {
-                          item.classList.replace(
-                            'edit-button-on',
-                            'edit-button-off'
-                          );
-                        }
-                      });
+                    editButtonsOn.forEach(item => {
+                      if (item.classList.contains('edit-button-on')) {
+                        item.classList.replace(
+                          'edit-button-on',
+                          'edit-button-off'
+                        );
+                      }
+                    });
 
-                      editButtonsOff.forEach(item => {
-                        if (item.classList.contains('edit-button-off')) {
-                          item.classList.replace(
-                            'edit-button-off',
-                            'edit-button-on'
-                          );
-                        }
-                      });
-                      imgs.forEach(i => {
-                        if (i.classList.contains('react-resizable-handle')) {
-                          i.classList.remove('react-resizable-handle');
-                        } else {
-                          i.classList.add('react-resizable-handle');
-                        }
-                      });
+                    editButtonsOff.forEach(item => {
+                      if (item.classList.contains('edit-button-off')) {
+                        item.classList.replace(
+                          'edit-button-off',
+                          'edit-button-on'
+                        );
+                      }
+                    });
+                    imgs.forEach(i => {
+                      if (i.classList.contains('react-resizable-handle')) {
+                        i.classList.remove('react-resizable-handle');
+                      } else {
+                        i.classList.add('react-resizable-handle');
+                      }
+                    });
 
-                      xs.forEach(x => {
-                        if (x.textContent === 'x') {
-                          x.textContent = '';
-                        } else {
-                          x.textContent = 'x';
-                        }
-                      });
-                      divs.forEach(div => {
-                        if (div.style.border) {
-                          div.style.border = null;
-                        } else {
-                          div.style.border = '1px solid red';
-                        }
-                      });
-                    }}
-                  >
-                    Toggle Preview
-                  </Button>
-                  <Button onClick={this.onAddItem}>Add New Container</Button>
-                  <Button onClick={this.save}>Save</Button>
-                  <Button
-                    onClick={() => {
-											let html = document.querySelector('html').innerHTML
-											html = '<html>\n' + html + '\n</html>'
-											let download = document.createElement('a');
-											download.style.display = 'none';
-											download.setAttribute('href', 'data:text/html;charset=utf-8,' + encodeURIComponent(html))
-											download.setAttribute('download', 'index')
-											document.body.appendChild(download)
-											download.click();
-											document.body.removeChild(download)
-                    }}
-                  >
-                    Export
-                  </Button>
-							</div>
-							{/* Styling for centering grid here */}
-							<div
+                    xs.forEach(x => {
+                      if (x.textContent === 'x') {
+                        x.textContent = '';
+                      } else {
+                        x.textContent = 'x';
+                      }
+                    });
+                    divs.forEach(div => {
+                      if (div.style.border) {
+                        div.style.border = null;
+                      } else {
+                        div.style.border = '1px solid red';
+                      }
+                    });
+                  }}
+                >
+                  Toggle Preview
+                </Button>
+                <Button onClick={this.onAddItem}>Add New Container</Button>
+                <Button onClick={this.save}>Save</Button>
+                <Button
+                  onClick={() => {
+                    let html = document.querySelector('html').innerHTML;
+                    html = '<html>\n' + html + '\n</html>';
+                    let download = document.createElement('a');
+                    download.style.display = 'none';
+                    download.setAttribute(
+                      'href',
+                      'data:text/html;charset=utf-8,' + encodeURIComponent(html)
+                    );
+                    download.setAttribute('download', 'index');
+                    document.body.appendChild(download);
+                    download.click();
+                    document.body.removeChild(download);
+                  }}
+                >
+                  Export
+                </Button>
+                <Button onClick={this.show}>Delete Project</Button>
+                <Confirm
+                  open={this.state.open}
+                  content="Are you sure you want to delete this project?"
+                  onCancel={this.handleCancel}
+                  onConfirm={this.handleConfirm}
+                />
+              </div>
+              {/* Styling for centering grid here */}
+              <div
                 style={{
                   display: 'flex',
-                  flexDirection: 'row', justifyContent: 'center'
+                  flexDirection: 'row',
+                  justifyContent: 'center',
                 }}
               >
                 <div>
-                  <Droppable style={this.state.components.length ? droppableStyle1 : null}>
+                  <Droppable
+                    style={
+                      this.state.components.length ? droppableStyle1 : null
+                    }
+                  >
                     {this.state.components.map((item, idx) => {
                       if (!this.state.usedComponents.includes(item)) {
                         this.state.usedComponents.push(item);
@@ -535,20 +575,16 @@ class divlabTwo extends React.PureComponent {
                 </div>
                 <div>
                   <Droppable>
-
                     <ResponsiveReactGridLayout
                       onLayoutChange={this.onLayoutChange}
                       style={{
-												width: '1200px',
+                        width: '1200px',
                         minHeight: '1000px',
-                        // border: '1px solid blue',
                         backgroundColor: 'white',
                       }}
-                      // onBreakpointChange={this.onBreakpointChange}
                       {...this.props}
-											>
+                    >
                       {_.map(this.state.items, el => {
-												console.log(this.props);
                         return this.createElement(el);
                       })}
                     </ResponsiveReactGridLayout>
@@ -583,6 +619,9 @@ const mapDispatchToProps = dispatch => {
     },
     getAllPages: user => {
       dispatch(getAllPages(user));
+    },
+    deleteAPage: (userId, pageId) => {
+      dispatch(deleteAPage(userId, pageId));
     },
   };
 };

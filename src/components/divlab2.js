@@ -2,10 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { WidthProvider, Responsive } from 'react-grid-layout';
-import GridLayout from 'react-grid-layout';
 import _ from 'lodash';
 import styled from 'styled-components';
-import history from '../history';
 
 import Draggable from './Draggable';
 import Droppable from './Droppable';
@@ -22,22 +20,17 @@ import {
 } from '../store/pageReducer';
 import {
   setHTML,
-  paragraphContentParser,
-  headshotParser,
   regexer,
 } from '../utils/utils';
 
 import {
   Button,
-  // Header,
   Icon,
-  // Image,
   Menu,
   Segment,
   Sidebar,
   Confirm,
 } from 'semantic-ui-react';
-import { throwStatement, tsImportEqualsDeclaration } from '@babel/types';
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
@@ -87,15 +80,12 @@ class divlabTwo extends React.PureComponent {
   show = () => this.setState({ open: true });
   handleConfirm = () => {
     this.setState({ open: false });
-    console.log('hello there?');
     this.props.deleteAPage(
       this.props.auth.auth.uid,
       this.props.match.params.id
     );
   };
   handleCancel = () => this.setState({ open: false });
-
-  //
   handleHideClick = () => this.setState({ visible: false });
   handleShowClick = () => this.setState({ visible: true });
   handleSidebarHide = () => this.setState({ visible: false });
@@ -152,9 +142,7 @@ class divlabTwo extends React.PureComponent {
     }
   };
 
-  // Test injection method
   reactDomRender(state) {
-    console.log('regexer>>>>>>>>>>>', regexer(state.html));
     let data = regexer(state.html);
     if (data) {
       let counter = 0;
@@ -165,7 +153,6 @@ class divlabTwo extends React.PureComponent {
           curEl === 'ParagraphComponent' ||
           'CardComponent'
         ) {
-          console.log(counter);
           switch (curEl) {
             case 'HeadshotComponent':
               let temp = document.getElementById(`n${counter}`);
@@ -247,7 +234,6 @@ class divlabTwo extends React.PureComponent {
               newDiv4.id = `newDiv${counter}`;
               temp4.style.padding = '8px';
               temp4.appendChild(newDiv4);
-              console.log('data', data[i], data[i + 1], data[i + 2]);
               ReactDOM.render(
                 <HeaderForm
                   info={{
@@ -594,14 +580,11 @@ class divlabTwo extends React.PureComponent {
                       style={{
                         width: '1200px',
                         minHeight: '1000px',
-                        // border: '1px solid blue',
                         backgroundColor: 'white',
                       }}
-                      // onBreakpointChange={this.onBreakpointChange}
                       {...this.props}
                     >
                       {_.map(this.state.items, el => {
-                        console.log(this.props);
                         return this.createElement(el);
                       })}
                     </ResponsiveReactGridLayout>

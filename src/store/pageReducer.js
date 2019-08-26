@@ -26,7 +26,6 @@ export const getAllPages = userId => async (
       .get()
       .then(snapshot =>
         snapshot.forEach(page => {
-          // console.log(page.id);
           pagesArray.push({ id: page.id, data: page.data() });
         })
       );
