@@ -24,20 +24,20 @@ export default function Home() {
               />
               <Card.Content style={{ height: '73.16px' }}>
                 <Card.Header>
-                  <span className="newProjectText">ZACHARY RESNICK</span>
+                  <a href="https://www.linkedin.com/in/zachresnick1/">
+                    <span className="newProjectText">ZACHARY RESNICK</span>
+                  </a>
                   <p className="captionText">SOFTWARE ENGINEER</p>
                 </Card.Header>
               </Card.Content>
             </Card>
             <Card raised="true" className="teamSingleCards" id="profileCards">
-              <Image
-                src="https://react.semantic-ui.com/images/avatar/large/daniel.jpg"
-                wrapped
-                ui={false}
-              />
+              <Image src="images/JoonhoHan.png" wrapped ui={false} />
               <Card.Content style={{ height: '73.16px' }}>
                 <Card.Header>
-                  <span className="newProjectText">JOONHO HAN</span>
+                  <a href="https://www.linkedin.com/in/joonhojhan/">
+                    <span className="newProjectText">JOONHO HAN</span>
+                  </a>
                   <p className="captionText">SOFTWARE ENGINEER</p>
                 </Card.Header>
               </Card.Content>
@@ -50,7 +50,9 @@ export default function Home() {
               />
               <Card.Content style={{ height: '73.16px' }}>
                 <Card.Header>
-                  <span className="newProjectText">ELLIOT GONZALEZ</span>
+                  <a href="https://www.linkedin.com/in/elliot-gonzalez-4b18534a/">
+                    <span className="newProjectText">ELLIOT GONZALEZ</span>
+                  </a>
                   <p className="captionText">SOFTWARE ENGINEER</p>
                 </Card.Header>
               </Card.Content>
