@@ -130,7 +130,7 @@ code {
   background-color: rgb(255, 208, 0);
   min-width: 100%;
   height: 100%;
-  padding-bottom: 100%;
+  padding-bottom: 30%;
 }
 
 nav {
@@ -283,4 +283,41 @@ img.ui.image {
 .divStyle img {
   width: inherit;
   height: inherit;
+}
+
+.team {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  color: black;
+  letter-spacing: 4px;
+}
+
+#teamCards {
+  align-content: center;
+  padding-top: 30px;
+}
+
+.captionText {
+  color: black;
+  font-family: 'Montserrat', sans-serif;
+  padding-top: 4px;
+  font-size: 0.5em;
+  letter-spacing: 1px;
+  font-weight: 10;
+}
+
+#profileCards {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.teamSingleCards {
+  border-style: none;
+}
+
+#teamBar {
+  padding-top: 20px;
+  max-width: 20%;
+  border-bottom-style: solid;
 }
