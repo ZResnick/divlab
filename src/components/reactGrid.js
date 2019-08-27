@@ -529,11 +529,11 @@ class divlab extends React.PureComponent {
 									<Modal.Header>Add a Title</Modal.Header>
 									<Modal.Content>
 										<Form>
-											<Form.Field>
+											<Form.Field required>
 												<label>Title</label>
 												<input name="title" value={this.state.title} placeholder="Title" onChange={this.handleTitleChange} />
 											</Form.Field>
-											<Button onClick={this.save}>Confirm</Button>
+											<Button onClick={this.save} disabled={!this.state.title.length}>Confirm</Button>
 										</Form>
 									</Modal.Content>
 								</Modal>

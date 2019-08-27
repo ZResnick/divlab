@@ -375,7 +375,7 @@ class divlabTwo extends React.PureComponent {
             Hide Components
           </Button>
         </Button.Group>
-
+				<div className='myProjects' style={{marginTop:"20px"}}><p>{this.state.title}</p></div>
         <Sidebar.Pushable
           as={Segment}
           style={{ backgroundColor: 'rgb(255, 208, 0)' }}
