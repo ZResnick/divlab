@@ -9,21 +9,23 @@ export default function HeaderComponent(props) {
     width: '1200px',
     height: '600px',
     backgroundImage: `url(${backgroundUrl})`,
-    backgroundSize: 'stretch',
+    backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   };
 
   let headerStyle = {
     color: 'white',
     fontSize: '48px',
     fontFamily: 'Corben, cursive',
-    fontStyle: 'cursive',
-    paddingTop: '16%',
+    fontStyle: 'cursive'
   };
 
   let navbarStyle = {
     paddingTop: '3%',
-    textAlign: 'right',
+    textAlign: 'right'
   };
 
   let navLinkStyle = {
@@ -35,7 +37,7 @@ export default function HeaderComponent(props) {
     padding: '5px',
     paddingLeft: '8px',
     paddingRight: '8px',
-    borderRadius: '20px',
+    borderRadius: '20px'
   };
   return backgroundUrl.length || title.length || navlinks.length ? (
     <div style={divStyle} name="HeaderComponent">
