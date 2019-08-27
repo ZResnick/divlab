@@ -1,16 +1,33 @@
 import React from 'react';
-import { Card, Image } from 'semantic-ui-react';
+import {
+  Card, Image, Button, Confirm
+} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getAllPages, deleteAPage } from '../store/pageReducer';
 
 class UserProjects extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			open: false
+		}
+	}
   componentDidMount() {
-    this.props.getAllPages(this.props.auth.auth.uid);
-  }
+		this.props.getAllPages(this.props.auth.auth.uid);
+		this.forceUpdate()
+	}
+
+	show = () => this.setState({open:true})
+	handleConfirm = (pageId) => {
+		this.setState({open: false});
+		const {auth} = this.props
+		this.props.deleteAPage(auth.auth.uid, pageId)
+	}
+	handleCancel = () => this.setState({open: false})
 
   render() {
-    const { pages } = this.props;
+		const { pages } = this.props;
     return (
       <div>
         <div className="myProjects">
@@ -46,6 +63,11 @@ class UserProjects extends React.Component {
                         </span>
                       </Card.Header>
                     </Card.Content>
+										<Button onClick={this.show}>Delete</Button>
+										<Confirm open={this.state.open}
+                  content="Are you sure you want to delete this project?"
+                  onCancel={this.handleCancel}
+                  onConfirm={() => this.handleConfirm(page.id)} />
                   </Card>
                 );
               })
