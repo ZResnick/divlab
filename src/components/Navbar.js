@@ -22,10 +22,6 @@ const Navbar = props => {
             <a
               href="/projects"
               className="navlink"
-
-              //   onClick={() => {
-              //     window.location.refresh();
-              //   }}
             >
               {profile.initials}
             </a>

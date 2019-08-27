@@ -26,13 +26,10 @@ export const getAllPages = userId => async (
       .get()
       .then(snapshot =>
         snapshot.forEach(page => {
-          // console.log(page.id);
           pagesArray.push({ id: page.id, data: page.data() });
         })
       );
-    if (pagesArray.length) {
       dispatch(gotAllPages(pagesArray));
-    }
   } catch (err) {
     console.error(err);
   }
@@ -51,8 +48,8 @@ export const addAPage = (userId, pageData) => async (
       .doc(userId)
       .collection('pages')
       .add({ pageData });
-    dispatch(getAllPages(userId));
-    // history.push('/projects');
+		dispatch(getAllPages(userId));
+		history.push('/projects')
   } catch (err) {
     console.error(err);
   }
@@ -72,11 +69,10 @@ export const editAPage = (userId, pageId, pageData) => async (
       .collection('pages')
       .doc(pageId)
       .set({ pageData });
-    dispatch(getAllPages(userId));
-    // history.push('/projects');
-  } catch (err) {
-    console.error(err);
-  }
+			dispatch(getAllPages(userId));
+		} catch (err) {
+			console.error(err);
+		}
 };
 
 export const deleteAPage = (userId, pageId) => async (
@@ -92,8 +88,8 @@ export const deleteAPage = (userId, pageId) => async (
       .collection('pages')
       .doc(pageId)
       .delete();
-    dispatch(getAllPages(userId));
-    history.push('/projects');
+			dispatch(getAllPages(userId));
+			history.push('/projects')
   } catch (err) {
     console.error(err);
   }
