@@ -89,8 +89,8 @@ export const deleteAPage = (userId, pageId) => async (
       .collection('pages')
       .doc(pageId)
       .delete();
-    dispatch(getAllPages(userId));
-    history.push('/projects');
+			dispatch(getAllPages(userId));
+			history.push('/projects');
   } catch (err) {
     console.error(err);
   }

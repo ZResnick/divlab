@@ -10,15 +10,17 @@ class UserProjects extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			open: false
+			open: false,
+			modalId: ''
 		}
 	}
   componentDidMount() {
 		this.props.getAllPages(this.props.auth.auth.uid);
-		this.forceUpdate()
 	}
 
-	show = () => this.setState({open:true})
+	show = (pageId) => {
+		this.setState({open:true, modalId: pageId})
+	}
 	handleConfirm = (pageId) => {
 		this.setState({open: false});
 		const {auth} = this.props
@@ -50,9 +52,9 @@ class UserProjects extends React.Component {
               </Card.Content>
             </Card>
             {pages.length ? (
-              pages.map(page => {
+              pages.map((page, idx) => {
                 return (
-                  <Card key={page.id}>
+                  <Card key={idx}>
                     <Image src="/images/projectImage.png" wrapped ui={false} />
                     <Card.Content>
                       <Card.Header>
@@ -63,12 +65,15 @@ class UserProjects extends React.Component {
                         </span>
                       </Card.Header>
                     </Card.Content>
-										<Button onClick={this.show}>Delete</Button>
+										<Button onClick={() => this.show(page.id)}>Delete
+										</Button>
 										<Confirm open={this.state.open}
                   content="Are you sure you want to delete this project?"
                   onCancel={this.handleCancel}
-                  onConfirm={() => this.handleConfirm(page.id)} />
-                  </Card>
+									onConfirm={() => {
+										this.handleConfirm(this.state.modalId)
+									}} />
+									</Card>
                 );
               })
             ) : (
