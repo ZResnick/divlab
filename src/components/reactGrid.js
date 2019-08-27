@@ -29,7 +29,8 @@ import {
   Menu,
   Segment,
   Sidebar,
-  Confirm,
+	Confirm,
+	Modal, Form
 } from 'semantic-ui-react';
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
@@ -68,7 +69,8 @@ class divlab extends React.PureComponent {
       components: [],
       usedComponents: [],
       html: '',
-      open: false,
+			open: false,
+			title: ''
     };
 
     this.onAddItem = this.onAddItem.bind(this);
@@ -88,7 +90,13 @@ class divlab extends React.PureComponent {
   handleCancel = () => this.setState({ open: false });
   handleHideClick = () => this.setState({ visible: false });
   handleShowClick = () => this.setState({ visible: true });
-  handleSidebarHide = () => this.setState({ visible: false });
+	handleSidebarHide = () => this.setState({ visible: false });
+	handleTitleChange = async (e) => {
+		e.preventDefault();
+		await this.setState({
+			title: e.target.value
+		})
+	}
 
   componentDidMount() {
     this.props.auth.auth.uid &&
@@ -134,7 +142,8 @@ class divlab extends React.PureComponent {
             visible,
             newCounter,
             components: [],
-            usedComponents: [],
+						usedComponents: [],
+						title: this.state.title
           },
           html,
         })
@@ -362,7 +371,7 @@ class divlab extends React.PureComponent {
   };
 
   render() {
-    const { visible } = this.state;
+		const { visible } = this.state;
     return (
       <div>
         <Button.Group>
@@ -516,7 +525,19 @@ class divlab extends React.PureComponent {
                   Toggle Preview
                 </Button>
                 <Button onClick={this.onAddItem}>Add New Container</Button>
-                <Button onClick={this.save}>Save</Button>
+								<Modal trigger={<Button>Save</Button>}>
+									<Modal.Header>Add a Title</Modal.Header>
+									<Modal.Content>
+										<Form>
+											<Form.Field>
+												<label>Title</label>
+												<input name="title" value={this.state.title} placeholder="Title" onChange={this.handleTitleChange} />
+											</Form.Field>
+											<Button onClick={this.save}>Confirm</Button>
+										</Form>
+									</Modal.Content>
+								</Modal>
+
                 <Button
                   onClick={() => {
                     let html = document.querySelector('html').innerHTML;

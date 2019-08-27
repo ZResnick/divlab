@@ -68,7 +68,8 @@ class divlabTwo extends React.PureComponent {
       components: [],
       usedComponents: [],
       html: '',
-      open: false,
+			open: false,
+			title: ''
     };
 
     this.onAddItem = this.onAddItem.bind(this);
@@ -120,7 +121,8 @@ class divlabTwo extends React.PureComponent {
             visible,
             newCounter,
             components: [],
-            usedComponents: [],
+						usedComponents: [],
+						title: this.state.title
           },
           html,
         })
