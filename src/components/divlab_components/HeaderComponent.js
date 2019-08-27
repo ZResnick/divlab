@@ -24,15 +24,10 @@ export default function HeaderComponent(props) {
   };
 
   let navbarStyle = {
-<<<<<<< HEAD
     padding: '25px',
 		position: 'absolute',
 		top: '8px',
 		right: '12px'
-=======
-    paddingTop: '3%',
-    textAlign: 'right'
->>>>>>> master
   };
 
   let navLinkStyle = {
