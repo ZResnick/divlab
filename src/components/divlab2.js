@@ -68,7 +68,8 @@ class divlabTwo extends React.PureComponent {
       components: [],
       usedComponents: [],
       html: '',
-      open: false,
+			open: false,
+			title: ''
     };
 
     this.onAddItem = this.onAddItem.bind(this);
@@ -120,7 +121,8 @@ class divlabTwo extends React.PureComponent {
             visible,
             newCounter,
             components: [],
-            usedComponents: [],
+						usedComponents: [],
+						title: this.state.title
           },
           html,
         })
@@ -373,7 +375,7 @@ class divlabTwo extends React.PureComponent {
             Hide Components
           </Button>
         </Button.Group>
-
+				<div className='myProjects' style={{marginTop:"20px"}}><p>{this.state.title}</p></div>
         <Sidebar.Pushable
           as={Segment}
           style={{ backgroundColor: 'rgb(255, 208, 0)' }}
