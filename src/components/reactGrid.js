@@ -535,13 +535,6 @@ class divlab extends React.PureComponent {
                 >
                   Export
                 </Button>
-                <Button onClick={this.show}>Delete Project</Button>
-                <Confirm
-                  open={this.state.open}
-                  content="Are you sure you want to delete this project?"
-                  onCancel={this.handleCancel}
-                  onConfirm={this.handleConfirm}
-                />
               </div>
               {/* Styling for centering grid here */}
               <div

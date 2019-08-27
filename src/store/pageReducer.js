@@ -29,9 +29,7 @@ export const getAllPages = userId => async (
           pagesArray.push({ id: page.id, data: page.data() });
         })
       );
-    if (pagesArray.length) {
       dispatch(gotAllPages(pagesArray));
-    }
   } catch (err) {
     console.error(err);
   }
@@ -50,7 +48,8 @@ export const addAPage = (userId, pageData) => async (
       .doc(userId)
       .collection('pages')
       .add({ pageData });
-    dispatch(getAllPages(userId));
+		dispatch(getAllPages(userId));
+		history.push('/projects')
   } catch (err) {
     console.error(err);
   }
@@ -70,10 +69,10 @@ export const editAPage = (userId, pageId, pageData) => async (
       .collection('pages')
       .doc(pageId)
       .set({ pageData });
-    dispatch(getAllPages(userId));
-  } catch (err) {
-    console.error(err);
-  }
+			dispatch(getAllPages(userId));
+		} catch (err) {
+			console.error(err);
+		}
 };
 
 export const deleteAPage = (userId, pageId) => async (
@@ -90,7 +89,7 @@ export const deleteAPage = (userId, pageId) => async (
       .doc(pageId)
       .delete();
 			dispatch(getAllPages(userId));
-			history.push('/projects');
+			history.push('/projects')
   } catch (err) {
     console.error(err);
   }
