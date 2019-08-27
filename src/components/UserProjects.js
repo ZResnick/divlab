@@ -53,6 +53,7 @@ class UserProjects extends React.Component {
             </Card>
             {pages.length ? (
               pages.map((page, idx) => {
+								const {title} = JSON.parse(page.data.pageData).canvas
                 return (
                   <Card key={idx}>
                     <Image src="/images/projectImage.png" wrapped ui={false} />
@@ -60,7 +61,7 @@ class UserProjects extends React.Component {
                       <Card.Header>
                         <span className="projectTitles">
                           <Link to={`/divlab/${page.id}`}>
-                            Project Number: {page.id}
+                            {title}
                           </Link>
                         </span>
                       </Card.Header>
