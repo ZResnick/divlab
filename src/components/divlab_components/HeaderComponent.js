@@ -8,6 +8,8 @@ export default function HeaderComponent(props) {
   let divStyle = {
     width: '1200px',
     height: '600px',
+    // width: 'inherit',
+    // height: '100%',
     backgroundImage: `url(${backgroundUrl})`,
     backgroundSize: 'stretch',
     backgroundRepeat: 'no-repeat',
