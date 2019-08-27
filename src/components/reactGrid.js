@@ -51,7 +51,7 @@ const droppableStyle1 = {
   margin: '32px',
 };
 
-class divlabTwo extends React.PureComponent {
+class divlab extends React.PureComponent {
   static defaultProps = {
     className: 'layout',
     cols: { lg: 120, md: 100, sm: 60, xs: 40, xxs: 20 },
@@ -457,7 +457,6 @@ class divlabTwo extends React.PureComponent {
 
           <Sidebar.Pusher dimmed={visible}>
             <Segment basic>
-              {/* <Header as="h3">Application Content</Header> */}
               <div style={{ marginBottom: '10px' }}>
                 <Button
                   onClick={() => {
@@ -589,8 +588,6 @@ class divlabTwo extends React.PureComponent {
                       })}
                     </ResponsiveReactGridLayout>
                   </Droppable>
-
-                  {/* </Droppable> */}
                 </div>
               </div>
             </Segment>
@@ -629,4 +626,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(divlabTwo);
+)(divlab);

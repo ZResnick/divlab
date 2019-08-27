@@ -457,7 +457,6 @@ class divlabTwo extends React.PureComponent {
 
           <Sidebar.Pusher dimmed={visible}>
             <Segment basic>
-              {/* <Header as="h3">Application Content</Header> */}
               <div style={{ marginBottom: '10px' }}>
                 <Button
                   onClick={() => {
@@ -589,8 +588,6 @@ class divlabTwo extends React.PureComponent {
                       })}
                     </ResponsiveReactGridLayout>
                   </Droppable>
-
-                  {/* </Droppable> */}
                 </div>
               </div>
             </Segment>

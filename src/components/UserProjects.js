@@ -4,11 +4,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getAllPages, deleteAPage } from '../store/pageReducer';
 
-// window.location.reload();
-
 class UserProjects extends React.Component {
   componentDidMount() {
-    // window.location.reload();
     this.props.getAllPages(this.props.auth.auth.uid);
   }
 
