@@ -151,7 +151,7 @@ class divlab extends React.PureComponent {
         if (
           curEl === 'HeadshotComponent' ||
           curEl === 'ParagraphComponent' ||
-          'CardComponent'
+          'CardComponent' || 'SidewaysCardComponent' || 'HeaderComponent'
         ) {
           switch (curEl) {
             case 'HeadshotComponent':
