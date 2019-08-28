@@ -92,13 +92,13 @@ https://react.semantic-ui.com/
 
 ## Tutorial
 
-![tutorial1](https://giphy.com/embed/J4PKuvA1yFchB2jqL5)
+![tutorial1](https://media.giphy.com/media/J4PKuvA1yFchB2jqL5/giphy.gif)
 
-![tutorial2](https://giphy.com/embed/WONVnWRggvRSt5VOeY)
+![tutorial2](https://media.giphy.com/media/WONVnWRggvRSt5VOeY/giphy.gif)
 
-![tutorial3](https://giphy.com/embed/RezPYlVYRn42xsi59M)
+![tutorial3](https://media.giphy.com/media/RezPYlVYRn42xsi59M/giphy.gif)
 
-![tutorial4](https://giphy.com/embed/W4QtsmAF21Aq5J8Nih)
+![tutorial4](https://media.giphy.com/media/W4QtsmAF21Aq5J8Nih/giphy.gif)
 
 ## Examples
 
