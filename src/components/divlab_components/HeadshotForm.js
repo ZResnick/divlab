@@ -38,7 +38,14 @@ export default class HeadshotForm extends Component {
   render() {
     return this.state.edit ? (
       <div>
-        <Form onSubmit={this.switchEdit}>
+        <Form
+          style={{
+            border: '2px dotted white',
+            padding: '10px',
+            borderRadius: '10px',
+          }}
+          onSubmit={this.switchEdit}
+        >
           <Form.Input
             label="div ID"
             type="text"
@@ -55,7 +62,13 @@ export default class HeadshotForm extends Component {
             placeholder="https://url"
             onChange={this.handleChange}
           />
-          <Button className="edit-button-on" type="submit">
+          <Button
+            compact
+            size="mini"
+            color="orange"
+            className="preview"
+            type="submit"
+          >
             Preview
           </Button>
         </Form>
@@ -63,7 +76,14 @@ export default class HeadshotForm extends Component {
     ) : (
       <div id={this.state.id && this.state.id}>
         <HeadshotComponent info={this.state} />
-        <Button className="edit-button-on" onClick={this.switchEdit} width={6}>
+        <Button
+          compact
+          size="mini"
+          color="teal"
+          className="edit-button-on"
+          onClick={this.switchEdit}
+          width={6}
+        >
           Edit
         </Button>
       </div>
