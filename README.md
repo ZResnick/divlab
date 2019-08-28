@@ -14,7 +14,7 @@ DivLab is full-stack web application for mocking up and building web application
   - [React](#React)
   - [Redux](#Redux)
   - [Firebase](#Firebase)
-  - [Firestore](###Firestore)
+  - [Firestore](#Firestore)
   - [HTML5 Drag and Drop](#HTML5-Drag-and-Drop)
   - [React-Grid-Layout](#React-Grid-Layout)
   - [Semantic UI React](#Semantic-UI-React)
@@ -146,9 +146,9 @@ To do this, change the div ID of the component you want the link to navigate to,
 
 ## Examples
 
-![example2](https://github.com/bowserdnd/divlab/blob/readme/public/images/example2.png)
+![example2](https://github.com/bowserdnd/divlab/blob/master/public/images/example2.png)
 
-![example1](https://github.com/bowserdnd/divlab/blob/readme/public/images/example1.png)
+![example1](https://github.com/bowserdnd/divlab/blob/master/public/images/example1.png)
 
 ## Available Scripts
 
