@@ -19,29 +19,119 @@ class Navbar extends React.Component {
         render: () => {
           return (
             <div>
+              <center>
+                <h2>
+                  After logging in, add a container or two to your canvas...
+                </h2>
+              </center>
+              <br />
               <iframe
-                TITLE="TOUR"
-                src="https://giphy.com/embed/lQ7R3JYODF1CTiBW8w"
+                title="intro"
+                src="https://giphy.com/embed/J4PKuvA1yFchB2jqL5"
                 width="800"
                 height="410"
                 frameBorder="0"
                 class="giphy-embed"
                 allowFullScreen
               ></iframe>
-              <h5>Add a container.</h5>
+              <center>
+                <h4>
+                  You can add, resize, move, and delete these containers as you
+                  wish.
+                </h4>
+              </center>
             </div>
           );
         },
       },
       {
         render: () => {
-          return <Image src="https://i.imgur.com/0eRe75Y.jpg" />;
+          return (
+            <div>
+              <center>
+                <h2>
+                  Click "Show Comopnents" to choose which elements to add to
+                  your canvas.
+                </h2>
+              </center>
+              <br />
+              <iframe
+                title="another"
+                src="https://giphy.com/embed/WONVnWRggvRSt5VOeY"
+                width="800"
+                height="410"
+                frameBorder="0"
+                class="giphy-embed"
+                allowFullScreen
+              ></iframe>
+              <center>
+                <h4>
+                  After adding a component, fill out the form and click preview
+                  to see your element in action!
+                </h4>
+              </center>
+            </div>
+          );
         },
       },
       {
         render: () => {
           return (
-            <Image src="https://flipwallpapers.com/wallpapers/anime-wallpaper-hd-resolution-For-desktop-Wallpaper.jpg" />
+            <div>
+              <center>
+                <h2>
+                  When you're happy with the way everything looks, save it to
+                  your projects page.
+                </h2>
+              </center>
+              <br />
+              <iframe
+                title="anotherrr"
+                src="https://giphy.com/embed/RezPYlVYRn42xsi59M"
+                width="800"
+                height="410"
+                frameBorder="0"
+                class="giphy-embed"
+                allowFullScreen
+              ></iframe>
+              <center>
+                <h4>
+                  Don't worry! You can always go back and edit your page later.
+                  PRO TIP: You can see what your page will look like live by
+                  toggling the preview button on and off!
+                </h4>
+              </center>
+            </div>
+          );
+        },
+      },
+      {
+        render: () => {
+          return (
+            <div>
+              <center>
+                <h2>
+                  Once your happy with your site, export it as an HTML file.
+                </h2>
+              </center>
+              <br />
+              <iframe
+                title="outro"
+                src="https://giphy.com/embed/W4QtsmAF21Aq5J8Nih"
+                width="800"
+                height="410"
+                frameBorder="0"
+                class="giphy-embed"
+                allowFullScreen
+              ></iframe>
+              <center>
+                <h4>
+                  Launch the download using your favorite Text Editor or
+                  directly in your web browser of choice, and see your site in
+                  action!
+                </h4>
+              </center>
+            </div>
           );
         },
       },
@@ -58,7 +148,9 @@ class Navbar extends React.Component {
             </div>
             <div>
               <Modal trigger={<Link className="navlink">TOUR</Link>}>
-                <Modal.Header>How to use {'<divlab />'}</Modal.Header>
+                <Modal.Header>
+                  <center>How to use {'<divlab />'}</center>
+                </Modal.Header>
                 <Modal.Content>
                   <Carousel
                     elements={elements}
@@ -86,6 +178,16 @@ class Navbar extends React.Component {
               </Link>
             </div>
             <div>
+              <Modal trigger={<Link className="navlink">TOUR</Link>}>
+                <Modal.Header>How to use {'<divlab />'}</Modal.Header>
+                <Modal.Content>
+                  <Carousel
+                    elements={elements}
+                    showNextPrev={true}
+                    showIndicators={false}
+                  />
+                </Modal.Content>
+              </Modal>
               <Link className="navlink" to="/divlab">
                 TRY IT
               </Link>
