@@ -2,16 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signOut } from '../store/authReducer';
-import { Modal, Image } from 'semantic-ui-react';
+import { Modal } from 'semantic-ui-react';
 import Carousel from 'semantic-ui-carousel-react';
 
 class Navbar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: false,
-    };
-  }
+	constructor(props) {
+		super(props);
+		this.state = {
+			open: false,
+		};
+	}
 
   render() {
     const elements = [
@@ -170,92 +170,92 @@ class Navbar extends React.Component {
       },
     ];
 
-    return (
-      <div id="navbar">
-        {this.props.auth.auth.uid ? (
-          <nav>
-            <div>
-              <Link id="mainHeader" className="navlink" to="/home">
-                {'<divlab />'}
-              </Link>
-            </div>
-            <div>
-              <Modal trigger={<Link className="navlink">TOUR</Link>}>
-                <Modal.Header>
-                  <center>How to use {'<divlab />'}</center>
-                </Modal.Header>
-                <Modal.Content>
-                  <Carousel
-                    elements={elements}
-                    showNextPrev={true}
-                    showIndicators={false}
-                  />
-                </Modal.Content>
-              </Modal>
-              <Link className="navlink" to="/divlab">
-                NEW PROJECT
-              </Link>
-              <a href="/projects" className="navlink">
-                {this.props.profile.initials}
-              </a>
-              <Link className="navlink" to="/" onClick={this.props.signOut}>
-                SIGN OUT
-              </Link>
-            </div>
-          </nav>
-        ) : (
-          <nav>
-            <div>
-              <Link id="mainHeader" className="navlink" to="/home">
-                {'<divlab />'}
-              </Link>
-            </div>
-            <div>
-              <Modal trigger={<Link className="navlink">TOUR</Link>}>
-                <Modal.Header>How to use {'<divlab />'}</Modal.Header>
-                <Modal.Content>
-                  <Carousel
-                    elements={elements}
-                    showNextPrev={true}
-                    showIndicators={false}
-                  />
-                </Modal.Content>
-              </Modal>
-              <Link className="navlink" to="/divlab">
-                TRY IT
-              </Link>
-              <Link className="navlink" to="/signIn">
-                SIGN IN
-              </Link>
-            </div>
-          </nav>
-        )}
-      </div>
-    );
-  }
+		return (
+			<div id="navbar">
+				{this.props.auth.auth.uid ? (
+					<nav>
+						<div>
+							<Link id="mainHeader" className="navlink" to="/home">
+								{'<divlab />'}
+							</Link>
+						</div>
+						<div>
+							<Modal trigger={<Link className="navlink">TOUR</Link>}>
+								<Modal.Header>
+									<center>How to use {'<divlab />'}</center>
+								</Modal.Header>
+								<Modal.Content>
+									<Carousel
+										elements={elements}
+										showNextPrev={true}
+										showIndicators={false}
+									/>
+								</Modal.Content>
+							</Modal>
+							<Link className="navlink" to="/divlab">
+								NEW PROJECT
+							</Link>
+							<a href="/projects" className="navlink">
+								{this.props.profile.initials}
+							</a>
+							<Link className="navlink" to="/" onClick={this.props.signOut}>
+								SIGN OUT
+							</Link>
+						</div>
+					</nav>
+				) : (
+					<nav>
+						<div>
+							<Link id="mainHeader" className="navlink" to="/home">
+								{'<divlab />'}
+							</Link>
+						</div>
+						<div>
+							<Modal trigger={<Link className="navlink">TOUR</Link>}>
+								<Modal.Header>How to use {'<divlab />'}</Modal.Header>
+								<Modal.Content>
+									<Carousel
+										elements={elements}
+										showNextPrev={true}
+										showIndicators={false}
+									/>
+								</Modal.Content>
+							</Modal>
+							<Link className="navlink" to="/divlab">
+								TRY IT
+							</Link>
+							<Link className="navlink" to="/signIn">
+								SIGN IN
+							</Link>
+						</div>
+					</nav>
+				)}
+			</div>
+		);
+	}
 }
 
 /**
  * CONTAINER
  */
 const mapStateToProps = state => {
-  return {
-    auth: state.firebase,
-    profile: state.firebase.profile,
-  };
+	return {
+		auth: state.firebase,
+		profile: state.firebase.profile,
+	};
 };
 
 const mapDispatchToProps = dispatch => {
-  return {
-    signOut: () => {
-      dispatch(signOut());
-    },
-  };
+	return {
+		signOut: () => {
+			dispatch(signOut());
+		},
+	};
 };
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+	mapStateToProps,
+	mapDispatchToProps
 )(Navbar);
 
 /**

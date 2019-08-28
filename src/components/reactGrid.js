@@ -26,7 +26,6 @@ import {
   Menu,
   Segment,
   Sidebar,
-  Confirm,
   Modal,
   Form,
 } from 'semantic-ui-react';
