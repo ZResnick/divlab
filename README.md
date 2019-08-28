@@ -4,6 +4,8 @@ DivLab is full-stack web application for mocking up and building web application
 
 ## Table of Contents
 
+- [DivLab](#DivLab)
+- [Table of Contents](#Table-of-Contents)
 - [Team](#Team)
   - [Zachary Resnick](#Zachary-Resnick)
   - [Joonho Han](#Joonho-Han)
