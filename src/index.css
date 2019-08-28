@@ -75,8 +75,15 @@ code {
 .edit-button-on {
   padding: 5px;
   position: absolute;
-  top: 5px;
-  left: 5px;
+  top: 10px;
+  left: 10px;
+}
+
+.preview {
+  padding: 5px;
+  position: absolute;
+  top: 2px;
+  left: 10px;
 }
 
 .edit-button-off {

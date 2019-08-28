@@ -4,23 +4,34 @@ import { Button, Form } from 'semantic-ui-react';
 
 export default class CardForm extends Component {
   constructor(props) {
-		super(props);
-		if (this.props.info) {
-			const {name, description, id, caption, imageUrl, edit} = this.props.info
-			this.state = {
-				name, description, id, caption, imageUrl, edit
-			}
-		} else {
-			this.state = {
-				name: '',
-				description: '',
-				caption: '',
-				imageUrl: '',
-				id: '',
-				edit: true,
-			}
-
-		}
+    super(props);
+    if (this.props.info) {
+      const {
+        name,
+        description,
+        id,
+        caption,
+        imageUrl,
+        edit,
+      } = this.props.info;
+      this.state = {
+        name,
+        description,
+        id,
+        caption,
+        imageUrl,
+        edit,
+      };
+    } else {
+      this.state = {
+        name: '',
+        description: '',
+        caption: '',
+        imageUrl: '',
+        id: '',
+        edit: true,
+      };
+    }
     this.switchEdit = this.switchEdit.bind(this);
   }
 
@@ -40,7 +51,14 @@ export default class CardForm extends Component {
   render() {
     return this.state.edit ? (
       <div>
-        <Form onSubmit={this.switchEdit}>
+        <Form
+          style={{
+            border: '2px dotted white',
+            padding: '10px',
+            borderRadius: '10px',
+          }}
+          onSubmit={this.switchEdit}
+        >
           <Form.Input
             label="div ID"
             type="text"
@@ -81,7 +99,13 @@ export default class CardForm extends Component {
             placeholder="Description"
             onChange={this.handleChange}
           />
-          <Button className="edit-button-on" type="submit">
+          <Button
+            compact
+            size="mini"
+            color="orange"
+            className="preview"
+            type="submit"
+          >
             Preview
           </Button>
         </Form>
@@ -89,7 +113,14 @@ export default class CardForm extends Component {
     ) : (
       <div id={this.state.id && this.state.id}>
         <SidewaysCardComponent info={this.state} />
-        <Button className="edit-button-on" onClick={this.switchEdit} width={6}>
+        <Button
+          compact
+          size="mini"
+          color="teal"
+          className="edit-button-on"
+          onClick={this.switchEdit}
+          width={6}
+        >
           Edit
         </Button>
       </div>
