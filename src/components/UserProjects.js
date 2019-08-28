@@ -1,35 +1,33 @@
 import React from 'react';
-import {
-  Card, Image, Button, Confirm
-} from 'semantic-ui-react';
+import { Card, Image, Button, Confirm, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getAllPages, deleteAPage } from '../store/pageReducer';
 
 class UserProjects extends React.Component {
-	constructor() {
-		super();
-		this.state = {
-			open: false,
-			modalId: ''
-		}
-	}
+  constructor() {
+    super();
+    this.state = {
+      open: false,
+      modalId: '',
+    };
+  }
   componentDidMount() {
-		this.props.getAllPages(this.props.auth.auth.uid);
-	}
+    this.props.getAllPages(this.props.auth.auth.uid);
+  }
 
-	show = (pageId) => {
-		this.setState({open:true, modalId: pageId})
-	}
-	handleConfirm = (pageId) => {
-		this.setState({open: false});
-		const {auth} = this.props
-		this.props.deleteAPage(auth.auth.uid, pageId)
-	}
-	handleCancel = () => this.setState({open: false})
+  show = pageId => {
+    this.setState({ open: true, modalId: pageId });
+  };
+  handleConfirm = pageId => {
+    this.setState({ open: false });
+    const { auth } = this.props;
+    this.props.deleteAPage(auth.auth.uid, pageId);
+  };
+  handleCancel = () => this.setState({ open: false });
 
   render() {
-		const { pages } = this.props;
+    const { pages } = this.props;
     return (
       <div>
         <div className="myProjects">
@@ -53,28 +51,30 @@ class UserProjects extends React.Component {
             </Card>
             {pages.length ? (
               pages.map((page, idx) => {
-								const {title} = JSON.parse(page.data.pageData).canvas
+                const { title } = JSON.parse(page.data.pageData).canvas;
                 return (
                   <Card key={idx}>
                     <Image src="/images/projectImage.png" wrapped ui={false} />
                     <Card.Content>
                       <Card.Header>
                         <span className="projectTitles">
-                          <Link to={`/divlab/${page.id}`}>
-                            {title}
-                          </Link>
+                          <Link to={`/divlab/${page.id}`}>{title}</Link>
                         </span>
                       </Card.Header>
                     </Card.Content>
-										<Button onClick={() => this.show(page.id)}>Delete
-										</Button>
-										<Confirm open={this.state.open}
-                  content="Are you sure you want to delete this project?"
-                  onCancel={this.handleCancel}
-									onConfirm={() => {
-										this.handleConfirm(this.state.modalId)
-									}} />
-									</Card>
+                    <Button onClick={() => this.show(page.id)}>
+                      <Icon name="trash alternate" />
+                      Delete Project
+                    </Button>
+                    <Confirm
+                      open={this.state.open}
+                      content="Are you sure you want to delete this project?"
+                      onCancel={this.handleCancel}
+                      onConfirm={() => {
+                        this.handleConfirm(this.state.modalId);
+                      }}
+                    />
+                  </Card>
                 );
               })
             ) : (

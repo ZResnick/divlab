@@ -169,7 +169,7 @@ class divlabTwo extends React.PureComponent {
                 <HeadshotForm
                   info={{
                     imageUrl: data[i + 1],
-                    id: `headshot${i}`,
+                    id: `image${i}`,
                     edit: false
                   }}
                 />,
@@ -441,7 +441,7 @@ class divlabTwo extends React.PureComponent {
               }}
             >
               <Icon name="image" />
-              Headshot
+              Image
             </Menu.Item>
 
             <Menu.Item
@@ -516,10 +516,17 @@ class divlabTwo extends React.PureComponent {
                     });
                   }}
                 >
+                  <Icon name="eye" />
                   Toggle Preview
                 </Button>
-                <Button onClick={this.onAddItem}>Add New Container</Button>
-                <Button onClick={this.save}>Save</Button>
+                <Button onClick={this.onAddItem}>
+                  <Icon name="plus square" />
+                  Add New Container
+                </Button>
+                <Button onClick={this.save}>
+                  <Icon name="save" />
+                  Save
+                </Button>
                 <Button
                   onClick={() => {
                     // let html = document.querySelector('html').innerHTML;
@@ -550,9 +557,13 @@ class divlabTwo extends React.PureComponent {
                     document.body.removeChild(download);
                   }}
                 >
+                  <Icon name="download" />
                   Export
                 </Button>
-                <Button onClick={this.show}>Delete Project</Button>
+                <Button onClick={this.show}>
+                  <Icon name="trash alternate" />
+                  Delete Project
+                </Button>
                 <Confirm
                   open={this.state.open}
                   content="Are you sure you want to delete this project?"
