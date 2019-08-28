@@ -4,6 +4,31 @@ A collaborative effort between:
 
 ### `Zachary Resnick, Joonho Han, Elliot Gonzalez :)`
 
+## Tech Stack
+
+Technologies used in this project:
+
+### `React`
+
+### `Redux`
+
+```
+Firebase
+
+https://firebase.google.com/
+
+### `Firestore`
+
+```
+
+### `HTML5 Drag and Drop`
+
+https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API
+
+### `React Grid Layout`
+
+https://github.com/STRML/react-grid-layout
+
 ## Available Scripts
 
 In the project directory, you can run:
