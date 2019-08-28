@@ -4,11 +4,11 @@ DivLab is full-stack web application for mocking up and building web application
 
 ## Table of Contents
 
-[Team](## Team)
-[Tech Stack](## Tech Stack)
-[Tutorial](## Tutorial)
-[Examples](## Examples)
-[Scripts](## Available Scripts)
+[Team](##Team)
+[Tech-Stack](##Tech-Stack)
+[Tutorial](##Tutorial)
+[Examples](##Examples)
+[Scripts](##Scripts)
 
 ## Team
 
@@ -30,7 +30,7 @@ Github: https://github.com/elliotgonzalez123
 
 LinkedIn: https://www.linkedin.com/in/elliot-gonzalez-4b18534a/
 
-## Tech Stack
+## Tech-Stack
 
 Technologies used in this project:
 
