@@ -4,13 +4,11 @@ DivLab is full-stack web application for mocking up and building web application
 
 ## Table of Contents
 
-```
 [Team](## Team)
 [Tech Stack](## Tech Stack)
 [Tutorial](## Tutorial)
 [Examples](## Examples)
 [Scripts](## Available Scripts)
-```
 
 ## Team
 
@@ -136,9 +134,9 @@ To do this, change the div ID of the component you want the link to navigate to,
 
 ## Examples
 
-![example1](https://github.com/bowserdnd/divlab/blob/readme/public/images/example1.png)
-
 ![example2](https://github.com/bowserdnd/divlab/blob/readme/public/images/example2.png)
+
+![example1](https://github.com/bowserdnd/divlab/blob/readme/public/images/example1.png)
 
 ## Available Scripts
 
