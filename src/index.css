@@ -318,7 +318,7 @@ img.ui.image {
 	font-family: 'Montserrat', sans-serif;
 	font-weight: bold;
 	font-size: 24px;
-	color: black;
+	color: white;
 	letter-spacing: 4px;
 }
 
@@ -349,6 +349,7 @@ img.ui.image {
 	padding-top: 20px;
 	max-width: 20%;
 	border-bottom-style: solid;
+	color: white;
 }
 
 button.ui.icon.button.prev {
