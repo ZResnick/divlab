@@ -90,6 +90,18 @@ https://react.semantic-ui.com/
 
 - Semantic UI is a modern front-end development framework. Is offers a sleek and subtle design that provides a lightweight user experience.
 
+## Tutorial
+
+![](https://giphy.com/embed/J4PKuvA1yFchB2jqL5)
+
+![](https://giphy.com/embed/WONVnWRggvRSt5VOeY)
+
+![](https://giphy.com/embed/RezPYlVYRn42xsi59M)
+
+![](https://giphy.com/embed/W4QtsmAF21Aq5J8Nih)
+
+## Examples
+
 ## Available Scripts
 
 In the project directory, you can run:
