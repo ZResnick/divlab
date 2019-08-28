@@ -136,9 +136,9 @@ To do this, change the div ID of the component you want the link to navigate to,
 
 ## Examples
 
-![example1](./public/image/example1.png)
+![example1](https://github.com/bowserdnd/divlab/blob/readme/public/images/example1.png)
 
-![example2](./public/image/example2.png)
+![example2](https://github.com/bowserdnd/divlab/blob/readme/public/images/example2.png)
 
 ## Available Scripts
 
