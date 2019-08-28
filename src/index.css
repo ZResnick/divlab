@@ -92,19 +92,20 @@ code {
 }
 
 .animate-welcome {
-	padding-top: 15%;
+	padding-top: 18%;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 10;
 	color: black;
 	font-size: 60px;
 	animation-name: moveInRight;
 	animation-duration: 2s;
+	margin-right: 4%;
 }
 
 @keyframes moveInRight {
 	0% {
 		opacity: 0;
-		transform: translateY(300px);
+		transform: translateY(250px);
 	}
 	80% {
 		transform: translateY(0px);
@@ -122,6 +123,7 @@ code {
 	letter-spacing: 4px;
 	animation-name: captionAnimation;
 	animation-duration: 3.2s;
+	margin-right: 4%;
 }
 
 @keyframes captionAnimation {
@@ -137,11 +139,28 @@ code {
 }
 
 #homepage {
+	justify-content: center;
 	background-color: rgb(92, 0, 41);
-	min-width: 100%;
+	min-width: 80%;
+	max-width: 80%;
 	height: 100%;
-	padding-bottom: 30%;
+	margin-top: 2%;
+	padding-bottom: 25%;
+	background-image: url('/images/comp.png');
+	/* background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/03/Devicetemplates_computer-02.png'); */
+	background-repeat: no-repeat;
+	background-size: contain;
 }
+
+/* #rightHomepage {
+  background-color: whitesmoke;
+  border-radius: 25px;
+  min-width: 30%;
+  max-width: 30%;
+  margin-top: 2%;
+  margin-bottom: 11.5%;
+  box-shadow: -2px 3px 50px -24px rgba(0, 0, 0, 0.75);
+} */
 
 #mainHeader {
 	margin-left: 30px;
