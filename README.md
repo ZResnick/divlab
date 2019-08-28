@@ -1,23 +1,26 @@
 # DivLab
 
-DivLab is full-stack web application for mocking up and building web applications. Divlab offers a sleek user interface and a great user experience with drag-and-drop integration.
+DivLab is full-stack web application for mocking up and building web applications. Divlab offers a sleek user interface and a great user experience with drag-and-drop integration. Users can quickly get started designing their projects without signing up. If users would like to save their progress and come back at a later time to edit their work, they can sign up and save their progress. Users are able to create multiple projects and go back to working on them any time. Once you are finished, users are able to export an HTML file with their project to their computer and view it on the browser.
 
 ## Team
 
 ### `Zachary Resnick`
 
-- Github: https://github.com/ZResnick
-- LinkedIn: https://www.linkedin.com/in/zachresnick1/
+Github: https://github.com/ZResnick
+
+LinkedIn: https://www.linkedin.com/in/zachresnick1/
 
 ### `Joonho Han`
 
-- Github: https://github.com/joonhojhan
-- LinkedIn: https://www.linkedin.com/in/joonhojhan/
+Github: https://github.com/joonhojhan
+
+LinkedIn: https://www.linkedin.com/in/joonhojhan/
 
 ### `Elliot Gonzalez`
 
-- Github: https://github.com/elliotgonzalez123
-- LinkedIn: https://www.linkedin.com/in/elliot-gonzalez-4b18534a/
+Github: https://github.com/elliotgonzalez123
+
+LinkedIn: https://www.linkedin.com/in/elliot-gonzalez-4b18534a/
 
 ## Tech Stack
 
