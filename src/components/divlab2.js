@@ -16,12 +16,9 @@ import {
   addAPage,
   getAllPages,
   editAPage,
-  deleteAPage,
+  deleteAPage
 } from '../store/pageReducer';
-import {
-  setHTML,
-  regexer,
-} from '../utils/utils';
+import { setHTML, regexer } from '../utils/utils';
 
 import {
   Button,
@@ -29,7 +26,7 @@ import {
   Menu,
   Segment,
   Sidebar,
-  Confirm,
+  Confirm
 } from 'semantic-ui-react';
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
@@ -48,14 +45,14 @@ const droppableStyle1 = {
   justifyContent: 'center',
   minWidth: '250px',
   minHeight: '500px',
-  margin: '32px',
+  margin: '32px'
 };
 
 class divlabTwo extends React.PureComponent {
   static defaultProps = {
     className: 'layout',
     cols: { lg: 120, md: 100, sm: 60, xs: 40, xxs: 20 },
-    rowHeight: 2,
+    rowHeight: 2
   };
 
   constructor(props) {
@@ -68,8 +65,8 @@ class divlabTwo extends React.PureComponent {
       components: [],
       usedComponents: [],
       html: '',
-			open: false,
-			title: ''
+      open: false,
+      title: ''
     };
 
     this.onAddItem = this.onAddItem.bind(this);
@@ -121,10 +118,10 @@ class divlabTwo extends React.PureComponent {
             visible,
             newCounter,
             components: [],
-						usedComponents: [],
-						title: this.state.title
+            usedComponents: [],
+            title: this.state.title
           },
-          html,
+          html
         })
       );
     } else {
@@ -136,9 +133,9 @@ class divlabTwo extends React.PureComponent {
             visible,
             newCounter,
             components: [],
-            usedComponents: [],
+            usedComponents: []
           },
-          html,
+          html
         })
       );
     }
@@ -153,7 +150,9 @@ class divlabTwo extends React.PureComponent {
         if (
           curEl === 'HeadshotComponent' ||
           curEl === 'ParagraphComponent' ||
-          'CardComponent' || 'SidewaysCardComponent' || 'HeaderComponent'
+          'CardComponent' ||
+          'SidewaysCardComponent' ||
+          'HeaderComponent'
         ) {
           switch (curEl) {
             case 'HeadshotComponent':
@@ -171,7 +170,7 @@ class divlabTwo extends React.PureComponent {
                   info={{
                     imageUrl: data[i + 1],
                     id: `headshot${i}`,
-                    edit: false,
+                    edit: false
                   }}
                 />,
                 document.getElementById(`newDiv${counter}`)
@@ -193,7 +192,7 @@ class divlabTwo extends React.PureComponent {
                   info={{
                     content: data[i + 1],
                     id: `paragraph${i}`,
-                    edit: false,
+                    edit: false
                   }}
                 />,
                 document.getElementById(`newDiv${counter}`)
@@ -219,7 +218,7 @@ class divlabTwo extends React.PureComponent {
                     description: data[i + 4],
                     footer: data[i + 5],
                     id: `paragraph${i}`,
-                    edit: false,
+                    edit: false
                   }}
                 />,
                 document.getElementById(`newDiv${counter}`)
@@ -243,7 +242,7 @@ class divlabTwo extends React.PureComponent {
                     title: data[i + 2],
                     navlinks: '',
                     id: `paragraph${i}`,
-                    edit: false,
+                    edit: false
                   }}
                 />,
                 document.getElementById(`newDiv${counter}`)
@@ -268,7 +267,7 @@ class divlabTwo extends React.PureComponent {
                     caption: data[i + 3],
                     description: data[i + 4],
                     id: `paragraph${i}`,
-                    edit: false,
+                    edit: false
                   }}
                 />,
                 document.getElementById(`newDiv${counter}`)
@@ -288,7 +287,7 @@ class divlabTwo extends React.PureComponent {
       position: 'absolute',
       right: '2px',
       top: 0,
-      cursor: 'pointer',
+      cursor: 'pointer'
     };
     const i = el.add ? '+' : el.i;
     return (
@@ -333,10 +332,10 @@ class divlabTwo extends React.PureComponent {
 
         y: 1,
         w: 20,
-        h: 20,
+        h: 20
       }),
       // Increment the counter to ensure key is always unique.
-      newCounter: this.state.newCounter + 1,
+      newCounter: this.state.newCounter + 1
     });
   }
 
@@ -344,7 +343,7 @@ class divlabTwo extends React.PureComponent {
   onBreakpointChange(breakpoint, cols) {
     this.setState({
       breakpoint: breakpoint,
-      cols: cols,
+      cols: cols
     });
   }
 
@@ -375,7 +374,9 @@ class divlabTwo extends React.PureComponent {
             Hide Components
           </Button>
         </Button.Group>
-				<div className='myProjects' style={{marginTop:"20px"}}><p>{this.state.title}</p></div>
+        <div className="myProjects" style={{ marginTop: '20px' }}>
+          <p>{this.state.title}</p>
+        </div>
         <Sidebar.Pushable
           as={Segment}
           style={{ backgroundColor: 'rgb(255, 208, 0)' }}
@@ -399,7 +400,7 @@ class divlabTwo extends React.PureComponent {
               onClick={() => {
                 this.setState({
                   components: [...this.state.components, <CardForm />],
-                  visible: false,
+                  visible: false
                 });
               }}
             >
@@ -411,7 +412,7 @@ class divlabTwo extends React.PureComponent {
               onClick={() => {
                 this.setState({
                   components: [...this.state.components, <SidewaysCardForm />],
-                  visible: false,
+                  visible: false
                 });
               }}
             >
@@ -423,7 +424,7 @@ class divlabTwo extends React.PureComponent {
               onClick={() => {
                 this.setState({
                   components: [...this.state.components, <HeaderForm />],
-                  visible: false,
+                  visible: false
                 });
               }}
             >
@@ -435,7 +436,7 @@ class divlabTwo extends React.PureComponent {
               onClick={() => {
                 this.setState({
                   components: [...this.state.components, <HeadshotForm />],
-                  visible: false,
+                  visible: false
                 });
               }}
             >
@@ -448,7 +449,7 @@ class divlabTwo extends React.PureComponent {
               onClick={() => {
                 this.setState({
                   components: [...this.state.components, <ParagraphForm />],
-                  visible: false,
+                  visible: false
                 });
               }}
             >
@@ -521,8 +522,22 @@ class divlabTwo extends React.PureComponent {
                 <Button onClick={this.save}>Save</Button>
                 <Button
                   onClick={() => {
-                    let html = document.querySelector('html').innerHTML;
-                    html = '<html>\n' + html + '\n</html>';
+                    // let html = document.querySelector('html').innerHTML;
+                    // html = '<html>\n' + html + '\n</html>';
+                    let head = document.querySelector('head').innerHTML;
+                    let canvas = document.querySelector('.react-grid-layout')
+                      .innerHTML;
+                    let html =
+                      '<html>\n' +
+                      head +
+                      '<body style="background-color: white;">\n' +
+                      '<div style="width: 1200px; margin: auto;">' +
+                      canvas +
+                      '</div>' +
+                      '</body>\n' +
+                      '\n</html>';
+                    // console.log(canvas);
+
                     let download = document.createElement('a');
                     download.style.display = 'none';
                     download.setAttribute(
@@ -550,7 +565,7 @@ class divlabTwo extends React.PureComponent {
                 style={{
                   display: 'flex',
                   flexDirection: 'row',
-                  justifyContent: 'center',
+                  justifyContent: 'center'
                 }}
               >
                 <div>
@@ -581,7 +596,7 @@ class divlabTwo extends React.PureComponent {
                       style={{
                         width: '1200px',
                         minHeight: '1000px',
-                        backgroundColor: 'white',
+                        backgroundColor: 'white'
                       }}
                       {...this.props}
                     >
@@ -604,7 +619,7 @@ const mapStateToProps = state => {
   return {
     auth: state.firebase,
     profile: state.firebase.profile,
-    pages: state.pages,
+    pages: state.pages
   };
 };
 
@@ -621,7 +636,7 @@ const mapDispatchToProps = dispatch => {
     },
     deleteAPage: (userId, pageId) => {
       dispatch(deleteAPage(userId, pageId));
-    },
+    }
   };
 };
 
