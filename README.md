@@ -1,4 +1,4 @@
-## DivLab
+# DivLab
 
 A collaborative effort between:
 
