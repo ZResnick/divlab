@@ -1,4 +1,4 @@
-## '<divlab />'
+## DivLab
 
 A collaborative effort between:
 
