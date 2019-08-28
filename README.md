@@ -20,9 +20,7 @@ DivLab is full-stack web application for mocking up and building web application
   - [Semantic UI React](#Semantic-UI-React)
 - [Tutorial](#Tutorial)
 - [Examples](#Examples)
-- [Scripts](#Scripts)
-
-<!-- toc -->
+- [Available Scripts](#Available-Scripts)
 
 ## Team
 
