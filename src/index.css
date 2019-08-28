@@ -139,6 +139,7 @@ code {
 }
 
 #homepage {
+  justify-content: center;
   background-color: rgb(255, 208, 0);
   min-width: 80%;
   max-width: 80%;
@@ -146,6 +147,7 @@ code {
   margin-top: 2%;
   padding-bottom: 25%;
   background-image: url('/images/comp.png');
+  /* background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/03/Devicetemplates_computer-02.png'); */
   background-repeat: no-repeat;
   background-size: contain;
 }

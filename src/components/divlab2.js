@@ -16,7 +16,7 @@ import {
   addAPage,
   getAllPages,
   editAPage,
-  deleteAPage
+  deleteAPage,
 } from '../store/pageReducer';
 import { setHTML, regexer } from '../utils/utils';
 
@@ -26,7 +26,7 @@ import {
   Menu,
   Segment,
   Sidebar,
-  Confirm
+  Confirm,
 } from 'semantic-ui-react';
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
@@ -45,14 +45,14 @@ const droppableStyle1 = {
   justifyContent: 'center',
   minWidth: '250px',
   minHeight: '500px',
-  margin: '32px'
+  margin: '32px',
 };
 
 class divlabTwo extends React.PureComponent {
   static defaultProps = {
     className: 'layout',
     cols: { lg: 120, md: 100, sm: 60, xs: 40, xxs: 20 },
-    rowHeight: 2
+    rowHeight: 2,
   };
 
   constructor(props) {
@@ -66,7 +66,7 @@ class divlabTwo extends React.PureComponent {
       usedComponents: [],
       html: '',
       open: false,
-      title: ''
+      title: '',
     };
 
     this.onAddItem = this.onAddItem.bind(this);
@@ -119,9 +119,9 @@ class divlabTwo extends React.PureComponent {
             newCounter,
             components: [],
             usedComponents: [],
-            title: this.state.title
+            title: this.state.title,
           },
-          html
+          html,
         })
       );
     } else {
@@ -133,9 +133,9 @@ class divlabTwo extends React.PureComponent {
             visible,
             newCounter,
             components: [],
-            usedComponents: []
+            usedComponents: [],
           },
-          html
+          html,
         })
       );
     }
@@ -170,7 +170,7 @@ class divlabTwo extends React.PureComponent {
                   info={{
                     imageUrl: data[i + 1],
                     id: `image${i}`,
-                    edit: false
+                    edit: false,
                   }}
                 />,
                 document.getElementById(`newDiv${counter}`)
@@ -192,7 +192,7 @@ class divlabTwo extends React.PureComponent {
                   info={{
                     content: data[i + 1],
                     id: `paragraph${i}`,
-                    edit: false
+                    edit: false,
                   }}
                 />,
                 document.getElementById(`newDiv${counter}`)
@@ -218,7 +218,7 @@ class divlabTwo extends React.PureComponent {
                     description: data[i + 4],
                     footer: data[i + 5],
                     id: `paragraph${i}`,
-                    edit: false
+                    edit: false,
                   }}
                 />,
                 document.getElementById(`newDiv${counter}`)
@@ -242,7 +242,7 @@ class divlabTwo extends React.PureComponent {
                     title: data[i + 2],
                     navlinks: '',
                     id: `paragraph${i}`,
-                    edit: false
+                    edit: false,
                   }}
                 />,
                 document.getElementById(`newDiv${counter}`)
@@ -267,7 +267,7 @@ class divlabTwo extends React.PureComponent {
                     caption: data[i + 3],
                     description: data[i + 4],
                     id: `paragraph${i}`,
-                    edit: false
+                    edit: false,
                   }}
                 />,
                 document.getElementById(`newDiv${counter}`)
@@ -287,7 +287,7 @@ class divlabTwo extends React.PureComponent {
       position: 'absolute',
       right: '2px',
       top: 0,
-      cursor: 'pointer'
+      cursor: 'pointer',
     };
     const i = el.add ? '+' : el.i;
     return (
@@ -332,10 +332,10 @@ class divlabTwo extends React.PureComponent {
 
         y: 1,
         w: 20,
-        h: 20
+        h: 20,
       }),
       // Increment the counter to ensure key is always unique.
-      newCounter: this.state.newCounter + 1
+      newCounter: this.state.newCounter + 1,
     });
   }
 
@@ -343,7 +343,7 @@ class divlabTwo extends React.PureComponent {
   onBreakpointChange(breakpoint, cols) {
     this.setState({
       breakpoint: breakpoint,
-      cols: cols
+      cols: cols,
     });
   }
 
@@ -400,7 +400,7 @@ class divlabTwo extends React.PureComponent {
               onClick={() => {
                 this.setState({
                   components: [...this.state.components, <CardForm />],
-                  visible: false
+                  visible: false,
                 });
               }}
             >
@@ -412,7 +412,7 @@ class divlabTwo extends React.PureComponent {
               onClick={() => {
                 this.setState({
                   components: [...this.state.components, <SidewaysCardForm />],
-                  visible: false
+                  visible: false,
                 });
               }}
             >
@@ -424,7 +424,7 @@ class divlabTwo extends React.PureComponent {
               onClick={() => {
                 this.setState({
                   components: [...this.state.components, <HeaderForm />],
-                  visible: false
+                  visible: false,
                 });
               }}
             >
@@ -436,7 +436,7 @@ class divlabTwo extends React.PureComponent {
               onClick={() => {
                 this.setState({
                   components: [...this.state.components, <HeadshotForm />],
-                  visible: false
+                  visible: false,
                 });
               }}
             >
@@ -449,7 +449,7 @@ class divlabTwo extends React.PureComponent {
               onClick={() => {
                 this.setState({
                   components: [...this.state.components, <ParagraphForm />],
-                  visible: false
+                  visible: false,
                 });
               }}
             >
@@ -576,7 +576,7 @@ class divlabTwo extends React.PureComponent {
                 style={{
                   display: 'flex',
                   flexDirection: 'row',
-                  justifyContent: 'center'
+                  justifyContent: 'center',
                 }}
               >
                 <div>
@@ -607,7 +607,7 @@ class divlabTwo extends React.PureComponent {
                       style={{
                         width: '1200px',
                         minHeight: '1000px',
-                        backgroundColor: 'white'
+                        backgroundColor: 'white',
                       }}
                       {...this.props}
                     >
@@ -630,7 +630,7 @@ const mapStateToProps = state => {
   return {
     auth: state.firebase,
     profile: state.firebase.profile,
-    pages: state.pages
+    pages: state.pages,
   };
 };
 
@@ -647,7 +647,7 @@ const mapDispatchToProps = dispatch => {
     },
     deleteAPage: (userId, pageId) => {
       dispatch(deleteAPage(userId, pageId));
-    }
+    },
   };
 };
 
