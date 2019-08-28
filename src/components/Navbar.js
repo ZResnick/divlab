@@ -27,7 +27,7 @@ class Navbar extends React.Component {
               <br />
               <iframe
                 title="intro"
-                src="https://giphy.com/embed/J4PKuvA1yFchB2jqL5"
+                src="https://giphy.com/embed/Qz4snoMQSPhXDikptH"
                 width="800"
                 height="410"
                 frameBorder="0"
@@ -57,7 +57,7 @@ class Navbar extends React.Component {
               <br />
               <iframe
                 title="another"
-                src="https://giphy.com/embed/WONVnWRggvRSt5VOeY"
+                src="https://giphy.com/embed/lPLOsVCKifFC19EImy"
                 width="800"
                 height="410"
                 frameBorder="0"
@@ -87,7 +87,7 @@ class Navbar extends React.Component {
               <br />
               <iframe
                 title="anotherrr"
-                src="https://giphy.com/embed/RezPYlVYRn42xsi59M"
+                src="https://giphy.com/embed/hs1cB6r8dTkjPt3fGt"
                 width="800"
                 height="410"
                 frameBorder="0"
@@ -117,7 +117,7 @@ class Navbar extends React.Component {
               <br />
               <iframe
                 title="outro"
-                src="https://giphy.com/embed/W4QtsmAF21Aq5J8Nih"
+                src="https://giphy.com/embed/fxNXJQzuevhG04Hz3N"
                 width="800"
                 height="410"
                 frameBorder="0"
@@ -129,6 +129,39 @@ class Navbar extends React.Component {
                   Launch the download using your favorite Text Editor or
                   directly in your web browser of choice, and see your site in
                   action!
+                </h4>
+              </center>
+            </div>
+          );
+        },
+      },
+      {
+        render: () => {
+          return (
+            <div>
+              <center>
+                <h2>
+                  If you'd like, you can add navigation links to yoiur header!
+                </h2>
+              </center>
+              <br />
+              <iframe
+                title="outro"
+                src="https://giphy.com/embed/QzAdOIkZ9G0svTin0X"
+                width="800"
+                height="410"
+                frameBorder="0"
+                class="giphy-embed"
+                allowFullScreen
+              ></iframe>
+              <center>
+                <h4>
+                  To do this, change the div ID of the component you want the
+                  link to navigate to, and add that link to the 'navbars'
+                  section of the header in the format DivId1, DivId1 || DivId2,
+                  DivId2 || etc.... NOTE: Adding navlinks can only be done
+                  immediately before exporting. All navlinks will be cleared
+                  upon exit from that specific working space.
                 </h4>
               </center>
             </div>
