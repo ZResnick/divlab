@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signOut } from '../store/authReducer';
-import { Modal } from 'semantic-ui-react';
+import { Modal, Dropdown } from 'semantic-ui-react';
 import Carousel from 'semantic-ui-carousel-react';
 
 class Navbar extends React.Component {
@@ -11,6 +11,29 @@ class Navbar extends React.Component {
 		this.state = {
 			open: false,
 		};
+		this.profileItems = [
+			{
+				key: 'newProject',
+				text: 'NEW PROJECT',
+				onClick: () => {
+					const newProject = document.querySelector('#newProject');
+					newProject.click();
+				},
+			},
+			{
+				key: 'projects',
+				text: 'PROJECTS',
+				onClick: () => {
+					const allProjects = document.querySelector('#allProjects');
+					allProjects.click();
+				},
+			},
+			{
+				key: 'signout',
+				text: 'SIGN OUT',
+				onClick: this.props.signOut,
+			},
+		];
 	}
 
 	render() {
@@ -192,18 +215,38 @@ class Navbar extends React.Component {
 									/>
 								</Modal.Content>
 							</Modal>
-							<Link className="navlink" to="/divlab">
+							<Link
+								id="newProject"
+								className="navlink"
+								to="/divlab"
+								style={{ display: 'none' }}
+							>
 								NEW PROJECT
 							</Link>
-							<a href="/projects" className="navlink">
+							<a
+								id="allProjects"
+								href="/projects"
+								className="navlink"
+								style={{ display: 'none' }}
+							>
 								{this.props.profile.initials}
 							</a>
 							<Link id="about" className="navlink" to="/about">
 								ABOUT
 							</Link>
-							<Link className="navlink" to="/" onClick={this.props.signOut}>
-								SIGN OUT
-							</Link>
+
+							<Dropdown
+								className="navlink"
+								text={this.props.profile.initials}
+								floating
+								labeled
+							>
+								<Dropdown.Menu>
+									{this.profileItems.map(option => (
+										<Dropdown.Item key={option.key} {...option} />
+									))}
+								</Dropdown.Menu>
+							</Dropdown>
 						</div>
 					</nav>
 				) : (
