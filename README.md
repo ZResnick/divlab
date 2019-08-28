@@ -8,7 +8,7 @@ DivLab is full-stack web application for mocking up and building web application
   - [Zachary Resnick](###Zachary-Resnick)
   - [Joonho Han](###Joonho-Han)
   - [Elliot Gonzalez](###Elliot-Gonzalez)
-- [Tech-Stack](##Tech-Stack)
+- [Tech Stack](##Tech-Stack)
   - [React](###React)
   - [Redux](###Redux)
   - [Firebase](###Firebase)
