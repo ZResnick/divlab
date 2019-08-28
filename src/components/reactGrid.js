@@ -18,10 +18,7 @@ import {
   editAPage,
   deleteAPage,
 } from '../store/pageReducer';
-import {
-  setHTML,
-  regexer,
-} from '../utils/utils';
+import { setHTML, regexer } from '../utils/utils';
 
 import {
   Button,
@@ -29,8 +26,9 @@ import {
   Menu,
   Segment,
   Sidebar,
-	Confirm,
-	Modal, Form
+  Confirm,
+  Modal,
+  Form,
 } from 'semantic-ui-react';
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
@@ -69,8 +67,8 @@ class divlab extends React.PureComponent {
       components: [],
       usedComponents: [],
       html: '',
-			open: false,
-			title: ''
+      open: false,
+      title: '',
     };
 
     this.onAddItem = this.onAddItem.bind(this);
@@ -90,13 +88,13 @@ class divlab extends React.PureComponent {
   handleCancel = () => this.setState({ open: false });
   handleHideClick = () => this.setState({ visible: false });
   handleShowClick = () => this.setState({ visible: true });
-	handleSidebarHide = () => this.setState({ visible: false });
-	handleTitleChange = async (e) => {
-		e.preventDefault();
-		await this.setState({
-			title: e.target.value
-		})
-	}
+  handleSidebarHide = () => this.setState({ visible: false });
+  handleTitleChange = async e => {
+    e.preventDefault();
+    await this.setState({
+      title: e.target.value,
+    });
+  };
 
   componentDidMount() {
     this.props.auth.auth.uid &&
@@ -142,8 +140,8 @@ class divlab extends React.PureComponent {
             visible,
             newCounter,
             components: [],
-						usedComponents: [],
-						title: this.state.title
+            usedComponents: [],
+            title: this.state.title,
           },
           html,
         })
@@ -160,7 +158,9 @@ class divlab extends React.PureComponent {
         if (
           curEl === 'HeadshotComponent' ||
           curEl === 'ParagraphComponent' ||
-          'CardComponent' || 'SidewaysCardComponent' || 'HeaderComponent'
+          'CardComponent' ||
+          'SidewaysCardComponent' ||
+          'HeaderComponent'
         ) {
           switch (curEl) {
             case 'HeadshotComponent':
@@ -177,7 +177,7 @@ class divlab extends React.PureComponent {
                 <HeadshotForm
                   info={{
                     imageUrl: data[i + 1],
-                    id: `headshot${i}`,
+                    id: `image${i}`,
                     edit: false,
                   }}
                 />,
@@ -371,7 +371,7 @@ class divlab extends React.PureComponent {
   };
 
   render() {
-		const { visible } = this.state;
+    const { visible } = this.state;
     return (
       <div>
         <Button.Group>
@@ -447,7 +447,7 @@ class divlab extends React.PureComponent {
               }}
             >
               <Icon name="image" />
-              Headshot
+              Image
             </Menu.Item>
 
             <Menu.Item
@@ -522,21 +522,42 @@ class divlab extends React.PureComponent {
                     });
                   }}
                 >
+                  <Icon name="eye" />
                   Toggle Preview
                 </Button>
-                <Button onClick={this.onAddItem}>Add New Container</Button>
-								<Modal trigger={<Button>Save</Button>}>
-									<Modal.Header>Add a Title</Modal.Header>
-									<Modal.Content>
-										<Form>
-											<Form.Field required>
-												<label>Title</label>
-												<input name="title" value={this.state.title} placeholder="Title" onChange={this.handleTitleChange} />
-											</Form.Field>
-											<Button onClick={this.save} disabled={!this.state.title.length}>Confirm</Button>
-										</Form>
-									</Modal.Content>
-								</Modal>
+                <Button onClick={this.onAddItem}>
+                  <Icon name="plus square" />
+                  Add New Container
+                </Button>
+                <Modal
+                  trigger={
+                    <Button>
+                      <Icon name="save" />
+                      Save
+                    </Button>
+                  }
+                >
+                  <Modal.Header>Add a Title</Modal.Header>
+                  <Modal.Content>
+                    <Form>
+                      <Form.Field required>
+                        <label>Title</label>
+                        <input
+                          name="title"
+                          value={this.state.title}
+                          placeholder="Title"
+                          onChange={this.handleTitleChange}
+                        />
+                      </Form.Field>
+                      <Button
+                        onClick={this.save}
+                        disabled={!this.state.title.length}
+                      >
+                        Confirm
+                      </Button>
+                    </Form>
+                  </Modal.Content>
+                </Modal>
 
                 <Button
                   onClick={() => {
@@ -554,6 +575,7 @@ class divlab extends React.PureComponent {
                     document.body.removeChild(download);
                   }}
                 >
+                  <Icon name="download" />
                   Export
                 </Button>
               </div>

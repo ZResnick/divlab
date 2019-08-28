@@ -21,8 +21,8 @@ export default function HeaderComponent(props) {
   let headerStyle = {
     color: 'white',
     fontSize: '48px',
-    fontFamily: 'Corben, cursive',
-    fontStyle: 'cursive',
+    maxWidth: '66%',
+    fontFamily: 'Shrikhand, cursive',
   };
 
   let navbarStyle = {

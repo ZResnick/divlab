@@ -18,10 +18,7 @@ import {
   editAPage,
   deleteAPage,
 } from '../store/pageReducer';
-import {
-  setHTML,
-  regexer,
-} from '../utils/utils';
+import { setHTML, regexer } from '../utils/utils';
 
 import {
   Button,
@@ -68,8 +65,8 @@ class divlabTwo extends React.PureComponent {
       components: [],
       usedComponents: [],
       html: '',
-			open: false,
-			title: ''
+      open: false,
+      title: '',
     };
 
     this.onAddItem = this.onAddItem.bind(this);
@@ -121,8 +118,8 @@ class divlabTwo extends React.PureComponent {
             visible,
             newCounter,
             components: [],
-						usedComponents: [],
-						title: this.state.title
+            usedComponents: [],
+            title: this.state.title,
           },
           html,
         })
@@ -153,7 +150,9 @@ class divlabTwo extends React.PureComponent {
         if (
           curEl === 'HeadshotComponent' ||
           curEl === 'ParagraphComponent' ||
-          'CardComponent' || 'SidewaysCardComponent' || 'HeaderComponent'
+          'CardComponent' ||
+          'SidewaysCardComponent' ||
+          'HeaderComponent'
         ) {
           switch (curEl) {
             case 'HeadshotComponent':
@@ -170,7 +169,7 @@ class divlabTwo extends React.PureComponent {
                 <HeadshotForm
                   info={{
                     imageUrl: data[i + 1],
-                    id: `headshot${i}`,
+                    id: `image${i}`,
                     edit: false,
                   }}
                 />,
@@ -375,7 +374,9 @@ class divlabTwo extends React.PureComponent {
             Hide Components
           </Button>
         </Button.Group>
-				<div className='myProjects' style={{marginTop:"20px"}}><p>{this.state.title}</p></div>
+        <div className="myProjects" style={{ marginTop: '20px' }}>
+          <p>{this.state.title}</p>
+        </div>
         <Sidebar.Pushable
           as={Segment}
           style={{ backgroundColor: 'rgb(255, 208, 0)' }}
@@ -440,7 +441,7 @@ class divlabTwo extends React.PureComponent {
               }}
             >
               <Icon name="image" />
-              Headshot
+              Image
             </Menu.Item>
 
             <Menu.Item
@@ -515,10 +516,17 @@ class divlabTwo extends React.PureComponent {
                     });
                   }}
                 >
+                  <Icon name="eye" />
                   Toggle Preview
                 </Button>
-                <Button onClick={this.onAddItem}>Add New Container</Button>
-                <Button onClick={this.save}>Save</Button>
+                <Button onClick={this.onAddItem}>
+                  <Icon name="plus square" />
+                  Add New Container
+                </Button>
+                <Button onClick={this.save}>
+                  <Icon name="save" />
+                  Save
+                </Button>
                 <Button
                   onClick={() => {
                     let html = document.querySelector('html').innerHTML;
@@ -535,9 +543,13 @@ class divlabTwo extends React.PureComponent {
                     document.body.removeChild(download);
                   }}
                 >
+                  <Icon name="download" />
                   Export
                 </Button>
-                <Button onClick={this.show}>Delete Project</Button>
+                <Button onClick={this.show}>
+                  <Icon name="trash alternate" />
+                  Delete Project
+                </Button>
                 <Confirm
                   open={this.state.open}
                   content="Are you sure you want to delete this project?"

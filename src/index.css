@@ -133,15 +133,15 @@ code {
   padding-bottom: 30%;
 }
 
+#mainHeader {
+  margin-left: 30px;
+  font-size: 24px;
+}
+
 nav {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-}
-
-#mainHeader {
-  margin-left: 30px;
-  font-size: 24px;
 }
 
 #navbar {
@@ -320,4 +320,9 @@ img.ui.image {
   padding-top: 20px;
   max-width: 20%;
   border-bottom-style: solid;
+}
+
+button.ui.icon.button.prev {
+  margin-left: 43%;
+  margin-top: 10px;
 }

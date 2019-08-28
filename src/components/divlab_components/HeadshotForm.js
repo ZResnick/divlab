@@ -48,7 +48,7 @@ export default class HeadshotForm extends Component {
             onChange={this.handleChange}
           />
           <Form.Input
-            label="Headshot Image (url)"
+            label="Image (url)"
             type="text"
             name="imageUrl"
             value={this.state.imageUrl}
