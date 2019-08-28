@@ -94,13 +94,35 @@ https://react.semantic-ui.com/
 
 ![tutorial1](https://media.giphy.com/media/Qz4snoMQSPhXDikptH/giphy.gif)
 
+After logging in, add a container or two to your canvas...
+
+You can add, resize, move, and delete these containers as you wish.
+
 ![tutorial2](https://media.giphy.com/media/lPLOsVCKifFC19EImy/giphy.gif)
+
+Click "Show Comopnents" to choose which elements to add to your canvas.
+
+After adding a component, fill out the form and click preview to see your element in action!
 
 ![tutorial3](https://media.giphy.com/media/hs1cB6r8dTkjPt3fGt/giphy.gif)
 
+When you're happy with the way everything looks, save it to your projects page.
+
+Don't worry! You can always go back and edit your page later.
+
+PRO TIP: You can see what your page will look like live by toggling the preview button on and off!
+
 ![tutorial4](https://media.giphy.com/media/fxNXJQzuevhG04Hz3N/giphy.gif)
 
+Once your happy with your site, export it as an HTML file.
+
+Launch the download using your favorite Text Editor or directly in your web browser of choice, and see your site in action!
+
 ![tutorial5](https://media.giphy.com/media/QzAdOIkZ9G0svTin0X/giphy.gif)
+
+If you'd like, you can add navigation links to yoiur header!
+
+To do this, change the div ID of the component you want the link to navigate to, and add that link to the 'navbars' section of the header in the format DivId1, DivId1 || DivId2, DivId2 || etc.... NOTE: Adding navlinks can only be done immediately before exporting. All navlinks will be cleared upon exit from that specific working space.
 
 ## Examples
 
