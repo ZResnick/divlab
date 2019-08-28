@@ -6,18 +6,18 @@ DivLab is full-stack web application for mocking up and building web application
 
 ### `Zachary Resnick`
 
-Github: https://github.com/ZResnick
-LinkedIn: https://www.linkedin.com/in/zachresnick1/
+- Github: https://github.com/ZResnick
+- LinkedIn: https://www.linkedin.com/in/zachresnick1/
 
 ### `Joonho Han`
 
-Github: https://github.com/joonhojhan
-LinkedIn: https://www.linkedin.com/in/joonhojhan/
+- Github: https://github.com/joonhojhan
+- LinkedIn: https://www.linkedin.com/in/joonhojhan/
 
 ### `Elliot Gonzalez`
 
-Github: https://github.com/elliotgonzalez123
-LinkedIn: https://www.linkedin.com/in/elliot-gonzalez-4b18534a/
+- Github: https://github.com/elliotgonzalez123
+- LinkedIn: https://www.linkedin.com/in/elliot-gonzalez-4b18534a/
 
 ## Tech Stack
 
