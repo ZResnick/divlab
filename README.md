@@ -1,8 +1,8 @@
 # DivLab
 
-<divlab /> is full-stack web application for mocking up and building web applications. Divlab offers a sleek user interface and a great user experience with drag-and-drop integration.
+DivLab is full-stack web application for mocking up and building web applications. Divlab offers a sleek user interface and a great user experience with drag-and-drop integration.
 
-## `Team`
+## Team
 
 ### `Zachary Resnick`
 
