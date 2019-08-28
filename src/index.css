@@ -1,155 +1,155 @@
 * {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(255, 208, 0);
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background-color: rgb(92, 0, 41);
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+		monospace;
 }
 
 .react-grid-layout {
-  position: relative;
-  transition: height 200ms ease;
+	position: relative;
+	transition: height 200ms ease;
 }
 .react-grid-item {
-  transition: all 200ms ease;
-  transition-property: left, top;
+	transition: all 200ms ease;
+	transition-property: left, top;
 }
 .react-grid-item.cssTransforms {
-  transition-property: transform;
+	transition-property: transform;
 }
 .react-grid-item.resizing {
-  z-index: 1;
-  will-change: width, height;
+	z-index: 1;
+	will-change: width, height;
 }
 
 .react-grid-item.react-draggable-dragging {
-  transition: none;
-  z-index: 3;
-  will-change: transform;
+	transition: none;
+	z-index: 3;
+	will-change: transform;
 }
 
 .react-grid-item.react-grid-placeholder {
-  background: red;
-  opacity: 0.2;
-  transition-duration: 100ms;
-  z-index: 2;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
+	background: red;
+	opacity: 0.2;
+	transition-duration: 100ms;
+	z-index: 2;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
 }
 
 .react-grid-item > .react-resizable-handle {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  bottom: 0;
-  right: 0;
-  cursor: se-resize;
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	bottom: 0;
+	right: 0;
+	cursor: se-resize;
 }
 
 .react-grid-item > .react-resizable-handle::after {
-  content: '';
-  position: absolute;
-  right: 3px;
-  bottom: 3px;
-  width: 5px;
-  height: 5px;
-  border-right: 2px solid rgba(0, 0, 0, 0.4);
-  border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+	content: '';
+	position: absolute;
+	right: 3px;
+	bottom: 3px;
+	width: 5px;
+	height: 5px;
+	border-right: 2px solid rgba(0, 0, 0, 0.4);
+	border-bottom: 2px solid rgba(0, 0, 0, 0.4);
 }
 
 .edit-button-on {
-  padding: 5px;
-  position: absolute;
-  top: 10px;
-  left: 10px;
+	padding: 5px;
+	position: absolute;
+	top: 10px;
+	left: 10px;
 }
 
 .preview {
-  padding: 5px;
-  position: absolute;
-  top: 2px;
-  left: 10px;
+	padding: 5px;
+	position: absolute;
+	top: 2px;
+	left: 10px;
 }
 
 .edit-button-off {
-  position: absolute;
-  left: -999999px;
+	position: absolute;
+	left: -999999px;
 }
 
 .animate-welcome {
-  padding-top: 18%;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 10;
-  color: black;
-  font-size: 60px;
-  animation-name: moveInRight;
-  animation-duration: 2s;
-  margin-right: 4%;
+	padding-top: 18%;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 10;
+	color: black;
+	font-size: 60px;
+	animation-name: moveInRight;
+	animation-duration: 2s;
+	margin-right: 4%;
 }
 
 @keyframes moveInRight {
-  0% {
-    opacity: 0;
-    transform: translateY(250px);
-  }
-  80% {
-    transform: translateY(0px);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(0);
-  }
+	0% {
+		opacity: 0;
+		transform: translateY(250px);
+	}
+	80% {
+		transform: translateY(0px);
+	}
+	100% {
+		opacity: 1;
+		transform: translate(0);
+	}
 }
 
 .animate-caption {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 10;
-  color: black;
-  letter-spacing: 4px;
-  animation-name: captionAnimation;
-  animation-duration: 3.2s;
-  margin-right: 4%;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 10;
+	color: black;
+	letter-spacing: 4px;
+	animation-name: captionAnimation;
+	animation-duration: 3.2s;
+	margin-right: 4%;
 }
 
 @keyframes captionAnimation {
-  0% {
-    opacity: 0;
-  }
-  60% {
-    opacity: 0;
-  }
-  80% {
-    opacity: 1;
-  }
+	0% {
+		opacity: 0;
+	}
+	60% {
+		opacity: 0;
+	}
+	80% {
+		opacity: 1;
+	}
 }
 
 #homepage {
-  justify-content: center;
-  background-color: rgb(255, 208, 0);
-  min-width: 80%;
-  max-width: 80%;
-  height: 100%;
-  margin-top: 2%;
-  padding-bottom: 25%;
-  background-image: url('/images/comp.png');
-  /* background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/03/Devicetemplates_computer-02.png'); */
-  background-repeat: no-repeat;
-  background-size: contain;
+	justify-content: center;
+	background-color: rgb(92, 0, 41);
+	min-width: 80%;
+	max-width: 80%;
+	height: 100%;
+	margin-top: 2%;
+	padding-bottom: 25%;
+	background-image: url('/images/comp.png');
+	/* background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/03/Devicetemplates_computer-02.png'); */
+	background-repeat: no-repeat;
+	background-size: contain;
 }
 
 /* #rightHomepage {
@@ -163,195 +163,195 @@ code {
 } */
 
 #mainHeader {
-  margin-left: 30px;
-  font-size: 24px;
+	margin-left: 30px;
+	font-size: 24px;
 }
 
 nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 }
 
 #navbar {
-  background-color: rgb(255, 208, 0);
-  min-height: 100px;
-  text-align: right;
-  padding-right: 4%;
-  padding-top: 35px;
+	background-color: rgb(92, 0, 41);
+	min-height: 100px;
+	text-align: right;
+	padding-right: 4%;
+	padding-top: 35px;
 }
 
 .navlink {
-  padding-right: 25px;
-  padding-left: 25px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-right: 25px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 10;
-  color: black;
-  letter-spacing: 2px;
-  border-style: solid;
-  border-width: 2px;
-  border-radius: 50px;
+	padding-right: 25px;
+	padding-left: 25px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-right: 25px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 10;
+	color: white;
+	letter-spacing: 2px;
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 50px;
 }
 
 .navlink:hover {
-  padding-right: 25px;
-  padding-left: 25px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-right: 25px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 10;
-  color: rgb(214, 214, 214);
-  background-color: black;
-  letter-spacing: 2px;
-  border-style: solid;
-  border-width: 2px;
-  border-radius: 25px;
+	padding-right: 25px;
+	padding-left: 25px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-right: 25px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 10;
+	color: rgb(214, 214, 214);
+	/* background-color: black; */
+	letter-spacing: 2px;
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 25px;
 }
 
 .ui.segment {
-  border: 0px solid black;
+	border: 0px solid black;
 }
 
 img.ui.image {
-  display: inline;
+	display: inline;
 }
 
 .ui.card {
-  width: 100%;
-  margin: 0 auto;
+	width: 100%;
+	margin: 0 auto;
 }
 
 .errorMessage {
-  font-size: 10px;
-  color: red;
+	font-size: 10px;
+	color: red;
 }
 
 #signInForm {
-  max-width: 40%;
-  text-align: left;
-  margin: auto;
-  margin-top: 5%;
-  border-style: solid;
-  padding: 20px;
-  border-radius: 25px;
-  background-color: aliceblue;
+	max-width: 40%;
+	text-align: left;
+	margin: auto;
+	margin-top: 5%;
+	border-style: solid;
+	padding: 20px;
+	border-radius: 25px;
+	background-color: aliceblue;
 }
 
 .myProjects {
-  padding: 15px;
-  text-align: center;
-  color: white;
-  font-weight: thin;
-  font-size: 18px;
-  background-color: rgb(65, 65, 65);
-  letter-spacing: 2px;
+	padding: 15px;
+	text-align: center;
+	color: white;
+	font-weight: thin;
+	font-size: 18px;
+	background-color: rgb(46, 44, 44);
+	letter-spacing: 2px;
 }
 
 .cardGroup {
-  padding: 25px;
+	padding: 25px;
 }
 
 #newCardSymbol {
-  font-size: 6em;
-  font-weight: lighter;
-  background-color: rgb(80, 80, 80);
-  color: white;
-  height: 285.16px;
+	font-size: 6em;
+	font-weight: lighter;
+	background-color: rgb(80, 80, 80);
+	color: white;
+	height: 285.16px;
 }
 
 .newItemSign {
-  color: white;
+	color: white;
 }
 
 .newItemSign:hover {
-  color: white;
-  font-weight: normal;
+	color: white;
+	font-weight: normal;
 }
 
 .newProjectText {
-  color: black;
-  font-family: 'Montserrat', sans-serif;
-  letter-spacing: 1px;
-  font-weight: 10;
+	color: black;
+	font-family: 'Montserrat', sans-serif;
+	letter-spacing: 1px;
+	font-weight: 10;
 }
 
 .newProjectText:hover {
-  color: black;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: bolder;
+	color: black;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: bolder;
 }
 
 .projectTitles {
-  color: black;
-  font-family: 'Montserrat', sans-serif;
-  letter-spacing: 1px;
-  font-weight: 10;
+	color: black;
+	font-family: 'Montserrat', sans-serif;
+	letter-spacing: 1px;
+	font-weight: 10;
 }
 
 .projectTitles:hover {
-  color: black;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: bolder;
+	color: black;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: bolder;
 }
 
 #noProjects {
-  padding-left: 30px;
+	padding-left: 30px;
 }
 
 .divStyle {
-  height: 100%;
-  width: 100%;
-  margin: 0px;
-  display: block;
+	height: 100%;
+	width: 100%;
+	margin: 0px;
+	display: block;
 }
 
 .divStyle img {
-  width: inherit;
-  height: inherit;
+	width: inherit;
+	height: inherit;
 }
 
 .team {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: bold;
-  font-size: 24px;
-  color: black;
-  letter-spacing: 4px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: bold;
+	font-size: 24px;
+	color: black;
+	letter-spacing: 4px;
 }
 
 #teamCards {
-  align-content: center;
-  padding-top: 30px;
+	align-content: center;
+	padding-top: 30px;
 }
 
 .captionText {
-  color: black;
-  font-family: 'Montserrat', sans-serif;
-  padding-top: 4px;
-  font-size: 0.5em;
-  letter-spacing: 1px;
-  font-weight: 10;
+	color: black;
+	font-family: 'Montserrat', sans-serif;
+	padding-top: 4px;
+	font-size: 0.5em;
+	letter-spacing: 1px;
+	font-weight: 10;
 }
 
 #profileCards {
-  margin-left: 5%;
-  margin-right: 5%;
+	margin-left: 5%;
+	margin-right: 5%;
 }
 
 .teamSingleCards {
-  border-style: none;
+	border-style: none;
 }
 
 #teamBar {
-  padding-top: 20px;
-  max-width: 20%;
-  border-bottom-style: solid;
+	padding-top: 20px;
+	max-width: 20%;
+	border-bottom-style: solid;
 }
 
 button.ui.icon.button.prev {
-  margin-left: 43%;
-  margin-top: 10px;
+	margin-left: 43%;
+	margin-top: 10px;
 }

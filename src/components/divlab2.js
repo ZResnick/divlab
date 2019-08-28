@@ -379,7 +379,7 @@ class divlabTwo extends React.PureComponent {
         </div>
         <Sidebar.Pushable
           as={Segment}
-          style={{ backgroundColor: 'rgb(255, 208, 0)' }}
+          style={{ backgroundColor: 'rgb(92,0,41)' }}
         >
           <Sidebar
             as={Menu}
