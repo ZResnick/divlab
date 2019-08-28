@@ -4,15 +4,20 @@ DivLab is full-stack web application for mocking up and building web application
 
 ## Table of Contents
 
-[Team](##Team)
-
-[Tech-Stack](##Tech-Stack)
-
-[Tutorial](##Tutorial)
-
-[Examples](##Examples)
-
-[Scripts](##Scripts)
+- [Team](##Team)
+  - [Zachary Resnick](###`Zachary-Resnick`)
+  - [Joonho Han](###`Joonho-Han`)
+  - [Elliot Gonzalez](###`Elliot-Gonzalez`)
+- [Tech-Stack](##Tech-Stack)
+  - [React](###`React`)
+  - [Redux](###`Redux`)
+  - [Firebase](###`Firebase`)
+  - [Firestore](###`Firestore`)
+  - [HTML5 Drag and Drop](###`HTML5-Drag-and-Drop`)
+  - [React-Grid-Layout](###`React-Grid-Layout`) \* [Semantic UI React](###`Semantic-UI-React`)
+- [Tutorial](##Tutorial)
+- [Examples](##Examples)
+- [Scripts](##Scripts)
 
 ## Team
 
@@ -34,7 +39,7 @@ Github: https://github.com/elliotgonzalez123
 
 LinkedIn: https://www.linkedin.com/in/elliot-gonzalez-4b18534a/
 
-## Tech-Stack
+## Tech Stack
 
 Technologies used in this project:
 
