@@ -25,9 +25,9 @@ Visit [DivLab](https://divlab.herokuapp.com) to try us out!
 - [Examples](#Examples)
 - [Available Scripts](#Available-Scripts)
 
-## Installation
+## Download
 
-Step by step guide for installation:
+Step by step guide for downloading repo:
 
 ```
 cd <directory you want to download to>
