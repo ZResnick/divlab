@@ -67,7 +67,8 @@ class divlab extends React.PureComponent {
       usedComponents: [],
       html: '',
       open: false,
-      title: '',
+			title: '',
+			toggled: false
     };
 
     this.onAddItem = this.onAddItem.bind(this);
@@ -518,19 +519,20 @@ class divlab extends React.PureComponent {
                       } else {
                         div.style.border = '1px solid red';
                       }
-                    });
+										});
+										this.setState({toggled: !this.state.toggled})
                   }}
                 >
                   <Icon name="eye" />
                   Toggle Preview
                 </Button>
-                <Button onClick={this.onAddItem}>
+                <Button onClick={this.onAddItem} disabled={this.state.toggled}>
                   <Icon name="plus square" />
                   Add New Container
                 </Button>
                 <Modal
                   trigger={
-                    <Button>
+                    <Button disabled={!this.props.auth.auth.uid}>
                       <Icon name="save" />
                       Save
                     </Button>
@@ -558,10 +560,23 @@ class divlab extends React.PureComponent {
                   </Modal.Content>
                 </Modal>
 
-                <Button
-                  onClick={() => {
-                    let html = document.querySelector('html').innerHTML;
-                    html = '<html>\n' + html + '\n</html>';
+                <Button disabled={!this.props.auth.auth.uid} onClick={() => {
+                    // let html = document.querySelector('html').innerHTML;
+                    // html = '<html>\n' + html + '\n</html>';
+                    let head = document.querySelector('head').innerHTML;
+                    let canvas = document.querySelector('.react-grid-layout')
+                      .innerHTML;
+                    let html =
+                      '<html>\n' +
+                      head +
+                      '<body style="background-color: white;">\n' +
+                      '<div style="width: 1200px; margin: auto;">' +
+                      canvas +
+                      '</div>' +
+                      '</body>\n' +
+                      '\n</html>';
+                    // console.log(canvas);
+
                     let download = document.createElement('a');
                     download.style.display = 'none';
                     download.setAttribute(
