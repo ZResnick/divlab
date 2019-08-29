@@ -2,7 +2,7 @@
 
 DivLab is full-stack web application for mocking up and building web applications. Divlab offers a sleek user interface and a great user experience with drag-and-drop integration. Users can quickly get started designing their projects without signing up. If users would like to save their progress and come back at a later time to edit their work, they can sign up and save their progress. Users are able to create multiple projects and go back to working on them any time. Once you are finished, users are able to export an HTML file with their project to their computer and view it on the browser.
 
-Visit [[DivLab](https://divlab.herokuapp.com)](#Tutorial) to try us out!
+Visit [DivLab](https://divlab.herokuapp.com) to try us out!
 
 ## Table of Contents
 
