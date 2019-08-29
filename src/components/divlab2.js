@@ -66,7 +66,8 @@ class divlabTwo extends React.PureComponent {
       usedComponents: [],
       html: '',
       open: false,
-      title: '',
+			title: '',
+			toggled: false,
     };
 
     this.onAddItem = this.onAddItem.bind(this);
@@ -379,7 +380,7 @@ class divlabTwo extends React.PureComponent {
         </div>
         <Sidebar.Pushable
           as={Segment}
-          style={{ backgroundColor: 'rgb(92,0,41)' }}
+          style={{ backgroundColor: 'rgb(253,208,0)' }}
         >
           <Sidebar
             as={Menu}
@@ -513,13 +514,14 @@ class divlabTwo extends React.PureComponent {
                       } else {
                         div.style.border = '1px solid red';
                       }
-                    });
+										});
+										this.setState({toggled: !this.state.toggled})
                   }}
                 >
                   <Icon name="eye" />
                   Toggle Preview
                 </Button>
-                <Button onClick={this.onAddItem}>
+                <Button onClick={this.onAddItem} disabled={this.state.toggled}>
                   <Icon name="plus square" />
                   Add New Container
                 </Button>
@@ -527,10 +529,10 @@ class divlabTwo extends React.PureComponent {
                   <Icon name="save" />
                   Save
                 </Button>
-                <Button
+                <Button disabled={!this.state.toggled}
                   onClick={() => {
                     // let html = document.querySelector('html').innerHTML;
-                    // html = '<html>\n' + html + '\n</html>';
+										// html = '<html>\n' + html + '\n</html>';
                     let head = document.querySelector('head').innerHTML;
                     let canvas = document.querySelector('.react-grid-layout')
                       .innerHTML;
@@ -560,7 +562,7 @@ class divlabTwo extends React.PureComponent {
                   <Icon name="download" />
                   Export
                 </Button>
-                <Button onClick={this.show}>
+                <Button onClick={this.show} inverted color='red'>
                   <Icon name="trash alternate" />
                   Delete Project
                 </Button>

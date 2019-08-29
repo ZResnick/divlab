@@ -164,7 +164,7 @@ class Navbar extends React.Component {
 						<div>
 							<center>
 								<h2>
-									If you'd like, you can add navigation links to yoiur header!
+									If you'd like, you can add navigation links to your header!
 								</h2>
 							</center>
 							<br />
